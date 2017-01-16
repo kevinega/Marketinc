@@ -11,6 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [
+    'as' => 'home',
+    'uses' => 'PagesController@home'
+]);
+
+Route::group(['prefix' => 'auth'], function(){
+	
+	Route::get('register', [
+		'as' => 'get_register',
+		'uses' => 'AuthController@getRegister'
+	]);
+	Route::post('register', [
+		'as' => 'post_register',
+		'uses' => 'AuthController@postRegister'
+	]);
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
