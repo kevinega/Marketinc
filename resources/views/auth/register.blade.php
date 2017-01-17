@@ -2,7 +2,58 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    
+    {!! Form::open(['id' => 'register-route-form']) !!}
+
+          {!! Form::label('restaurant_name', 'Restaurant Name') !!}
+          {!! Form::text('restaurant_name', null, ['id' => 'restaurant_name', 'class' => 'form-control', 'placeholder' => 'Restaurant Name', 'required']) !!}
+          </br>
+
+          {!! Form::label('url', 'Username') !!}
+          {!! Form::textarea('url', null, ['id' => 'url', 'class' => 'form-control', 'placeholder' => 'Username', 'required']) !!}
+          
+          </br>
+
+          {!! Form::label('address', 'Address') !!}
+          {!! Form::text('address', null, ['id' => 'address', 'class' => 'form-control', 'placeholder' => 'Address', 'required']) !!}
+
+          {!! Form::label('location', 'Locations') !!}
+          {!! Form::text('location', null, ['id' => 'location', 'class' => 'form-control', 'placeholder' => 'Locations', 'required']) !!}
+
+          </br>
+
+          {!! Form::label('phone_one', 'Phone Number') !!}
+          {!! Form::text('phone_one', null, ['id' => 'phone_one', 'class' => 'form-control', 'placeholder' => 'Phone Number', 'required']) !!}
+
+          {!! Form::label('phone_two', 'Phone Number 2') !!}
+          {!! Form::text('phone_two', null, ['id' => 'phone_two', 'class' => 'form-control', 'placeholder' => 'Phone Number', 'required']) !!}
+
+          {!! Form::label('membership', 'membership') !!}
+          {!! Form::text('membership', null, ['id' => 'membership', 'class' => 'form-control', 'placeholder' => 'membership', 'required']) !!}
+
+                    {!! Form::label('description', 'Description') !!}
+          {!! Form::text('description', null, ['id' => 'description', 'class' => 'form-control', 'placeholder' => 'Description', 'required']) !!}
+
+                    {!! Form::label('logo', 'Logo') !!}
+          {!! Form::text('logo', null, ['id' => 'logo', 'class' => 'form-control', 'placeholder' => 'Logo', 'required']) !!}
+
+                    {!! Form::label('cover', 'Cover') !!}
+          {!! Form::text('cover', null, ['id' => 'cover', 'class' => 'form-control', 'placeholder' => 'Cover', 'required']) !!}
+
+                    {!! Form::label('open_hour', 'Open Hour') !!}
+          {!! Form::text('open_hour', null, ['id' => 'open_hour', 'class' => 'form-control', 'placeholder' => 'Open Hour', 'required']) !!}
+
+                    {!! Form::label('email', 'Email') !!}
+          {!! Form::text('email', null, ['id' => 'email', 'class' => 'form-control', 'placeholder' => 'Email', 'required']) !!}
+
+                    {!! Form::label('password', 'Password') !!}
+          {!! Form::text('password', null, ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Password', 'required']) !!}
+
+          {!! Form::button('Submit', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
+
+      {!! Form::close() !!}
+
+    <!--div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
@@ -71,6 +122,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div-->
 </div>
 @endsection

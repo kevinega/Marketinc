@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Brand;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -48,9 +48,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'restaurant_name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
         ]);
     }
 
@@ -62,10 +62,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        return Brand::create([
+            'restaurant_name' => $data['restaurant_name'],
+            'url' => $data['url'], 
+            'address' => $data['address'], 
+            'location' => $data['location'], 
+            'phone_one' => $data['phone_one'], 
+            'phone_two' => $data['phone_two'],
+            'membership' => $data['membership'], 
+            'description' => $data['description'], 
+            'logo' => $data['logo'],
+            'cover' => $data['cover'],
+            'open_hour' => $data['open_hour'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        return redirectTo('/home');
+
     }
 }
