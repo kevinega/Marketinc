@@ -16,17 +16,22 @@ Route::get('/', [
     'uses' => 'PagesController@home'
 ]);
 
-Route::group(['prefix' => 'auth'], function(){
-	
-	Route::get('register', [
-		'as' => 'get_register',
-		'uses' => 'AuthController@getRegister'
-	]);
-	Route::post('register', [
-		'as' => 'post_register',
-		'uses' => 'AuthController@postRegister'
-	]);
-});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['prefix' => 'brand'], function(){
+
+	Route::get('post', [
+		'as' => 'get_site',
+		'uses' => 'ForumController@getSite'
+	]);
+
+	Route::post('post', [
+		'as' => 'submit_brand',
+		'uses' => 'ForumController@submitBrand'
+	]);
+
+ 
+});

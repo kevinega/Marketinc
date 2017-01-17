@@ -16,6 +16,8 @@ class ComposerStaticInitbd9523700b8ec31ecbf1c539e62a2c0d
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '752af1c2bdb339e8474c3c31b22b7d54' => __DIR__ . '/..' . '/illuminate/html/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -71,6 +73,7 @@ class ComposerStaticInitbd9523700b8ec31ecbf1c539e62a2c0d
         ),
         'I' => 
         array (
+            'Illuminate\\Html\\' => 16,
             'Illuminate\\' => 11,
         ),
         'F' => 
@@ -85,6 +88,7 @@ class ComposerStaticInitbd9523700b8ec31ecbf1c539e62a2c0d
         ),
         'C' => 
         array (
+            'Collective\\Html\\' => 16,
             'ClassPreloader\\' => 15,
             'Carbon\\' => 7,
         ),
@@ -201,6 +205,10 @@ class ComposerStaticInitbd9523700b8ec31ecbf1c539e62a2c0d
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
         ),
+        'Illuminate\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/html',
+        ),
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
@@ -220,6 +228,10 @@ class ComposerStaticInitbd9523700b8ec31ecbf1c539e62a2c0d
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Collective\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
         ),
         'ClassPreloader\\' => 
         array (
@@ -279,6 +291,7 @@ class ComposerStaticInitbd9523700b8ec31ecbf1c539e62a2c0d
 
     public static $classMap = array (
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreateTableBrands' => __DIR__ . '/../..' . '/database/migrations/2017_01_16_170929_create_table_brands.php',
         'CreateTablePosts' => __DIR__ . '/../..' . '/database/migrations/2017_01_16_133332_create_table_posts.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',

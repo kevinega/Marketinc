@@ -8,7 +8,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home">Marketinc</a>
+            <a class="navbar-brand" href="{{ url('/') }}">Marketinc</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <!--ul class="nav navbar-nav">
@@ -34,7 +34,19 @@
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
-                            <li class="dropdown">
+                            <li><a href="{{ url('/brand/post') }}">PostSomething</a></li>
+                            <li><a href='#'>{{ Auth::user()->name }} </a></li>
+                            <li> <a href="{{ url('/logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                            </li>
+                            <!--li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -52,7 +64,7 @@
                                         </form>
                                     </li>
                                 </ul>
-                            </li>
+                            </li-->
                         @endif
             </ul>
           </div><!--/.nav-collapse -->
