@@ -48,13 +48,18 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'brand_name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'brand_name' => 'required|min:3|max:150|unique:brands',
+            'username' => 'required|min:3|max:150|unique:brands|regex:/^\S*$/u',
+            'address' => 'required',
+            'location' => 'required',
+            'phone_one' => 'required|regex:/^[+]{0,1}[0-9]{5,15}/',
+            'phone_two' => 'regex:/^[+]{0,1}[0-9]{5,15}/',
+            'email' => 'required|email',
+            'password' => 'required|min:6|max:25',
         ]);
     }
 
-    /**
+    /**()
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
@@ -68,7 +73,12 @@ class RegisterController extends Controller
             'address' => $data['address'], 
             'location' => $data['location'], 
             'phone_one' => $data['phone_one'], 
-            'phone_two' => $data['phone_two'], 
+            'phone_two' => $data['phone_two'],
+            'membership' => $data['membership'], 
+            'description' => NULL, 
+            'logo' => NULL,
+            'cover' => NULL,
+            'open_hour' => NULL,
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
