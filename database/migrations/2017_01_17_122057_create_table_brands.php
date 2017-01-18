@@ -22,12 +22,12 @@ class CreateTableBrands extends Migration
             $table->string('address');
             $table->string('location');
             $table->string('phone_one');
-            $table->string('phone_two');
+            $table->string('phone_two')-> nullable();
             $table->string('membership');
-            $table->string('description');
-            $table->string('logo');
-            $table->string('cover');
-            $table->string('open_hour');
+            $table->string('description') -> nullable();
+            $table->string('logo') -> nullable();
+            $table->string('cover') -> nullable();
+            $table->string('open_hour') -> nullable();
             $table->rememberToken();
             $table->timestamps();
         });
