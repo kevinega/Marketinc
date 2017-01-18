@@ -1,58 +1,132 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
+<!-- content register page -->
+<section="content">
+<div class="container" style="margin-top:100px;">
+    <h2 style="text-align:center">REGISTRATION FORM</h2>
     
     {!! Form::open(['id' => 'register-route-form']) !!}
-
-          {!! Form::label('brand_name', 'Restaurant Name') !!}
           {!! Form::text('brand_name', null, ['id' => 'brand_name', 'class' => 'form-control', 'placeholder' => 'Restaurant Name', 'required']) !!}
           </br>
-
-          {!! Form::label('username', 'Username') !!}
-          {!! Form::textarea('username', null, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Username', 'required']) !!}
-          
+          {!! Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Username', 'required']) !!}
           </br>
-
-          {!! Form::label('address', 'Address') !!}
           {!! Form::text('address', null, ['id' => 'address', 'class' => 'form-control', 'placeholder' => 'Address', 'required']) !!}
-
-          {!! Form::label('location', 'Locations') !!}
-          {!! Form::text('location', null, ['id' => 'location', 'class' => 'form-control', 'placeholder' => 'Locations', 'required']) !!}
-
           </br>
-
-          {!! Form::label('phone_one', 'Phone Number') !!}
-          {!! Form::text('phone_one', null, ['id' => 'phone_one', 'class' => 'form-control', 'placeholder' => 'Phone Number', 'required']) !!}
-
-          {!! Form::label('phone_two', 'Phone Number 2') !!}
-          {!! Form::text('phone_two', null, ['id' => 'phone_two', 'class' => 'form-control', 'placeholder' => 'Phone Number', 'required']) !!}
-
-          {!! Form::label('membership', 'membership') !!}
-          {!! Form::text('membership', null, ['id' => 'membership', 'class' => 'form-control', 'placeholder' => 'membership', 'required']) !!}
-
-                    {!! Form::label('description', 'Description') !!}
-          {!! Form::text('description', null, ['id' => 'description', 'class' => 'form-control', 'placeholder' => 'Description', 'required']) !!}
-
-                    {!! Form::label('logo', 'Logo') !!}
-          {!! Form::text('logo', null, ['id' => 'logo', 'class' => 'form-control', 'placeholder' => 'Logo', 'required']) !!}
-
-                    {!! Form::label('cover', 'Cover') !!}
-          {!! Form::text('cover', null, ['id' => 'cover', 'class' => 'form-control', 'placeholder' => 'Cover', 'required']) !!}
-
-                    {!! Form::label('open_hour', 'Open Hour') !!}
-          {!! Form::text('open_hour', null, ['id' => 'open_hour', 'class' => 'form-control', 'placeholder' => 'Open Hour', 'required']) !!}
-
-                    {!! Form::label('email', 'Email') !!}
-          {!! Form::text('email', null, ['id' => 'email', 'class' => 'form-control', 'placeholder' => 'Email', 'required']) !!}
-
-                    {!! Form::label('password', 'Password') !!}
+          {!! Form::text('location', null, ['id' => 'location', 'class' => 'form-control', 'placeholder' => 'Locations', 'required']) !!}
+          </br>
+          {!! Form::text('phone_one', null, ['id' => 'phone_one', 'class' => 'form-control', 'placeholder' => 'Phone Number 1', 'required']) !!}
+          </br>
+          {!! Form::text('phone_two', null, ['id' => 'phone_two', 'class' => 'form-control', 'placeholder' => 'Phone Number 2']) !!}
+          </br>
+          {!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control', 'placeholder' => 'Email', 'required']) !!}
+          </br>
           {!! Form::text('password', null, ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Password', 'required']) !!}
-
+          </br>
+          {!! Form::text('confirm_password', null, ['id' => 'confirm_password', 'class' => 'form-control', 'placeholder' => 'Confirm Password', 'required']) !!}
+          </br>
           {!! Form::button('Submit', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
 
       {!! Form::close() !!}
 
+      <h2 style="text-align:center">CHOOSE YOUR PACKAGE</h2>
+      <table class="table table-striped">
+          <tbody>
+              <tr>
+                  <th style="text-align:center;">Promo List</th>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>Map</th>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>Photo Albums</th>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>Details</th>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>Review From Article</th>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>Own Article Column</th>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>About Us</th>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>Video Placement</th>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>Calculator</th>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>360</th>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>Music Playlist</th>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>Notif and Direct Email</th>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>Number of Followers</th>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>UBER</th>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>Branches</th>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+              <tr>
+                  <th>Analytics</th>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons">remove</i></td>
+                  <td><i class="material-icons" style="color:green;">check_circle</i></td>
+              </tr>
+          </tbody>
+      </table>
     <!--div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -124,4 +198,4 @@
         </div>
     </div-->
 </div>
-@endsection
+</section>

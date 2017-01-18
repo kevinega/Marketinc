@@ -8535,4 +8535,8 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   }
 }
 
+.center {
+  text-align: center;
+}
+
 /*# sourceMappingURL=app.css.map */
