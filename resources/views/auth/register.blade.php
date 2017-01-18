@@ -5,12 +5,12 @@
     
     {!! Form::open(['id' => 'register-route-form']) !!}
 
-          {!! Form::label('restaurant_name', 'Restaurant Name') !!}
-          {!! Form::text('restaurant_name', null, ['id' => 'restaurant_name', 'class' => 'form-control', 'placeholder' => 'Restaurant Name', 'required']) !!}
+          {!! Form::label('brand_name', 'Restaurant Name') !!}
+          {!! Form::text('brand_name', null, ['id' => 'brand_name', 'class' => 'form-control', 'placeholder' => 'Restaurant Name', 'required']) !!}
           </br>
 
-          {!! Form::label('url', 'Username') !!}
-          {!! Form::textarea('url', null, ['id' => 'url', 'class' => 'form-control', 'placeholder' => 'Username', 'required']) !!}
+          {!! Form::label('username', 'Username') !!}
+          {!! Form::textarea('username', null, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Username', 'required']) !!}
           
           </br>
 
