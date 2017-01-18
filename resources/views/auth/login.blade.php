@@ -2,7 +2,25 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    
+{!! Form::open(['id' => 'login-route-form']) !!}
+    
+        {!! Form::text('username', old('username'), ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Brand Username', 'required']) !!}
+        </br>
+
+        {!! Form::text('password', old('username'), ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Password', 'required']) !!}
+        </br>
+        
+        <a id="forgot-password" href="#">Forgot Password?</a>
+
+        </br>
+        {!! Form::button('Log in', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
+        </br>
+        <a id="register-question" href='{{ url('/register') }}'>Don't have any account? Join now</a>
+      {!! Form::close() !!}
+
+
+    <!--div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
@@ -63,6 +81,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div-->
 </div>
 @endsection
