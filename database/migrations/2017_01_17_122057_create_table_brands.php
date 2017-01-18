@@ -17,8 +17,8 @@ class CreateTableBrands extends Migration
             $table->increments('id');
             $table->string('email');
             $table->string('password');
-            $table->string('restaurant_name');
-            $table->string('url');
+            $table->string('brand_name');
+            $table->string('username');
             $table->string('address');
             $table->string('location');
             $table->string('phone_one');

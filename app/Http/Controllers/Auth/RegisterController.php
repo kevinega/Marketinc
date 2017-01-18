@@ -48,7 +48,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'restaurant_name' => 'required',
+            'brand_name' => 'required',
             'email' => 'required',
             'password' => 'required',
         ]);
@@ -63,8 +63,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return Brand::create([
-            'restaurant_name' => $data['restaurant_name'],
-            'url' => $data['url'], 
+            'brand_name' => $data['brand_name'],
+            'username' => $data['username'], 
             'address' => $data['address'], 
             'location' => $data['location'], 
             'phone_one' => $data['phone_one'], 
