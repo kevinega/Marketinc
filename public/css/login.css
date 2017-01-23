@@ -1,0 +1,41 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  background: url("/img/background-1.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.overlay {
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  overflow: auto;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.7);
+  /*can be anything, of course*/
+}
+
+.container {
+  height: 100%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+form {
+  width: 330px;
+}
+
+form img {
+  max-width: 200px;
+  margin-bottom: 60px;
+}
+
+/*# sourceMappingURL=login.css.map */

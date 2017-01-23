@@ -1,0 +1,38 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	background: url('/img/background-1.png') no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.overlay {
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    overflow: auto;
+    top: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.7); /*can be anything, of course*/
+}
+
+.container {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+form {
+	width: 330px;
+
+	img {
+		max-width: 200px;
+		margin-bottom: 60px;
+	}
+}
