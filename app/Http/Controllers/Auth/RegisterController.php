@@ -49,14 +49,19 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'brand_name' => 'required|min:3|max:150|unique:brands',
-            'username' => 'required|min:3|max:150|unique:brands|regex:/^\S*$/u',
+            'username' => array('required','min:3','max:150','unique:brands','regex:/^(?:[a-z]|[\S]|([.])(?!\1)){3,150}$/'),
             'address' => 'required',
-            'location' => 'required',
             'phone_one' => 'required|regex:/^[+]{0,1}[0-9]{5,15}/',
             'phone_two' => 'regex:/^[+]{0,1}[0-9]{5,15}/',
             'email' => 'required|email',
-            'password' => 'required|min:6|max:25',
-        ]);
+            'password' => 'required|min:6|max:25|confirmed',
+        ],
+
+        [
+            'username.regex' => 'Username shouldn\'t contains any space (\' \') or any symbols other than dot (\'.\') '
+
+        ]
+        );
     }
 
     /**()
@@ -71,7 +76,7 @@ class RegisterController extends Controller
             'brand_name' => $data['brand_name'],
             'username' => $data['username'], 
             'address' => $data['address'], 
-            'location' => $data['location'], 
+            'location' => NULL, 
             'phone_one' => $data['phone_one'], 
             'phone_two' => $data['phone_two'],
             'membership' => $data['membership'], 
