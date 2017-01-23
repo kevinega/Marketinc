@@ -20,7 +20,7 @@ class CreateTableBrands extends Migration
             $table->string('brand_name');
             $table->string('username');
             $table->string('address');
-            $table->string('location');
+            $table->string('location')->nullable();
             $table->string('phone_one');
             $table->string('phone_two')-> nullable();
             $table->string('membership');
