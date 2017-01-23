@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
+    @yield('page-style')
 
     <!-- Material Design Icon -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
