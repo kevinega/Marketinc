@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('page-style')
 <link href="{{ elixir('css/login.css') }}" rel="stylesheet">
 @endsection
@@ -11,7 +12,7 @@
             <img src="/img/logo-full.png" class="mx-auto d-block" alt="responsive_image">
             {!! Form::text('username', old('username'), ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Username', 'required']) !!}
             {!! Form::text('password', old('username'), ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Password', 'required']) !!}
-            <a id="forgot-password" href="#">Forgot Password?</a>
+            <a id="forgot-password" href="{{ url('/password/reset') }}">Forgot Password?</a>
             {!! Form::button('Log in', ['class' => 'btn btn-primary btn-block', 'type' => 'submit']) !!}
             <a id="register-question" href='{{ url('/register') }}'>Don't have any account? Join now</a>
         {!! Form::close() !!}
