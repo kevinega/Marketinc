@@ -1,0 +1,19 @@
+header {
+	img {
+		width: 100%;
+	}
+}
+
+.yellow-spacing {
+	background-color: #ffcc46; // prefer new var
+	width: 100%;
+	height: 250px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	img {
+		width: 300px;
+		height: auto;
+	}
+}
