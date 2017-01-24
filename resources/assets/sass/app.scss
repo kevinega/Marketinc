@@ -1,9 +1,35 @@
-
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-
 // Variables
 @import "variables";
 
 // Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap";
+
+// Margins
+.margin-bottom-10 { margin-bottom: 10px; }
+
+a {
+	color: $yellow;
+}
+
+a:hover, a:visited {
+	color: $yellow-dark;
+	text-decoration: none;
+}
+
+button, input, optgroup, select, textarea {
+	font-family: 'Lato', sans-serif; // 1
+}
+
+.form-control, .btn {
+	border-radius: 0;
+}
+
+.btn-primary {
+	background-color: $yellow;
+	border-color: $yellow;
+}
+
+.btn-primary:hover {
+    background-color: $yellow-dark;
+    border-color: $yellow-dark;
+}

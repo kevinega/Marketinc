@@ -38,4 +38,43 @@ form img {
   margin-bottom: 60px;
 }
 
+#forgot-password {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  font-size: 0.8rem;
+}
+
+#register-question {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.footer {
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20%;
+  z-index: 2;
+}
+
+.footer > .container {
+  height: 100%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.footer > .container span {
+  max-width: 330px;
+  color: #fff;
+}
+
 /*# sourceMappingURL=login.css.map */

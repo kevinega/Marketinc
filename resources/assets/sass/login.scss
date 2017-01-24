@@ -36,3 +36,35 @@ form {
 		margin-bottom: 60px;
 	}
 }
+
+#forgot-password {
+	display: flex;
+	justify-content: flex-end;
+	font-size: 0.8rem;
+}
+
+#register-question {
+	display: flex;
+	justify-content: center;
+}
+
+.footer {
+	font-size: 0.8rem;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 20%;
+	z-index: 2;
+
+	> .container {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		span {
+			max-width: 330px;
+			color: #fff;
+		}
+	}
+}
