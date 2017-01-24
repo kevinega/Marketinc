@@ -129,14 +129,14 @@
                     <th></th>
                     <td>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-link">
+                            <label class="btn btn-membership">
                                 {!! Form::radio('membership', 'free', false, ['id' => 'membership1', 'class' => 'btn-membership']) !!} Free
                             </label>
                         </div>
                     </td>
                     <td>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-link"> 
+                            <label class="btn btn-membership"> 
                                 {!! Form::radio('membership', 'basic', false, ['id' => 'membership2', 'class' => 'btn-membership']) !!} Basic
                             </label>
                         </div>

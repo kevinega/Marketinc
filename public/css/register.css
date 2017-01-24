@@ -35,4 +35,19 @@ h2 {
   color: green;
 }
 
+.package-form .btn-membership {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.package-form .btn-membership:hover {
+  background-color: #C79F37;
+  border-color: #C79F37;
+}
+
+.package-form .btn-membership.focus {
+  background-color: #C79F37;
+  border-color: #C79F37;
+}
+
 /*# sourceMappingURL=register.css.map */

@@ -32,4 +32,17 @@ h2 {
 	.green {
 		color: green;
 	}
+
+	.btn-membership {
+		background-color: rgba(0,0,0,0.3);
+		border-color: rgba(0,0,0,0.3);
+		&:hover {
+		    background-color: $yellow-dark;
+		    border-color: $yellow-dark;
+		}
+		&.focus {
+			background-color: $yellow-dark;
+		    border-color: $yellow-dark;	
+		}
+	}
 }
