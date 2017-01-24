@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'phone_one' => 'required|regex:/^[+]{0,1}[0-9]{5,15}/',
             'phone_two' => 'regex:/^[+]{0,1}[0-9]{5,15}/',
             'email' => 'required|email',
-            'password' => 'required|min:6|mbrax:25|confirmed',
+            'password' => 'required|min:6|max:25|confirmed',
             'membership' => 'required',
         ],
 
@@ -76,6 +76,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $confirmation_code = str_random(30);
         return Brand::create([
             'brand_name' => $data['brand_name'],
             'username' => $data['username'], 
@@ -90,9 +91,38 @@ class RegisterController extends Controller
             'open_hour' => NULL,
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'confirmation_code' => $confirmation_code,
         ]);
 
+        Mail::send('email.verify',$confirmation_code, function($message){
+            $message->to($data['email'], $data['username'])->subject('Verify your email address');
+        });
+
+        Flash::message('Thanks for registering to Marketinc! Please check your email to activate yout account');
+
         return redirectTo('/home');
+
+    }
+
+    public function confirm($confirmation_code){
+
+        if(!$confirmation_code){
+            throw new InvalidConfirmationCodeException;
+        }
+        $brand = Brand::whereConfirmationCode($confirmation_code)->first();
+
+        if(!$brand){
+            throw new InvalidConfirmationCodeException;
+        }
+
+        $brand->confirmed = 1;
+        $brand->confirmation_code = null;
+        $brand->save();
+
+        Flash::message('You have successfully activated your account');
+
+        return redirectTo('/login');
+
 
     }
 }
