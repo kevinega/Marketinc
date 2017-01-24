@@ -39,7 +39,10 @@
             </br>
             {!! Form::password('password_confirmation', ['id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => 'Confirm Password']) !!}
             </br>
-            <button type="button" class="btn btn-primary">NEXT</button>
+
+            <div class="button">
+                <button type="button" class="btn btn-primary" id="show">NEXT</button>
+            </div>
     </div>
 
 
@@ -124,24 +127,38 @@
                 </tr>
                 <tr>
                     <th></th>
-                    <td>FREE</td>
-                    <td>BASIC</td>
+                    <td>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-link">
+                                {!! Form::radio('membership', 'free', false, ['id' => 'membership1', 'class' => 'btn-membership']) !!} Free
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-link"> 
+                                {!! Form::radio('membership', 'basic', false, ['id' => 'membership2', 'class' => 'btn-membership']) !!} Basic
+                            </label>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-primary">
-              {!! Form::radio('membership', 'free', false, ['id' => 'membership1', 'class' => '']) !!} Free
-            </label>
-            <label class="btn btn-primary">
-              {!! Form::radio('membership', 'basic', false, ['id' => 'membership2', 'class' => '']) !!} Basic
-            </label>
-        </div>
-        
-        {!! Form::button('Submit', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
+        <div class="button">
+            {!! Form::button('REGISTER', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
 
-        {!! Form::close() !!}
+            {!! Form::close() !!}
+        </div>
     </div>
 </div>
+@endsection
+
+@section('page-js')
+$(document).ready(function(){
+    $("#show").click(function(){
+        $(".registration-form").hide();
+        $(".package-form").show();
+    });
+});
 @endsection

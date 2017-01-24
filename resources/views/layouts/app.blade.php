@@ -22,10 +22,14 @@
       rel="stylesheet">
 
     <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
+    </script>
+    <script>
+        @yield('page-js')
     </script>
 </head>
 <body>

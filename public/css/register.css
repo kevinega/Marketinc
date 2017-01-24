@@ -7,6 +7,11 @@
   -webkit-box-align: center;
   align-items: center;
   margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.container .button {
+  text-align: right;
 }
 
 h2 {
@@ -19,9 +24,10 @@ h2 {
 
 .package-form {
   width: 100%;
+  display: none;
 }
 
-.package-form th {
+.package-form th, .package-form td {
   text-align: center;
 }
 
