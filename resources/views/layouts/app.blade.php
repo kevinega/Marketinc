@@ -9,6 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name') }}</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato|Raleway" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
