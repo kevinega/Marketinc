@@ -28,6 +28,8 @@ class CreateTableBrands extends Migration
             $table->string('logo') -> nullable();
             $table->string('cover') -> nullable();
             $table->string('open_hour') -> nullable();
+            $table->boolean('confirmed')-> default(0);
+            $table->string('confirmation_code')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
