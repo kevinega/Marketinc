@@ -10,6 +10,8 @@
 
     <title>{{ config('app.name') }}</title>
     
+    <link rel="icon" type="image/png" href="{{ elixir('img/favicon.png') }}"/>
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato|Raleway" rel="stylesheet">
 
