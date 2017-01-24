@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -36,4 +39,30 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+    //override method credentials
+    protected function credentials(Request $request)
+    {
+        return array_merge($request->only($this->username(), 'password'), ['confirmed' => 1]);
+    }
+    
+
+    //override method username
+    protected function username()
+    {
+        //return 'email';
+        return 'username';
+    }
+
+    //override failed attempt login
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return redirect()->back()
+            ->withInput($request->only($this->username(), 'remember'))
+            ->withErrors([
+                $this->username() => Lang::get('auth.failed'),
+                'credentials' => 'We were unable to sign you in'
+            ]);
+    }
+
 }

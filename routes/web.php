@@ -27,3 +27,8 @@ Route::get('home', 'HomeController@index');
  */
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::post('register', 'Auth\RegisterController@register');
+
+Route::get('register/verify/{confirmationCode}', [
+    'as' => 'confirmation_path',
+    'uses' => 'RegisterController@confirm'
+]);

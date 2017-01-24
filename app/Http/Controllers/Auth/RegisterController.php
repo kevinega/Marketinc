@@ -6,6 +6,7 @@ use App\Brand;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -76,10 +77,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $username = $data['username'];
+        $email = $data['email'];
         $confirmation_code = str_random(30);
-        return Brand::create([
+        Brand::create([
             'brand_name' => $data['brand_name'],
-            'username' => $data['username'], 
+            'username' => $username, 
             'address' => $data['address'], 
             'location' => NULL, 
             'phone_one' => $data['phone_one'], 
@@ -89,16 +92,18 @@ class RegisterController extends Controller
             'logo' => NULL,
             'cover' => NULL,
             'open_hour' => NULL,
-            'email' => $data['email'],
+            'email' => $email,
             'password' => bcrypt($data['password']),
             'confirmation_code' => $confirmation_code,
+            'confirmed' => 0, 
         ]);
-
-        Mail::send('email.verify',$confirmation_code, function($message){
-            $message->to($data['email'], $data['username'])->subject('Verify your email address');
+        $sesuatu = ['confirmation_code' => $confirmation_code];
+        
+        Mail::send('email.verify',$sesuatu, function($message) use ($email){
+            $message->to($email)->subject('Verify your email address');
         });
 
-        Flash::message('Thanks for registering to Marketinc! Please check your email to activate yout account');
+        // Flash::message('Thanks for registering to Marketinc! Please check your email to activate yout account');
 
         return redirectTo('/home');
 
