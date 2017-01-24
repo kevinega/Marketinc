@@ -23,7 +23,8 @@
 @section('footer')
 <footer class="footer">
     <div class="container">
-        <span>© 2017 Marketinc</span>
+        <img src="/img/logo-m.png" class="margin-bottom-10" alt="M">
+        <div>© 2017 Marketinc</div>
     </div>
 </footer>
 @endsection
