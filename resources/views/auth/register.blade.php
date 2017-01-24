@@ -132,10 +132,10 @@
 
         <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-primary">
-              {!! Form::radio('membership', 'free', ['id' => 'membership1', 'class' => '']) !!} Free
+              {!! Form::radio('membership', 'free', false['id' => 'membership1', 'class' => '']) !!} Free
             </label>
             <label class="btn btn-primary">
-              {!! Form::radio('membership', 'basic', ['id' => 'membership2', 'class' => '']) !!} Basic
+              {!! Form::radio('membership', 'basic', false['id' => 'membership2', 'class' => '']) !!} Basic
             </label>
         </div>
         

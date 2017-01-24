@@ -54,11 +54,15 @@ class RegisterController extends Controller
             'phone_one' => 'required|regex:/^[+]{0,1}[0-9]{5,15}/',
             'phone_two' => 'regex:/^[+]{0,1}[0-9]{5,15}/',
             'email' => 'required|email',
-            'password' => 'required|min:6|max:25|confirmed',
+            'password' => 'required|min:6|mbrax:25|confirmed',
+            'membership' => 'required',
         ],
 
         [
-            'username.regex' => 'Username shouldn\'t contains any space (\' \') or any symbols other than dot (\'.\') '
+            'brand_name.required' => 'The restaurant name field is required',
+            'phone_one.required' => 'The phone number 1 field is required',
+            'membership.in' => 'Choose one',
+            'username.regex'   => 'Username shouldn\'t contains any space (\' \') or any symbols other than dot (\'.\') '
 
         ]
         );
