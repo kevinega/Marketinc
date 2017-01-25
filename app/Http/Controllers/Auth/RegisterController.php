@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Brand;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -106,7 +108,7 @@ class RegisterController extends Controller
 
         // Flash::message('Thanks for registering to Marketinc! Please check your email to activate yout account');
 
-        return redirectTo('/home');
+       return true;
 
     }
 
@@ -127,8 +129,28 @@ class RegisterController extends Controller
 
         Flash::message('You have successfully activated your account');
 
-        return redirectTo('/login');
+        //return redirectTo('/login');
 
 
     }
+
+        /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+        if($user){
+            // dd($user."dalam");
+        return redirect('login');
+        }
+        // dd($user."luar");
+    }
+
 }
