@@ -30,5 +30,5 @@ Route::post('register', 'Auth\RegisterController@register');
 
 Route::get('register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
-    'uses' => 'RegisterController@confirm'
+    'uses' => 'Auth\RegisterController@confirm'
 ]);

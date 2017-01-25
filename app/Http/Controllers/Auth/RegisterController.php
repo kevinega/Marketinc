@@ -127,9 +127,9 @@ class RegisterController extends Controller
         $brand->confirmation_code = null;
         $brand->save();
 
-        Flash::message('You have successfully activated your account');
+        //Flash::message('You have successfully activated your account');
 
-        //return redirectTo('/login');
+        return redirect('/login');
 
 
     }
