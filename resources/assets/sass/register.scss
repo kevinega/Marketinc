@@ -5,8 +5,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 100px;
-	margin-bottom: 100px;
+	margin: 50px auto 50px;
 
 	.button {
 		text-align: right;
@@ -19,6 +18,29 @@ h2 {
 
 .registration-form {
 	width: 500px;
+
+	.membership-label {
+		display: flex;
+		align-items: center;
+	}
+
+	.btn-membership {
+		width: 250px;
+		background-color: rgba(0,0,0,0.3);
+		border-color: rgba(0,0,0,0.3);
+		font : {
+			weight: bold;
+			size: 18px;
+		}
+		&:hover {
+		    background-color: $yellow-dark;
+		    border-color: $yellow-dark;
+		}
+		&.focus {
+			background-color: $yellow-dark;
+		    border-color: $yellow-dark;	
+		}
+	}
 }
 
 .package-form {
@@ -33,16 +55,10 @@ h2 {
 		color: green;
 	}
 
-	.btn-membership {
-		background-color: rgba(0,0,0,0.3);
-		border-color: rgba(0,0,0,0.3);
-		&:hover {
-		    background-color: $yellow-dark;
-		    border-color: $yellow-dark;
-		}
-		&.focus {
-			background-color: $yellow-dark;
-		    border-color: $yellow-dark;	
-		}
+	.package-form-header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
 	}
 }

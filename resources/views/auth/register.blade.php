@@ -40,15 +40,46 @@
             {!! Form::password('password_confirmation', ['id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => 'Confirm Password']) !!}
             </br>
 
+            <div class="membership-label">
+                {!! Form::label('membership', 'Choose Your Package* ') !!}
+                <button type="button" class="btn btn-link">
+                    <i class="material-icons yellow" id="help" data-toggle="tooltip" data-placement="right" title="See Package Details">help</i>
+                </button>
+            </div>
+
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-membership">
+                    {!! Form::radio('membership', 'free', false, ['id' => 'membership1', 'class' => 'btn-membership']) !!} FREE
+                </label>
+                <label class="btn btn-membership"> 
+                    {!! Form::radio('membership', 'basic', false, ['id' => 'membership2', 'class' => 'btn-membership']) !!} BASIC
+                </label>
+            </div>
+
             <div class="button">
-                <button type="button" class="btn btn-primary" id="show">NEXT</button>
+                {!! Form::button('Register', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
+
+                {!! Form::close() !!}
             </div>
     </div>
 
 
     <div class="package-form">
-        <h2>CHOOSE YOUR PACKAGE</h2>
+        <div class="package-form-header">
+            <button type="button" class="btn btn-link">
+                <i class="material-icons yellow" id="back">arrow_back</i>
+            </button>
+            <h2>PACKAGE DETAILS</h2>
+            <div class="hidden"></div>
+        </div>
         <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="yellow">FREE</th>
+                    <th class="yellow">BASIC</th>
+                </tr>
+            </thead>
             <tbody>
                 <tr>
                     <th>Promotion List</th>
@@ -125,40 +156,25 @@
                     <td><i class="material-icons">remove</i></td>
                     <td><i class="material-icons green">check_circle</i></td>
                 </tr>
-                <tr>
-                    <th></th>
-                    <td>
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-membership">
-                                {!! Form::radio('membership', 'free', false, ['id' => 'membership1', 'class' => 'btn-membership']) !!} Free
-                            </label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-membership"> 
-                                {!! Form::radio('membership', 'basic', false, ['id' => 'membership2', 'class' => 'btn-membership']) !!} Basic
-                            </label>
-                        </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 
-        <div class="button">
-            {!! Form::button('REGISTER', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
-
-            {!! Form::close() !!}
-        </div>
     </div>
 </div>
 @endsection
 
 @section('page-js')
 $(document).ready(function(){
-    $("#show").click(function(){
+    $('#help').tooltip();
+
+    $("#help").click(function(){
         $(".registration-form").hide();
         $(".package-form").show();
+    });
+
+    $("#back").click(function(){
+        $(".package-form").hide();
+        $(".registration-form").show();
     });
 });
 @endsection

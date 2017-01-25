@@ -6,8 +6,7 @@
   flex-direction: column;
   -webkit-box-align: center;
   align-items: center;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin: 50px auto 50px;
 }
 
 .container .button {
@@ -20,6 +19,31 @@ h2 {
 
 .registration-form {
   width: 500px;
+}
+
+.registration-form .membership-label {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.registration-form .btn-membership {
+  width: 250px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-color: rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.registration-form .btn-membership:hover {
+  background-color: #C79F37;
+  border-color: #C79F37;
+}
+
+.registration-form .btn-membership.focus {
+  background-color: #C79F37;
+  border-color: #C79F37;
 }
 
 .package-form {
@@ -35,19 +59,16 @@ h2 {
   color: green;
 }
 
-.package-form .btn-membership {
-  background-color: rgba(0, 0, 0, 0.3);
-  border-color: rgba(0, 0, 0, 0.3);
-}
-
-.package-form .btn-membership:hover {
-  background-color: #C79F37;
-  border-color: #C79F37;
-}
-
-.package-form .btn-membership.focus {
-  background-color: #C79F37;
-  border-color: #C79F37;
+.package-form .package-form-header {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=register.css.map */
