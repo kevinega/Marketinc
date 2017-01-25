@@ -97,9 +97,10 @@ class RegisterController extends Controller
             'confirmation_code' => $confirmation_code,
             'confirmed' => 0, 
         ]);
-        $sesuatu = ['confirmation_code' => $confirmation_code];
+        $sesuatu = ['confirmation_code' => $confirmation_code, 'username' => $username];
         
         Mail::send('email.verify',$sesuatu, function($message) use ($email){
+            $message->from('freeajabanget@gmail.com','Marketinc');
             $message->to($email)->subject('Verify your email address');
         });
 
