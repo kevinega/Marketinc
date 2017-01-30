@@ -16,55 +16,34 @@
         <h2>REGISTRATION FORM</h2>
           
         {!! Form::open(['id' => 'register-route-form']) !!}
-            @if ($errors->has('membership'))
-                {!! $errors->first('membership', '<span class="alert-danger">:message</span>') !!}
-            @endif
-            <br>
-            <!--div class="alert alert-danger">
+           @if ($errors->has('brand_name'))
+            <div class="alert alert-danger">
                 @foreach ($errors->all() as $error)
                     {{ $error }} <br>        
                 @endforeach
-            </div-->
-
-            @if ($errors->has('brand_name'))
-              {!! $errors->first('brand_name', '<span class="alert-danger">:message</span>') !!}
+            </div>
             @endif
-            {!! Form::text('brand_name', null, ['id' => 'brand_name', 'class' => 'form-control', 'placeholder' => 'Restaurant Name'], 'autofocus') !!}
+            {!! Form::text('brand_name', null, ['id' => 'brand_name', 'class' => 'form-control', 'placeholder' => 'Restaurant Name']) !!}
+            {!! Form::label('membership', 'ex: Dapur Desa', ['class' => 'ex']) !!}
             </br>
-
-            @if ($errors->has('username'))
-                {!! $errors->first('username', '<span class="alert-danger">:message</span>') !!}
-            @endif
-            {!! Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Username']) !!}
+            <div class="input-group">
+                <span class="input-group-addon">marketinc.us/</span>
+                {!! Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'username']) !!}
+            </div>
+            {!! Form::label('membership', 'ex: dapurdesa', ['class' => 'ex']) !!}
             </br>
-
-            @if ($errors->has('address'))
-                {!! $errors->first('address', '<span class="alert-danger">:message</span>') !!}
-            @endif
             {!! Form::text('address', null, ['id' => 'address', 'class' => 'form-control', 'placeholder' => 'Address']) !!}
+            {!! Form::label('membership', 'ex: Jl. Tebet Dalam No. 7', ['class' => 'ex']) !!}
             </br>
-
-            @if ($errors->has('phone_one'))
-                {!! $errors->first('phone_one', '<span class="alert-danger">:message</span>') !!}
-            @endif
             {!! Form::text('phone_one', null, ['id' => 'phone_one', 'class' => 'form-control', 'placeholder' => 'Phone Number 1']) !!}
+            {!! Form::label('membership', 'ex: 089765783094', ['class' => 'ex']) !!}
             </br>
-
-            @if ($errors->has('phone_two'))
-                {!! $errors->first('phone_two', '<span class="alert-danger">:message</span>') !!}
-            @endif
             {!! Form::text('phone_two', null, ['id' => 'phone_two', 'class' => 'form-control', 'placeholder' => 'Phone Number 2']) !!}
+            {!! Form::label('membership', 'ex: 089765783094', ['class' => 'ex']) !!}
             </br>
-
-            @if ($errors->has('email'))
-                {!! $errors->first('email', '<span class="alert-danger">:message</span>') !!}
-            @endif
             {!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control', 'placeholder' => 'Email']) !!}
+            {!! Form::label('membership', 'ex: dapurdesa@gmail.com', ['class' => 'ex']) !!}
             </br>
-
-            @if ($errors->has('password'))
-                {!! $errors->first('password', '<span class="alert-danger">:message</span>') !!}
-            @endif
             {!! Form::password('password', ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Password']) !!}
             </br>
             {!! Form::password('password_confirmation', ['id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => 'Confirm Password']) !!}
