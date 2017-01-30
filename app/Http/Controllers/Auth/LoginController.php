@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Brand;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use App\Http\Controllers\Controller;
@@ -57,12 +58,36 @@ class LoginController extends Controller
     //override failed attempt login
     protected function sendFailedLoginResponse(Request $request)
     {
-        return redirect()->back()
-            ->withInput($request->only($this->username(), 'remember'))
-            ->withErrors([
-                $this->username() => Lang::get('auth.failed'),
-                'credentials' => 'We were unable to sign you in'
-            ]);
-    }
+        // return redirect()->back()
+        //     ->withInput($request->only($this->username(), 'remember'))
+        //     ->withErrors([
+        //         $this->username() => Lang::get('auth.failed'),
+        //         'credentials' => 'We were unable to sign you in'
+        //     ]);
+
+         if ( ! Brand::where('username', $request->username)->first() ) {
+            return redirect()->back()
+                ->withInput($request->only($this->username(), 'remember'))
+                ->withErrors([
+                    $this->username() => Lang::get('auth.username'),
+                ]);
+        }
+
+        if ( ! Brand::where('username', $request->username)->where('password', bcrypt($request->password))->first() ) {
+            return redirect()->back()
+                ->withInput($request->only($this->username(), 'remember'))
+                ->withErrors([
+                    'password' => Lang::get('auth.password'),
+                ]);
+        }
+
+        if($request->confirmed != 1){
+            return redirect()->back()
+                ->withInput($request->only($this->username(), 'remember'))
+                ->withErrors([
+                    'confirmed' => Lang::get('auth.confirmed'),
+                ]);
+            }
+        }
 
 }

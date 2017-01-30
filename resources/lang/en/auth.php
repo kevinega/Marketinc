@@ -15,5 +15,7 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-
+    'username' => 'Username not found, if you do not have an account please register',
+    'password' => 'Incorrect password',
+    'confirmed' => 'Your account have not been activated, please check your email',
 ];
