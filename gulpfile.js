@@ -18,5 +18,6 @@ elixir((mix) => {
        .sass('login.scss')
        .sass('register.scss')
        .sass('navbar.scss')
+       .sass('reset-password.scss')
        .webpack('app.js');
 });
