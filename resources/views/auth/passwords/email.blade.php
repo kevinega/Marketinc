@@ -13,11 +13,25 @@
 </nav>
 
 <div class="container">
+    {{-- @if ($errors->has('email'))
+        <div class="alert alert-danger" role="alert">
+            <strong>Oh snap!</strong> The email you entered did not match our records. Please double-check and try again.
+        </div>
+    @endif --}}
+
     <div class="mt-1">
+        @if ($errors->has('email'))
+        <h2 class="alert-danger">We couldn't find your account with that information</h2>
+        @else
         <h2>Find your Marketinc account</h2>
+        @endif
     </div>
     <p class="lead">
-        Enter your email.
+        @if ($errors->has('email'))
+        Please try searching for your email address again.
+        @else
+        Enter your email address.
+        @endif
     </p>
     @if (session('status'))
         <div class="alert alert-success">
@@ -30,12 +44,6 @@
 
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-            @if ($errors->has('email'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
-            @endif
         </div>
 
         <div class="form-group">
