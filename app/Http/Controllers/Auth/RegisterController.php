@@ -62,10 +62,34 @@ class RegisterController extends Controller
         ],
 
         [
-            'brand_name.required' => 'The restaurant name field is required',
-            'phone_one.required' => 'The phone number 1 field is required',
-            'membership.in' => 'Choose one',
-            'username.regex'   => 'Username shouldn\'t contains any space (\' \') or any symbols other than dot (\'.\') '
+            'brand_name.required' => 'Restaurant name is required',
+            'brand_name.min' => 'Restaurant name is too short, min 3 characters',
+            'brand_name.max' => 'Restaurant name is too long, max 150 characters',
+            'brand_name.unique' => 'Restaurant name already exist',      
+            
+            'username.required' => 'Username is required',
+            'username.min' => 'Username is too short, min 3 characters',
+            'username.max' => 'Username is too long, max 150 characters',
+            'username.unique' => 'Username already exist',
+            'username.regex'   => 'Username should contains characters or dot only',
+            
+            'address.required' => 'Address is required',
+            
+            'phone_one.required' => 'Phone number 1 is required',
+            'phone_one.regex' => 'Phone number 1 is invalid',
+            
+            'phone_two.regex' => 'Phone number 2 is invalid',
+            
+            'email.required' => 'Email is required',
+            'email.email' => 'Email is invalid',
+            
+            'password.required' => 'Password is required',
+            'password.min' => 'Password is too short, min 6 digits',
+            'password.max' => 'Password is too long, max 25 digits',
+            'password.confirmed' => 'Password is not match',
+            
+            'membership.required' => 'Choose one package',
+            'membership.in' => 'Choose one'
 
         ]
         );
