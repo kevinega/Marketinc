@@ -16,8 +16,43 @@ h2 {
 	text-align: center;
 }
 
+.registration {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: center;
+	margin-bottom: 25px;
+}
+
+.registration-form-hidden, .registration-form-error {
+	width: 400px;
+
+	tr {
+		height: 40px;
+		vertical-align: middle;
+	}
+
+	.height-37 {
+		height: 37px;
+	}
+
+	.alert-danger {
+		background-color: transparent;
+		margin-left: 3px;
+	}
+
+	.error-label {
+		display: flex;
+		align-items: center;
+	}
+}
+
 .registration-form {
 	width: 500px;
+
+	.height-37 {
+		height: 37px;
+	}
 
 	.membership-label {
 		display: flex;
@@ -42,8 +77,12 @@ h2 {
 		}
 	}
 
-	.ex {
-		margin-left: 3px;
+	.label {
+		margin: 5px 3px;
+	}
+
+	.input-group, .form-control {
+		width: 500px;
 	}
 }
 
@@ -64,5 +103,6 @@ h2 {
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
+		margin-bottom: 25px;
 	}
 }

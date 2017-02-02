@@ -12,88 +12,222 @@
 
 @section('content')
 <div class="container">
-    <div class="registration-form">
-        <h2>REGISTRATION FORM</h2>
-          
-        {!! Form::open(['id' => 'register-route-form']) !!}
-            @if ($errors->has('brand_name'))
-                {!! $errors->first('brand_name', '<span class="alert-danger">:message</span>') !!}
-            @endif
-            {!! Form::text('brand_name', null, ['id' => 'brand_name', 'class' => 'form-control', 'placeholder' => 'Restaurant Name']) !!}
-            {!! Form::label('brand_name', 'ex: Dapur Desa', ['class' => 'ex']) !!}
-            </br>
+    <div class="registration">
+        <div class="registration-form-hidden"></div>
+        <div class="registration-form">
+            <h2>REGISTRATION FORM</h2>
+        </div>
+        <div class="registration-form-error"></div>
+    </div>
 
-            @if ($errors->has('username'))
-                {!! $errors->first('username', '<span class="alert-danger">:message</span>') !!}
-            @endif
-            <div class="input-group">
-                <span class="input-group-addon">marketinc.us/</span>
-                {!! Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'username']) !!}
-            </div>
-            {!! Form::label('username', 'ex: dapurdesa', ['class' => 'ex']) !!}
-            </br>
+    <div class="registration">
+        <div class="registration-form-hidden"></div>
+        <div class="registration-form">
+            {!! Form::open(['id' => 'register-route-form']) !!}
 
-            @if ($errors->has('address'))
-                {!! $errors->first('address', '<span class="alert-danger">:message</span>') !!}
-            @endif
+            <table>
+                <tbody>
+                    <tr>
+                        <td>{!! Form::label('brand_name', 'Restaurant Name', ['class' => 'label']) !!}</td>
+                    </tr>
+                    <tr>
+                        <td>{!! Form::text('brand_name', null, ['id' => 'brand_name', 'class' => 'form-control', 'placeholder' => 'ex: Dapur Desa']) !!}</td>
+                    </tr>
 
-            {!! Form::text('address', null, ['id' => 'address', 'class' => 'form-control', 'placeholder' => 'Address']) !!}
-            {!! Form::label('address', 'ex: Jl. Tebet Dalam No. 7', ['class' => 'ex']) !!}
-            </br>
+                    <tr>
+                        <td>{!! Form::label('username', 'Username', ['class' => 'label']) !!}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">marketinc.us/</span>
+                                {!! Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'ex: dapurdesa']) !!}
+                            </div>
+                        </td>
+                    </tr>
 
-            @if ($errors->has('phone_one'))
-                {!! $errors->first('phone_one', '<span class="alert-danger">:message</span>') !!}
-            @endif
-            {!! Form::text('phone_one', null, ['id' => 'phone_one', 'class' => 'form-control', 'placeholder' => 'Phone Number 1']) !!}
-            {!! Form::label('phone_one', 'ex: 089765783094', ['class' => 'ex']) !!}
-            </br>
+                    <tr>
+                        <td>{!! Form::label('address', 'Address', ['class' => 'label']) !!}</td>
+                    </tr>
+                    <tr>
+                        <td>{!! Form::text('address', null, ['id' => 'address', 'class' => 'form-control', 'placeholder' => 'ex: Jl. Tebet Dalam No. 7']) !!}</td>
+                    </tr>
 
-            @if ($errors->has('phone_two'))
-                {!! $errors->first('phone_two', '<span class="alert-danger">:message</span>') !!}
-            @endif
-            {!! Form::text('phone_two', null, ['id' => 'phone_two', 'class' => 'form-control', 'placeholder' => 'Phone Number 2']) !!}
-            {!! Form::label('phone_two', 'ex: 089765783094', ['class' => 'ex']) !!}
-            </br>
+                    <tr>
+                        <td>{!! Form::label('phone_one', 'Phone Number 1', ['class' => 'label']) !!}</td>
+                    </tr>
+                    <tr>
+                        <td>{!! Form::text('phone_one', null, ['id' => 'phone_one', 'class' => 'form-control', 'placeholder' => 'ex: 089765783094']) !!}</td>
+                    </tr>
 
-            @if ($errors->has('email'))
-                {!! $errors->first('email', '<span class="alert-danger">:message</span>') !!}
-            @endif
-            {!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control', 'placeholder' => 'Email']) !!}
-            {!! Form::label('email', 'ex: dapurdesa@gmail.com', ['class' => 'ex']) !!}
-            </br>
+                    <tr>
+                        <td>{!! Form::label('phone_two', 'Phone Number 2', ['class' => 'label']) !!}</td>
+                    </tr>
+                    <tr>
+                        <td>{!! Form::text('phone_two', null, ['id' => 'phone_two', 'class' => 'form-control', 'placeholder' => 'ex: 089765783094']) !!}</td>
+                    </tr>
 
-            @if ($errors->has('password'))
-                {!! $errors->first('password', '<span class="alert-danger">:message</span>') !!}
-            @endif
-            {!! Form::password('password', ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Password']) !!}
-            </br>
-            {!! Form::password('password_confirmation', ['id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => 'Confirm Password']) !!}
-            </br>
+                    <tr>
+                        <td>{!! Form::label('email', 'Email', ['class' => 'label']) !!}</td>
+                    </tr>
+                    <tr>
+                        <td>{!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control', 'placeholder' => 'ex: dapurdesa@gmail.com']) !!}</td>
+                    </tr>
 
-            @if ($errors->has('membership'))
-                {!! $errors->first('membership', '<span class="alert-danger">:message</span>') !!}
-            @endif
-            <div class="membership-label">
-                {!! Form::label('membership', 'Choose Your Package* ') !!}
-                <button type="button" class="btn btn-link">
-                    <i class="material-icons yellow" id="help" data-toggle="tooltip" data-placement="right" title="See Package Details">help</i>
-                </button>
-            </div>
+                    <tr>
+                        <td>{!! Form::label('phone_two', 'Password', ['class' => 'label']) !!}</td>
+                    </tr>
+                    <tr>
+                        <td>{!! Form::password('password', ['id' => 'password', 'class' => 'form-control']) !!}</td>
+                    </tr>
 
-            <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-membership">
-                    {!! Form::radio('membership', 'free', false, ['id' => 'membership1', 'class' => 'btn-membership']) !!} FREE
-                </label>
-                <label class="btn btn-membership"> 
-                    {!! Form::radio('membership', 'basic', false, ['id' => 'membership2', 'class' => 'btn-membership']) !!} BASIC
-                </label>
-            </div>
+                    <tr>
+                        <td>{!! Form::label('phone_two', 'Confirm Password', ['class' => 'label']) !!}</td>
+                    </tr>
+                    <tr>
+                        <td>{!! Form::password('password_confirmation', ['id' => 'password_confirmation', 'class' => 'form-control']) !!}</td>
+                    </tr>
 
+                    <tr>
+                        <td>
+                            <div class="membership-label">
+                                {!! Form::label('membership', 'Choose Your Package* ') !!}
+                                <button type="button" class="btn btn-link">
+                                    <i class="material-icons yellow" id="help" data-toggle="tooltip" data-placement="right" title="See Package Details">help</i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-membership">
+                                    {!! Form::radio('membership', 'free', false, ['id' => 'membership1', 'class' => 'btn-membership']) !!} FREE
+                                </label>
+                                <label class="btn btn-membership"> 
+                                    {!! Form::radio('membership', 'basic', false, ['id' => 'membership2', 'class' => 'btn-membership']) !!} BASIC
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
             <div class="button">
                 {!! Form::button('Register', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
 
                 {!! Form::close() !!}
             </div>
+        </div>
+
+        <div class="registration-form-error">
+            @if ($errors->has('brand_name') || $errors->has('username') || $errors->has('address') || $errors->has('phone_one') || $errors->has('email') || $errors->has('password') || $errors->has('membership'))
+                <table>
+                    <tbody>
+                        <tr class="height-37"></tr>
+                        <tr>
+                            <td>
+                                @if ($errors->has('brand_name'))
+                                    <div class="error-label">
+                                        <i class="material-icons alert-danger">clear</i>
+                                        {!! $errors->first('brand_name', '<span class="alert-danger">:message</span>') !!}
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+                    
+                        <tr class="height-37"></tr>
+                        <tr>
+                            <td>
+                                @if ($errors->has('username'))
+                                    <div class="error-label">
+                                        <i class="material-icons alert-danger">clear</i>
+                                        {!! $errors->first('username', '<span class="alert-danger">:message</span>') !!}
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+
+                        <tr class="height-37"></tr>
+                        <tr>
+                            <td>
+                                @if ($errors->has('address'))
+                                    <div class="error-label">
+                                        <i class="material-icons alert-danger">clear</i>
+                                        {!! $errors->first('address', '<span class="alert-danger">:message</span>') !!}
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+
+                        <tr class="height-37"></tr>
+                        <tr>
+                            <td>
+                                @if ($errors->has('phone_one'))
+                                    <div class="error-label">
+                                        <i class="material-icons alert-danger">clear</i>
+                                        {!! $errors->first('phone_one', '<span class="alert-danger">:message</span>') !!}
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+
+                        <tr class="height-37"></tr>
+                        <tr>
+                            <td>
+                                @if ($errors->has('phone_two'))
+                                    <div class="error-label">
+                                        <i class="material-icons alert-danger">clear</i>
+                                        {!! $errors->first('phone_two', '<span class="alert-danger">:message</span>') !!}
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+
+                        <tr class="height-37"></tr>
+                        <tr>
+                            <td>
+                                @if ($errors->has('email'))
+                                    <div class="error-label">
+                                        <i class="material-icons alert-danger">clear</i>
+                                        {!! $errors->first('email', '<span class="alert-danger">:message</span>') !!}
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+
+                        <tr class="height-37"></tr>
+                        <tr>
+                            <td>
+                                @if ($errors->has('password'))
+                                    <div class="error-label">
+                                        <i class="material-icons alert-danger">clear</i>
+                                        {!! $errors->first('password', '<span class="alert-danger">:message</span>') !!}
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+                        
+                        <tr class="height-37"></tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        
+                        <tr class="height-37"></tr>
+                        <tr>
+                            <td>
+                                @if ($errors->has('membership'))
+                                    <div class="error-label">
+                                        <i class="material-icons alert-danger">clear</i>
+                                        {!! $errors->first('membership', '<span class="alert-danger">:message</span>') !!}
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            @endif
+        </div>
     </div>
 
 
@@ -201,13 +335,13 @@ $(document).ready(function(){
     $('#help').tooltip();
 
     $("#help").click(function(){
-        $(".registration-form").hide();
+        $(".registration").hide();
         $(".package-form").show();
     });
 
     $("#back").click(function(){
         $(".package-form").hide();
-        $(".registration-form").show();
+        $(".registration").show();
     });
 });
 @endsection
