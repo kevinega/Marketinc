@@ -16,51 +16,39 @@ h2 {
 	text-align: center;
 }
 
-.registration {
+.registration-flex, .registration-flex-error {
 	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
 	justify-content: center;
-	margin-bottom: 25px;
-}
+	align-items: center;
 
-.registration-form-hidden, .registration-form-error {
-	width: 400px;
+	.registration-flex-row, .registration-flex-error-row {
+		width: 500px;
 
-	tr {
-		height: 40px;
-		vertical-align: middle;
-	}
+		.alert-danger {
+			background-color: transparent;
+			margin-left: 3px;
+		}
 
-	.height-37 {
-		height: 37px;
-	}
-
-	.alert-danger {
-		background-color: transparent;
-		margin-left: 3px;
-	}
-
-	.error-label {
-		display: flex;
-		align-items: center;
+		.error-label {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
 	}
 }
+
+
+
 
 .registration-form {
-	width: 500px;
-
-	.height-37 {
-		height: 37px;
-	}
 
 	.membership-label {
 		display: flex;
 		align-items: center;
+		margin-top: 15px;
 	}
 
 	.btn-membership {
-		width: 250px;
 		background-color: rgba(0,0,0,0.3);
 		border-color: rgba(0,0,0,0.3);
 		font : {
@@ -78,11 +66,7 @@ h2 {
 	}
 
 	.label {
-		margin: 5px 3px;
-	}
-
-	.input-group, .form-control {
-		width: 500px;
+		margin: 15px 0px 3px;
 	}
 }
 
@@ -104,5 +88,45 @@ h2 {
 		align-items: center;
 		justify-content: space-between;
 		margin-bottom: 25px;
+	}
+}
+
+@media(min-width: 1000px) {
+	.registration-flex-error {
+		display: none;
+	}
+
+	.registration-form {
+		width: 500px;
+
+		.btn-membership {
+			width: 250px;
+		}
+	}
+}
+
+@media(max-width: 1000px) {
+	.registration-flex-row {
+		display: none;
+	}
+
+	@media(min-width: 412px) {
+		.registration-form, .registration-flex-error {
+			width: 300px;
+
+			.btn-membership {
+				width: 150px;
+			}
+		}
+	}
+
+	@media(max-width: 411px) {
+		.registration-form, .registration-flex-error {
+			width: 200px;
+
+			.btn-membership {
+				width: 100px;
+			}
+		}
 	}
 }
