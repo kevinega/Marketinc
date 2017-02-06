@@ -195,7 +195,7 @@
     <div class="registration-flex">
         <div class="registration-flex-row"></div>
         <div class="registration-form">
-            {!! Form::label('password.confirmed', 'Confirm Password', ['class' => 'label']) !!}
+            {!! Form::label('password_confirmation', 'Confirm Password', ['class' => 'label']) !!}
         </div>
         <div class="registration-flex-row"></div>
     </div>
@@ -203,7 +203,7 @@
     <div class="registration-flex">
         <div class="registration-flex-row"></div>
         <div class="registration-form">
-            {!! Form::password('password.confirmed', ['id' => 'password.confirmed', 'class' => 'form-control']) !!}
+            {!! Form::password('password_confirmation', ['id' => 'password_confirmation', 'class' => 'form-control']) !!}
         </div>
         <div class="registration-flex-row">
             @if ($errors->has('password'))
