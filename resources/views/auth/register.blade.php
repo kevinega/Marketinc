@@ -272,7 +272,7 @@
             {!! Form::password('password_confirmation', ['id' => 'password_confirmation', 'class' => 'form-control']) !!}
         </div>
         <div class="registration-flex-row">
-            @if ($errors->has('password'))
+            @if ($errors->has('password.confirmed'))
                 <div class="error-label">
                     <i class="material-icons alert-danger">clear</i>
                     {!! $errors->first('password.confirmed', '<span class="alert-danger">:message</span>') !!}
@@ -283,7 +283,7 @@
 
     <div class="registration-flex-error">
         <div class="registration-flex-error-row">
-            @if ($errors->has('password'))
+            @if ($errors->has('password.confirmed'))
                 <div class="error-label">
                     <i class="material-icons alert-danger">clear</i>
                     {!! $errors->first('password.confirmed', '<span class="alert-danger">:message</span>') !!}
