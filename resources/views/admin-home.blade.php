@@ -14,31 +14,33 @@
         </div>
     <div class="col-lg-10 col-lg-offset-1">
 
-    <h1><i class="fa fa-users"></i> User Administration <a href="/logout" class="btn btn-default pull-right">Logout</a></h1>
+    <h1><i class="fa fa-users"></i> User Administration </h1>
+    <a class="btn btn-default pull-right"> Hello,  <b> {{ Auth::guard('admin_users')->user()->name }} </b></a>
+    <a href="/logout" class="btn btn-default pull-right">Logout</a>
 
     <div class="table-responsive">
         <table class="table table-bordered table-striped">
 
             <thead>
                 <tr>
-                    <th>Username</th>
+                    <th>Name</th>
                     <th>Email</th>
                     <th>Date/Time Added</th>
+                    <th>Confirmation Code</th>
                     <th></th>
                 </tr>
             </thead>
 
             <tbody>
-                @foreach ($brands as $brand)
+                @foreach ($transactions as $transaction)
                 <tr>
-                    <td>{{ $brand->username }}</td>
-                    <td>{{ $brand->email }}</td>
-                    <td>{{ $brand->created_at->format('F d, Y h:ia') }}</td>
+                    <td>{{ $transaction->name }}</td>
+                    <td>{{ $transaction->email }}</td>
+                    <td>{{ $transaction->created_at->format('F d, Y h:ia') }}</td>
+                    <td>{{ $transaction->confirmation_code }}</td>
                     <td>
-                        <a href="/user/{{ $brand->id }}/edit" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
-                        {{ Form::open(['url' => '/admin/home/' . $brand->id, 'method' => 'DELETE']) }}
-                        {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-                        {{ Form::close() }}
+                        <a href="/admin/approve/{{ $transaction->id }}" class="btn btn-info pull-left" style="margin-right: 3px;">Approve</a>
+                        <a href="/admin/delete/{{ $transaction->id }}" class="btn btn-danger pull-left" style="margin-right: 3px;">Delete</a>
                     </td>
                 </tr>
                 @endforeach
@@ -46,9 +48,6 @@
 
         </table>
     </div>
-
-    <a href="/user/create" class="btn btn-success">Add User</a>
-
 </div>
 
 
