@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Brand;
+use App\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -58,7 +59,7 @@ class RegisterController extends Controller
             'phone_two' => 'regex:/^[+]{0,1}[0-9]{5,15}/',
             'email' => 'required|email',
             'password' => 'required|min:6|max:25|confirmed',
-            'password.confirmed' => 'required',
+            //'password.confirmed' => 'required',
             'membership' => 'required',
         ],
 
@@ -109,7 +110,9 @@ class RegisterController extends Controller
         $username = $data['username'];
         $email = $data['email'];
         $confirmation_code = str_random(30);
-        Brand::create([
+
+        //Mendaftarkan user baru sesuai form
+        $query = Brand::create([
             'brand_name' => $data['brand_name'],
             'username' => $username, 
             'address' => $data['address'], 
@@ -126,19 +129,60 @@ class RegisterController extends Controller
             'confirmation_code' => $confirmation_code,
             'confirmed' => 0, 
         ]);
-        $sesuatu = ['confirmation_code' => $confirmation_code, 'username' => $username];
-        
-        Mail::send('email.verify',$sesuatu, function($message) use ($email){
-            $message->from('freeajabanget@gmail.com','Marketinc');
-            $message->to($email)->subject('Verify your email address');
-        });
 
-        // Flash::message('Thanks for registering to Marketinc! Please check your email to activate yout account');
+        if($query){
+            //Kondisi apabila user merupakan member berbayar
+            if($data['membership'] == 'premium' || $data['membership'] == 'basic' || $data['membership'] == 'vip'){
 
-       return true;
+                $transaction_id = "mc".str_random(5);
+                $transaction = new Transaction();
+                $transaction->name = $data['brand_name'];
+                $transaction->transaction_id = $transaction_id;
+                $transaction->phone = $data['phone_one'];
+                $transaction->email = $email;
+                $transaction->address = $data['address'];
+                $transaction->type = $data['membership'];
+                $transaction->total_payment = '1000000'; //temporary
 
+                $data = [
+                    'username' => $username, 
+                    'transaction_id' => $transaction_id,
+                    'total_payment' => '1000000' //temporary
+                ];
+
+
+                if($transaction->save()){
+                    Mail::send('email.payment',$data, function($message) use ($email){
+                        $message->from('freeajabanget@gmail.com','Marketinc');
+                        $message->to($email)->subject('Account Activation: Payment');
+                    });
+                }
+                //berhasil harusnya return halaman berhasil regis silahkan cek email untuk melakukan pembayaran
+                //sekaligus kasih link untuk akses free
+                return true;
+
+
+            }
+            //Kondisi apabila user merupakan member free
+            $data = ['confirmation_code' => $confirmation_code, 'username' => $username];
+            
+            Mail::send('email.verify',$data, function($message) use ($email){
+                $message->from('freeajabanget@gmail.com','Marketinc');
+                $message->to($email)->subject('Account Activation: Verify your email address');
+            });
+            
+            //Berhasil harusnya return halaman berhasil regis silahkan cek email untuk verifikasi
+           return true;
+        }
+
+        //Query Gagal 
+        //Harusnya Return Halaman Mohon Maaf
+        return false;
     }
 
+    /**
+    * Fungsi dari End-Point untuk melakukan konfirmasi akun user dari email
+    */
     public function confirm($confirmation_code){
 
         if(!$confirmation_code){
@@ -154,14 +198,14 @@ class RegisterController extends Controller
         $brand->confirmation_code = null;
         $brand->save();
 
-        //Flash::message('You have successfully activated your account');
+        //Kasih kayak selamat udah berhasil aktifasi akun
 
         return redirect('/login');
 
 
     }
 
-        /**
+    /**
      * Handle a registration request for the application.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -174,10 +218,8 @@ class RegisterController extends Controller
         $user = $this->create($request->all());
 
         if($user){
-            // dd($user."dalam");
-        return redirect('login');
+            return redirect('login');
         }
-        // dd($user."luar");
     }
 
 }
