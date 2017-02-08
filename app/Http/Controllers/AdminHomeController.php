@@ -3,100 +3,66 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Brand;
+use App\Transaction;
 
 class AdminHomeController extends Controller
 {
     public function __construct(){
         $this->middleware('admin');
-   }
+   	}
 
-    public function index()
-    {
-        $brands = Brand::all();
-        return view('admin-home')->with(['brands'=>$brands]);
+    public function index(){
+        $transactions = Transaction::all();
+        return view('admin-home')->with(['transactions'=>$transactions]);
     }
 
+    public function approveTransaction($id) {
+    	$transaction = Transaction::where("id", "=", $id)->first();
+    	$transaction->flag = Auth::user('admin')->name;
 
- //    public function index()
-	// {
-	// 	$users = User::all();
+    	if($transaction->save() && $transaction->confirmation_code != NULL) {
+    		$transaction_id = $transaction->transaction_id;
+    		$username = $transaction->username;
+    		$email = $transaction->email;
+            $total_payment = $transaction->total_payment;
 
-	// 	return View::make('user.index', ['users' => $users]);
-	// }
+            $sesuatu = ['transaction_id' => $transaction_id, 'username' => $username];
+        
+        	Mail::send('email.verifypayment',$sesuatu, function($message) use ($email){
+	            $message->from('freeajabanget@gmail.com','Marketinc');
+	            $message->to($email)->subject('Verify your email address');
+	        });
 
-	/**
-	 * Show the form for creating a new user.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return View::make('user.create');
-	}
+    		return Redirect::to('admin/home');
+    	}
 
-	/**
-	 * Store a newly created user in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$user = new User;
+    	return false; //error gagal approve
+    }
 
-		$user->first_name = Input::get('first_name');
-		$user->last_name  = Input::get('last_name');
-		$user->username   = Input::get('username');
-		$user->email      = Input::get('email');
-		$user->password   = Hash::make(Input::get('password'));
+    function deleteTransaction($id) {
+    	$transaction = Transaction::where("id", "=", $id)->first();
+    	$transaction_id = $transaction->transaction_id;
+    	$username = $transaction->username;
+    	$email = $transaction->email;
 
-		$user->save();
+    	if($transaction->delete()) {
+    		$data = ['transaction_id' => $transaction_id, 'username' => $username];
 
-		return Redirect::to('/user');
-	}
-
-	/**
-	 * Show the form for editing the specified user.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		$user = User::find($id);
-
-		return View::make('user.edit', [ 'user' => $user ]);
-	}
-
-	/**
-	 * Update the specified user in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		$brand = Brand::find($id);
-
-		$brand->brand_name = 'Kampred ' . $id;
-	
-		$brand->save();
-
-		return Redirect::to('/user');
-	}
-
-	/**
-	 * Remove the specified user from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		Brand::destroy($id);
-
-		return Redirect::to('/admin/home');
-	}
-
+        	Mail::send('email.verifypayment',$Ddat, function($message) use ($email){
+	            $message->from('freeajabanget@gmail.com','Marketinc');
+	            $message->to($email)->subject('Verify your email address');
+	    	});	
+    		return Redirect::to('admin/home');
+    		
+   		}
+    }
+  
 }
+
+
+
+
+
+
+
 

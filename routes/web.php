@@ -15,28 +15,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('admin/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
-Route::post('admin/login', 'AdminAuth\LoginController@login');
-Route::post('admin/logout', 'AdminAuth\LoginController@logout')->name('logout');
-
-
 /**
- *  Route
- */
+*   User Default Auth Routes
+*/
+
+Auth::routes();
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('home', 'HomeController@index');
-Route::get('admin/home', 'AdminHomeController@index');
 
 /**
  *  Register
  */
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::post('register', 'Auth\RegisterController@register');
-
 Route::get('register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
     'uses' => 'Auth\RegisterController@confirm'
 ]);
 
-Route::resource('admin/home','AdminHomeController');
+/**
+*   Admin CMS Routes 
+*/
+
+//LOGIN
+Route::get('admin/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
+Route::post('admin/login', 'AdminAuth\LoginController@login');
+Route::post('admin/logout', 'AdminAuth\LoginController@logout')->name('logout');
+//CMS
+Route::get('admin/home', 'AdminHomeController@index');
+Route::get('/admin/approve/{id}', 'AdminHomeController@okOrder');
+Route::get('/admin/delete/{id}', 'AdminHomeController@deleteOrder');
