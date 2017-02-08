@@ -1,7 +1,7 @@
-header {
-	img {
-		width: 100%;
-	}
+@import "variables";
+
+.navbar {
+	background-color: $yellow-dark;
 }
 
 .yellow-spacing {

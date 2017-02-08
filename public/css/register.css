@@ -17,8 +17,32 @@ h2 {
   text-align: center;
 }
 
-.registration-form {
+.registration-flex, .registration-flex-error {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.registration-flex .registration-flex-row, .registration-flex .registration-flex-error-row, .registration-flex-error .registration-flex-row, .registration-flex-error .registration-flex-error-row {
   width: 500px;
+}
+
+.registration-flex .registration-flex-row .alert-danger, .registration-flex .registration-flex-error-row .alert-danger, .registration-flex-error .registration-flex-row .alert-danger, .registration-flex-error .registration-flex-error-row .alert-danger {
+  background-color: transparent;
+  margin-left: 3px;
+}
+
+.registration-flex .registration-flex-row .error-label, .registration-flex .registration-flex-error-row .error-label, .registration-flex-error .registration-flex-row .error-label, .registration-flex-error .registration-flex-error-row .error-label {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
 }
 
 .registration-form .membership-label {
@@ -26,10 +50,10 @@ h2 {
   display: flex;
   -webkit-box-align: center;
   align-items: center;
+  margin-top: 15px;
 }
 
 .registration-form .btn-membership {
-  width: 250px;
   background-color: rgba(0, 0, 0, 0.3);
   border-color: rgba(0, 0, 0, 0.3);
   font-weight: bold;
@@ -46,8 +70,8 @@ h2 {
   border-color: #C79F37;
 }
 
-.registration-form .ex {
-  margin-left: 3px;
+.registration-form .label {
+  margin: 15px 0px 3px;
 }
 
 .package-form {
@@ -73,6 +97,43 @@ h2 {
   align-items: center;
   -webkit-box-pack: justify;
   justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+@media (min-width: 1000px) {
+  .registration-flex-error {
+    display: none;
+  }
+  .registration-form {
+    width: 500px;
+  }
+  .registration-form .btn-membership {
+    width: 250px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .registration-flex-row {
+    display: none;
+  }
+}
+
+@media (max-width: 1000px) and (min-width: 412px) {
+  .registration-form, .registration-flex-error {
+    width: 300px;
+  }
+  .registration-form .btn-membership, .registration-flex-error .btn-membership {
+    width: 150px;
+  }
+}
+
+@media (max-width: 1000px) and (max-width: 411px) {
+  .registration-form, .registration-flex-error {
+    width: 200px;
+  }
+  .registration-form .btn-membership, .registration-flex-error .btn-membership {
+    width: 100px;
+  }
 }
 
 /*# sourceMappingURL=register.css.map */

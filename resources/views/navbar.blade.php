@@ -1,7 +1,6 @@
 {{-- navbar register page --}}
 <header>
-	<img src="{{ asset("/image/header.png")}}">
 	<div class="yellow-spacing">
-		<img src="{{ asset("/image/comp.png")}}">
+		<img src="{{ asset("/img/marketinc.gif")}}" loop="-1">
 	</div>
 </header>

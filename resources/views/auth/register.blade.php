@@ -12,75 +12,310 @@
 
 @section('content')
 <div class="container">
-    <div class="registration-form">
-        <h2>REGISTRATION FORM</h2>
-          
-        {!! Form::open(['id' => 'register-route-form']) !!}
+    <div class="registration-flex">
+        <div class="registration-form">
+            <h2>REGISTRATION FORM</h2>
+        </div>
+    </div>
+
+    {!! Form::open(['id' => 'register-route-form']) !!}
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::label('brand_name', 'Restaurant Name', ['class' => 'label']) !!}
+        </div>
+        <div class="registration-flex-row"></div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::text('brand_name', null, ['id' => 'brand_name', 'class' => 'form-control', 'placeholder' => 'ex: Dapur Desa']) !!}
+        </div>
+        <div class="registration-flex-row">
             @if ($errors->has('brand_name'))
-                {!! $errors->first('brand_name', '<span class="alert-danger">:message</span>') !!}
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('brand_name', '<span class="alert-danger">:message</span>') !!}
+                </div>
             @endif
-            {!! Form::text('brand_name', null, ['id' => 'brand_name', 'class' => 'form-control', 'placeholder' => 'Restaurant Name']) !!}
-            {!! Form::label('brand_name', 'ex: Dapur Desa', ['class' => 'ex']) !!}
-            </br>
+        </div>
+    </div>
 
+    <div class="registration-flex-error">
+        <div class="registration-flex-error-row">
+            @if ($errors->has('brand_name'))
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('brand_name', '<span class="alert-danger">:message</span>') !!}
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::label('username', 'Username', ['class' => 'label']) !!}
+        </div>
+        <div class="registration-flex-row"></div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'ex: dapur.desa']) !!}
+        </div>
+        <div class="registration-flex-row">
             @if ($errors->has('username'))
-                {!! $errors->first('username', '<span class="alert-danger">:message</span>') !!}
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('username', '<span class="alert-danger">:message</span>') !!}
+                </div>
             @endif
-            <div class="input-group">
-                <span class="input-group-addon">marketinc.us/</span>
-                {!! Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'username']) !!}
-            </div>
-            {!! Form::label('username', 'ex: dapurdesa', ['class' => 'ex']) !!}
-            </br>
+        </div>
+    </div>
 
+    <div class="registration-flex-error">
+        <div class="registration-flex-error-row">
+            @if ($errors->has('username'))
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('username', '<span class="alert-danger">:message</span>') !!}
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::label('address', 'Address', ['class' => 'label']) !!}
+        </div>
+        <div class="registration-flex-row"></div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::text('address', null, ['id' => 'address', 'class' => 'form-control', 'placeholder' => 'ex: Jl. Tebet Dalam No. 7']) !!}
+        </div>
+        <div class="registration-flex-row">
             @if ($errors->has('address'))
-                {!! $errors->first('address', '<span class="alert-danger">:message</span>') !!}
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('address', '<span class="alert-danger">:message</span>') !!}
+                </div>
             @endif
+        </div>
+    </div>
 
-            {!! Form::text('address', null, ['id' => 'address', 'class' => 'form-control', 'placeholder' => 'Address']) !!}
-            {!! Form::label('address', 'ex: Jl. Tebet Dalam No. 7', ['class' => 'ex']) !!}
-            </br>
+    <div class="registration-flex-error">
+        <div class="registration-flex-error-row">
+            @if ($errors->has('address'))
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('address', '<span class="alert-danger">:message</span>') !!}
+                </div>
+            @endif
+        </div>
+    </div>
 
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::label('phone_one', 'Phone Number 1', ['class' => 'label']) !!}
+        </div>
+        <div class="registration-flex-row"></div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::text('phone_one', null, ['id' => 'phone_one', 'class' => 'form-control', 'placeholder' => 'ex: 089765783094']) !!}
+        </div>
+        <div class="registration-flex-row">
             @if ($errors->has('phone_one'))
-                {!! $errors->first('phone_one', '<span class="alert-danger">:message</span>') !!}
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('phone_one', '<span class="alert-danger">:message</span>') !!}
+                </div>
             @endif
-            {!! Form::text('phone_one', null, ['id' => 'phone_one', 'class' => 'form-control', 'placeholder' => 'Phone Number 1']) !!}
-            {!! Form::label('phone_one', 'ex: 089765783094', ['class' => 'ex']) !!}
-            </br>
+        </div>
+    </div>
 
+    <div class="registration-flex-error">
+        <div class="registration-flex-error-row">
+            @if ($errors->has('phone_one'))
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('phone_one', '<span class="alert-danger">:message</span>') !!}
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::label('phone_two', 'Phone Number 2', ['class' => 'label']) !!}
+        </div>
+        <div class="registration-flex-row"></div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::text('phone_two', null, ['id' => 'phone_two', 'class' => 'form-control', 'placeholder' => 'ex: 089765783094']) !!}
+        </div>
+        <div class="registration-flex-row">
             @if ($errors->has('phone_two'))
-                {!! $errors->first('phone_two', '<span class="alert-danger">:message</span>') !!}
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('phone_two', '<span class="alert-danger">:message</span>') !!}
+                </div>
             @endif
-            {!! Form::text('phone_two', null, ['id' => 'phone_two', 'class' => 'form-control', 'placeholder' => 'Phone Number 2']) !!}
-            {!! Form::label('phone_two', 'ex: 089765783094', ['class' => 'ex']) !!}
-            </br>
+        </div>
+    </div>
 
+    <div class="registration-flex-error">
+        <div class="registration-flex-error-row">
+            @if ($errors->has('phone_two'))
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('phone_two', '<span class="alert-danger">:message</span>') !!}
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::label('email', 'Email', ['class' => 'label']) !!}
+        </div>
+        <div class="registration-flex-row"></div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control', 'placeholder' => 'ex: dapurdesa@gmail.com']) !!}
+        </div>
+        <div class="registration-flex-row">
             @if ($errors->has('email'))
-                {!! $errors->first('email', '<span class="alert-danger">:message</span>') !!}
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('email', '<span class="alert-danger">:message</span>') !!}
+                </div>
             @endif
-            {!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control', 'placeholder' => 'Email']) !!}
-            {!! Form::label('email', 'ex: dapurdesa@gmail.com', ['class' => 'ex']) !!}
-            </br>
+        </div>
+    </div>
 
+    <div class="registration-flex-error">
+        <div class="registration-flex-error-row">
+            @if ($errors->has('email'))
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('email', '<span class="alert-danger">:message</span>') !!}
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::label('phone_two', 'Password', ['class' => 'label']) !!}
+        </div>
+        <div class="registration-flex-row"></div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::password('password', ['id' => 'password', 'class' => 'form-control']) !!}
+        </div>
+        <div class="registration-flex-row">
             @if ($errors->has('password'))
-                {!! $errors->first('password', '<span class="alert-danger">:message</span>') !!}
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('password', '<span class="alert-danger">:message</span>') !!}
+                </div>
             @endif
-            {!! Form::password('password', ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Password']) !!}
-            </br>
-            {!! Form::password('password_confirmation', ['id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => 'Confirm Password']) !!}
-            </br>
+        </div>
+    </div>
 
-            @if ($errors->has('membership'))
-                {!! $errors->first('membership', '<span class="alert-danger">:message</span>') !!}
+    <div class="registration-flex-error">
+        <div class="registration-flex-error-row">
+            @if ($errors->has('password'))
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('password', '<span class="alert-danger">:message</span>') !!}
+                </div>
             @endif
+        </div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::label('password_confirmation', 'Confirm Password', ['class' => 'label']) !!}
+        </div>
+        <div class="registration-flex-row"></div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            {!! Form::password('password_confirmation', ['id' => 'password_confirmation', 'class' => 'form-control']) !!}
+        </div>
+        <div class="registration-flex-row">
+            @if ($errors->has('password'))
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('password.confirmed', '<span class="alert-danger">:message</span>') !!}
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="registration-flex-error">
+        <div class="registration-flex-error-row">
+            @if ($errors->has('password'))
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('password.confirmed', '<span class="alert-danger">:message</span>') !!}
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
             <div class="membership-label">
                 {!! Form::label('membership', 'Choose Your Package* ') !!}
                 <button type="button" class="btn btn-link">
-                    <i class="material-icons yellow" id="help" data-toggle="tooltip" data-placement="right" title="See Package Details">help</i>
+                    <i class="material-icons yellow" id="help" data-toggle="tooltip" data-placement="top" title="See Package Details">help</i>
                 </button>
             </div>
+        </div>
+        <div class="registration-flex-row">
+            @if ($errors->has('membership'))
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('membership', '<span class="alert-danger">:message</span>') !!}
+                </div>
+            @endif
+        </div>
+    </div>
 
-            <div class="btn-group" data-toggle="buttons">
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+             <div class="btn-group" data-toggle="buttons">
                 <label class="btn btn-membership">
                     {!! Form::radio('membership', 'free', false, ['id' => 'membership1', 'class' => 'btn-membership']) !!} FREE
                 </label>
@@ -88,15 +323,36 @@
                     {!! Form::radio('membership', 'basic', false, ['id' => 'membership2', 'class' => 'btn-membership']) !!} BASIC
                 </label>
             </div>
+        </div>
+        <div class="registration-flex-row"></div>
+    </div>
 
+    <div class="registration-flex-error">
+        <div class="registration-flex-error-row">
+            @if ($errors->has('membership'))
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('membership', '<span class="alert-danger">:message</span>') !!}
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
             <div class="button">
                 {!! Form::button('Register', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
 
                 {!! Form::close() !!}
             </div>
+        </div>
+        <div class="registration-flex-row"></div>
     </div>
+</div>
 
 
+
+<div class="container">
     <div class="package-form">
         <div class="package-form-header">
             <button type="button" class="btn btn-link">
@@ -201,13 +457,13 @@ $(document).ready(function(){
     $('#help').tooltip();
 
     $("#help").click(function(){
-        $(".registration-form").hide();
+        $(".registration-flex").hide();
         $(".package-form").show();
     });
 
     $("#back").click(function(){
         $(".package-form").hide();
-        $(".registration-form").show();
+        $(".registration-flex").show();
     });
 });
 @endsection
