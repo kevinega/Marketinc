@@ -38,3 +38,5 @@ Route::get('register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
     'uses' => 'Auth\RegisterController@confirm'
 ]);
+
+Route::resource('admin/home','AdminHomeController');
