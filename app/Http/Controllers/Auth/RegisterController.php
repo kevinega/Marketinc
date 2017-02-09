@@ -113,62 +113,47 @@ class RegisterController extends Controller
         $confirmation_code = str_random(30);
 
         //Mendaftarkan user baru sesuai form
-        $query = Brand::create([
-            'brand_name' => $data['brand_name'],
-            'username' => $username, 
-            'address' => $data['address'], 
-            'location' => NULL, 
-            'phone_one' => $data['phone_one'], 
-            'phone_two' => $data['phone_two'],
-            'membership' => 'free', 
-            'description' => NULL, 
-            'logo' => NULL,
-            'cover' => NULL,
-            'open_hour' => NULL,
-            'email' => $email,
-            'password' => bcrypt($data['password']),
-            'confirmation_code' => $confirmation_code,
-            'confirmed' => 0, 
-        ]);
+          $brand = new Brand();
+          $brand->brand_name = $data['brand_name'];
+          $brand->username = $username;
+          $brand->address = $data['address'];
+          $brand->phone_one = $data['phone_one'];
+          $brand->phone_two = $data['phone_two'];
+          $brand->membership = 'free'; //default free sampai di approve admin
+          $brand->email = $email;
+          $brand->password = bcrypt($data['password']);
+          $brand->confirmation_code = $confirmation_code;
+          $brand->verified = 0;
 
-        if($query){
+        //kalo query berhasil
+          if($brand->save()){
             //Kondisi apabila user memilih paid package
             if($data['membership'] == 'premium' || $data['membership'] == 'basic' || $data['membership'] == 'vip'){
-
+                //simpan data transaction untuk pembayaran nanti
                 $transaction_id = "mc".str_random(5);
+                $id = $brand->id;
                 $transaction = new Transaction();
-                $transaction->name = $data['brand_name'];
-                $transaction->transaction_id = $transaction_id;
-                $transaction->phone = $data['phone_one'];
-                $transaction->email = $email;
-                $transaction->address = $data['address'];
+                $transaction->brand_id = $id;
+                $transaction->id = $transaction_id;
                 $transaction->type = $data['membership'];
                 $transaction->total_payment = '1000000'; //temporary
 
-                $data = [
-                    'username' => $username, 
-                    'transaction_id' => $transaction_id,
-                    'total_payment' => '1000000' //temporary
-                ];
-
-
+                //kalo query berhasil
                 if($transaction->save()){
-                    // Mail::send('email.payment',$data, function($message) use ($email){
-                    //     $message->from('freeajabanget@gmail.com','Marketinc');
-                    //     $message->to($email)->subject('Account Activation: Payment');
-                    // });
+                    $trans = Transaction::where('brand_id','=', $id)->first();
+                    $email = $trans->brand->email;
+    
                     $data = ['confirmation_code' => $confirmation_code, 'username' => $username];
-            
+                
                     Mail::send('email.verify',$data, function($message) use ($email){
-                    $message->from('freeajabanget@gmail.com','Marketinc');
-                    $message->to($email)->subject('Account Activation: Verify your email address');
-            });
+                        $message->from('freeajabanget@gmail.com','Marketinc');
+                        $message->to($email)->subject('Account Activation: Verify your email address');
+                    });
 
                 }
                 //berhasil harusnya return halaman berhasil regis silahkan cek email untuk melakukan pembayaran
                 //sekaligus kasih link untuk akses free
                 return true;
-
 
             }
             //Kondisi apabila user merupakan member free
@@ -196,19 +181,21 @@ class RegisterController extends Controller
         if(!$confirmation_code){
             throw new InvalidConfirmationCodeException;
         }
+        //cek confirmationcode ada ga di table brand
         $brand = Brand::whereConfirmationCode($confirmation_code)->first();
         
         if(!$brand){
             throw new InvalidConfirmationCodeException;
         }
 
-        $transaction = Transaction::where('name','=',$brand->brand_name)->first();
-        
+        //cek ada ga ditable transaction id brand
+        $transaction = $brand->transaction->first();
+        //kirim email payment kalo idnya terdaftar di transaction
         if($transaction){
-            $email = $transaction->email;
+            $email = $brand->email;
             $data = [
                     'username' => $brand->username,
-                    'transaction_id' => $transaction->transaction_id,
+                    'transaction_id' => $transaction->id,
                     'total_payment' => $transaction->total_payment
                     ];
             Mail::send('email.payment',$data, function($message) use ($email){
@@ -216,13 +203,12 @@ class RegisterController extends Controller
                 $message->to($email)->subject('Account Activation: Payment');
             });
         }
-        
-        $brand->confirmed = 1;
+        //verifikasi akun
+        $brand->verified = 1;
         $brand->confirmation_code = null;
         $brand->save();
 
         //Kasih kayak selamat udah berhasil aktifasi akun jika anda memilih paid package silahkan cek email anda untuk melanjutkan
-
         return redirect('/login');
 
 

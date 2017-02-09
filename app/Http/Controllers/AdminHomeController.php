@@ -24,9 +24,11 @@ class AdminHomeController extends Controller
     	$transaction->flag = Auth::guard('admin_users')->user()->name;
         $name = $transaction->name;
     	if($transaction->save() && $transaction->confirmation_code != NULL) {
-    		$brand = Brand::where('brand_name','=',$name)->first();
+    		$brand = $transaction->brand;
             if($brand){
                 $brand->membership = $transaction->type;
+                $brand->valid_until = date('Y-m-d H:i:s', strtotime("+30 days"));
+                $brand->status = 'active';
                 if ($brand->save()){
                     $email = $brand->email;
                     $data = [
