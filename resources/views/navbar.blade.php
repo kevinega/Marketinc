@@ -1,6 +1,11 @@
 {{-- navbar register page --}}
-<header>
-	<div class="yellow-spacing">
-		<img src="{{ asset("/img/marketinc.gif")}}" loop="-1">
+<nav class="navbar navbar-inverse fixed-top bg-inverse">
+	<div class="container-nav">
+		<a href="#" class="navbar-brand"><img src="{{ elixir('img/favicon.png') }}" alt=""></a>
+		<a href='{{ url('/login') }}'>Log In</a>
 	</div>
-</header>
+</nav>
+
+<div class="yellow-spacing">
+    <img src="{{ asset("/img/marketinc.gif")}}" loop="-1">
+</div>
