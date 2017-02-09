@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddBrandIdTransaction extends Migration
+class AlterTableBrands extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class AddBrandIdTransaction extends Migration
      */
     public function up()
     {
-         Schema::table('transactions', function (Blueprint $table) {
-            $table->unsignedInteger('brand_id')->nullable();
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade')->onUpdate('cascade');
+        Schema::table('brands', function (Blueprint $table) {
+            $table->renameColumn('confirmed','verified');
+            $table->timestamp('valid_until');
+            $table->string('status');
         });
-    }   
+    }
 
     /**
      * Reverse the migrations.
@@ -26,6 +27,6 @@ class AddBrandIdTransaction extends Migration
      */
     public function down()
     {
-       
+        //
     }
 }

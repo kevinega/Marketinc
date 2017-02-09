@@ -12,11 +12,14 @@ class Brand extends Authenticable
 	use Notifiable;
 
     protected $fillable = [
-        'id','brand_name', 'username', 'address', 'location', 'phone_one', 'phone_two', 'email', 'password', 'membership', 'description', 'logo', 'cover', 'open_hour', 'confirmed', 'confirmation_code',
+        'id','brand_name', 'username', 'address', 'location', 'phone_one', 'phone_two', 'email', 'password', 'membership', 'description', 'logo', 'cover', 'open_hour', 'verified', 'confirmation_code', 'valid_until',
     ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
 
+    public function transaction(){
+    	return $this->hasMany('App\Transaction');
+    }
 }
