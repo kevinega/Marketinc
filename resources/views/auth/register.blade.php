@@ -1,13 +1,11 @@
-<!-- content register page -->
 @extends('layouts.app')
 
 @section('page-style')
-<link href="{{ elixir('css/navbar.css') }}" rel="stylesheet">
 <link href="{{ elixir('css/register.css') }}" rel="stylesheet">
 @endsection
 
 @section('navbar')
-  @include('navbar')
+@include('navbar')
 @endsection
 
 @section('content')
@@ -39,10 +37,10 @@
                 </div>
                 <div class="registration-flex-row">
                     @if ($errors->has('brand_name'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('brand_name', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('brand_name', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -50,10 +48,10 @@
             <div class="registration-flex-error">
                 <div class="registration-flex-error-row">
                     @if ($errors->has('brand_name'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('brand_name', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('brand_name', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -79,10 +77,10 @@
                 </div>
                 <div class="registration-flex-row">
                     @if ($errors->has('username'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('username', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('username', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -90,10 +88,10 @@
             <div class="registration-flex-error">
                 <div class="registration-flex-error-row">
                     @if ($errors->has('username'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('username', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('username', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -116,10 +114,10 @@
                 </div>
                 <div class="registration-flex-row">
                     @if ($errors->has('address'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('address', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('address', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -127,10 +125,10 @@
             <div class="registration-flex-error">
                 <div class="registration-flex-error-row">
                     @if ($errors->has('address'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('address', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('address', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -153,10 +151,10 @@
                 </div>
                 <div class="registration-flex-row">
                     @if ($errors->has('phone_one'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('phone_one', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('phone_one', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -164,10 +162,10 @@
             <div class="registration-flex-error">
                 <div class="registration-flex-error-row">
                     @if ($errors->has('phone_one'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('phone_one', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('phone_one', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -190,10 +188,10 @@
                 </div>
                 <div class="registration-flex-row">
                     @if ($errors->has('phone_two'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('phone_two', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('phone_two', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -201,10 +199,10 @@
             <div class="registration-flex-error">
                 <div class="registration-flex-error-row">
                     @if ($errors->has('phone_two'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('phone_two', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('phone_two', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -227,10 +225,10 @@
                 </div>
                 <div class="registration-flex-row">
                     @if ($errors->has('email'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('email', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('email', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -238,10 +236,10 @@
             <div class="registration-flex-error">
                 <div class="registration-flex-error-row">
                     @if ($errors->has('email'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('email', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('email', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -264,10 +262,10 @@
                 </div>
                 <div class="registration-flex-row">
                     @if ($errors->has('password'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('password', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('password', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -275,10 +273,10 @@
             <div class="registration-flex-error">
                 <div class="registration-flex-error-row">
                     @if ($errors->has('password'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('password', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('password', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -301,10 +299,10 @@
                 </div>
                 <div class="registration-flex-row">
                     @if ($errors->has('password.confirmed'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('password.confirmed', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('password.confirmed', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -312,10 +310,10 @@
             <div class="registration-flex-error">
                 <div class="registration-flex-error-row">
                     @if ($errors->has('password.confirmed'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('password.confirmed', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('password.confirmed', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -335,10 +333,10 @@
                 </div>
                 <div class="registration-flex-row">
                     @if ($errors->has('membership'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('membership', '<span class="alert-danger">:message</span>') !!}
-                        </div>
+                    <div class="error-label">
+                        <i class="material-icons alert-danger">clear</i>
+                        {!! $errors->first('membership', '<span class="alert-danger">:message</span>') !!}
+                    </div>
                     @endif
                 </div>
             </div>
@@ -346,43 +344,43 @@
             <div class="registration-flex">
                 <div class="registration-flex-row"></div>
                 <div class="registration-form">
-                     <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-membership">
-                            {!! Form::radio('membership', 'free', 'autofocus', ['id' => 'membership1', 'class' => 'btn-membership']) !!} FREE
-                        </label>
-                        <label class="btn btn-membership"> 
-                            {!! Form::radio('membership', 'basic', 'autofocus', ['id' => 'membership2', 'class' => 'btn-membership']) !!} BASIC
-                        </label>
-                    </div>
-                </div>
-                <div class="registration-flex-row"></div>
-            </div>
-
-            <div class="registration-flex-error">
-                <div class="registration-flex-error-row">
-                    @if ($errors->has('membership'))
-                        <div class="error-label">
-                            <i class="material-icons alert-danger">clear</i>
-                            {!! $errors->first('membership', '<span class="alert-danger">:message</span>') !!}
-                        </div>
-                    @endif
+                 <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-membership">
+                        {!! Form::radio('membership', 'free', 'autofocus', ['id' => 'membership1', 'class' => 'btn-membership']) !!} FREE
+                    </label>
+                    <label class="btn btn-membership"> 
+                        {!! Form::radio('membership', 'basic', 'autofocus', ['id' => 'membership2', 'class' => 'btn-membership']) !!} BASIC
+                    </label>
                 </div>
             </div>
+            <div class="registration-flex-row"></div>
         </div>
 
-
-        <div class="registration-flex">
-            <div class="registration-flex-row"></div>
-            <div class="registration-form">
-                <div class="button">
-                    {!! Form::button('Register', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
-
-                    {!! Form::close() !!}
+        <div class="registration-flex-error">
+            <div class="registration-flex-error-row">
+                @if ($errors->has('membership'))
+                <div class="error-label">
+                    <i class="material-icons alert-danger">clear</i>
+                    {!! $errors->first('membership', '<span class="alert-danger">:message</span>') !!}
                 </div>
+                @endif
             </div>
-            <div class="registration-flex-row"></div>
         </div>
     </div>
+
+
+    <div class="registration-flex">
+        <div class="registration-flex-row"></div>
+        <div class="registration-form">
+            <div class="button">
+                {!! Form::button('Register', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
+
+                {!! Form::close() !!}
+            </div>
+        </div>
+        <div class="registration-flex-row"></div>
+    </div>
+</div>
 </div>
 
 
@@ -487,18 +485,20 @@
 </div>
 @endsection
 
-@section('page-js')
-$(document).ready(function(){
-    $('#help').tooltip();
+@section('page-script')
+<script>
+    $(document).ready(function(){
+        $('#help').tooltip();
 
-    $("#help").click(function(){
-        $(".registration-flex").hide();
-        $(".package-form").show();
-    });
+        $("#help").click(function(){
+            $(".registration-flex").hide();
+            $(".package-form").show();
+        });
 
-    $("#back").click(function(){
-        $(".package-form").hide();
-        $(".registration-flex").show();
-    });
-});
+        $("#back").click(function(){
+            $(".package-form").hide();
+            $(".registration-flex").show();
+        });
+    });    
+</script>
 @endsection

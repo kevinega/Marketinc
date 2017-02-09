@@ -1,5 +1,8 @@
-// Variables
-@import "variables";
+// CORE APP STYLE
+@import "app.scss";
+
+// ADDITIONAL STYLE
+@import "navbar.scss";
 
 .container {
 	display: flex;
