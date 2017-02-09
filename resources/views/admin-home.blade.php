@@ -23,9 +23,9 @@
 
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Date/Time Added</th>
+                    <th>Brand Name</th>
+                    <th>Transaction Added</th>
+                    <th>Valid Until</th>
                     <th>Confirmation Code</th>
                     <th>Flag</th>
                     <th>Payment</th>
@@ -36,9 +36,9 @@
             <tbody>
                 @foreach ($transactions as $transaction)
                 <tr>
-                    <td>{{ $transaction->name }}</td>
-                    <td>{{ $transaction->email }}</td>
+                    <td>{{ $transaction->brand->brand_name }}</td>
                     <td>{{ $transaction->created_at->format('F d, Y h:ia') }}</td>
+                    <td>{{ $transaction->brand->valid_until }}</td>
                     <td>{{ $transaction->confirmation_code }}</td>
                     <td>{{ $transaction->flag }}</td>
                     <td>{{ $transaction->total_payment }}
