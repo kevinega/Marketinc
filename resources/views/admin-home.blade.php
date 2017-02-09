@@ -27,6 +27,8 @@
                     <th>Email</th>
                     <th>Date/Time Added</th>
                     <th>Confirmation Code</th>
+                    <th>Flag</th>
+                    <th>Payment</th>
                     <th></th>
                 </tr>
             </thead>
@@ -38,6 +40,8 @@
                     <td>{{ $transaction->email }}</td>
                     <td>{{ $transaction->created_at->format('F d, Y h:ia') }}</td>
                     <td>{{ $transaction->confirmation_code }}</td>
+                    <td>{{ $transaction->flag }}</td>
+                    <td>{{ $transaction->total_payment }}
                     <td>
                         <a href="/admin/approve/{{ $transaction->id }}" class="btn btn-info pull-left" style="margin-right: 3px;">Approve</a>
                         <a href="/admin/delete/{{ $transaction->id }}" class="btn btn-danger pull-left" style="margin-right: 3px;">Delete</a>

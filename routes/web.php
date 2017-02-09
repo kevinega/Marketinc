@@ -42,5 +42,12 @@ Route::post('admin/login', 'AdminAuth\LoginController@login');
 Route::post('admin/logout', 'AdminAuth\LoginController@logout')->name('logout');
 //CMS
 Route::get('admin/home', 'AdminHomeController@index');
-Route::get('/admin/approve/{id}', 'AdminHomeController@okOrder');
-Route::get('/admin/delete/{id}', 'AdminHomeController@deleteOrder');
+Route::get('/admin/approve/{id}', 'AdminHomeController@approveTransaction');
+Route::get('/admin/delete/{id}', 'AdminHomeController@deleteTransaction');
+
+/**
+*  Confirmation Page
+*/
+
+Route::get('confirmation', 'TransactionController@index');
+Route::post('confirmation', 'TransactionController@postConfirmation');
