@@ -25,6 +25,6 @@ class AddColumnTableTransactions extends Migration
      */
     public function down()
     {
-        //
+        
     }
 }

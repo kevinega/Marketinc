@@ -12,7 +12,7 @@ class Brand extends Authenticable
 	use Notifiable;
 
     protected $fillable = [
-        'brand_name', 'username', 'address', 'location', 'phone_one', 'phone_two', 'email', 'password', 'membership', 'description', 'logo', 'cover', 'open_hour', 'confirmed', 'confirmation_code',
+        'id','brand_name', 'username', 'address', 'location', 'phone_one', 'phone_two', 'email', 'password', 'membership', 'description', 'logo', 'cover', 'open_hour', 'confirmed', 'confirmation_code',
     ];
 
     protected $hidden = [

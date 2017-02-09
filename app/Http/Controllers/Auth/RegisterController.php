@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -119,7 +120,7 @@ class RegisterController extends Controller
             'location' => NULL, 
             'phone_one' => $data['phone_one'], 
             'phone_two' => $data['phone_two'],
-            'membership' => $data['membership'], 
+            'membership' => 'free', 
             'description' => NULL, 
             'logo' => NULL,
             'cover' => NULL,
@@ -131,7 +132,7 @@ class RegisterController extends Controller
         ]);
 
         if($query){
-            //Kondisi apabila user merupakan member berbayar
+            //Kondisi apabila user memilih paid package
             if($data['membership'] == 'premium' || $data['membership'] == 'basic' || $data['membership'] == 'vip'){
 
                 $transaction_id = "mc".str_random(5);
@@ -152,10 +153,17 @@ class RegisterController extends Controller
 
 
                 if($transaction->save()){
-                    Mail::send('email.payment',$data, function($message) use ($email){
-                        $message->from('freeajabanget@gmail.com','Marketinc');
-                        $message->to($email)->subject('Account Activation: Payment');
-                    });
+                    // Mail::send('email.payment',$data, function($message) use ($email){
+                    //     $message->from('freeajabanget@gmail.com','Marketinc');
+                    //     $message->to($email)->subject('Account Activation: Payment');
+                    // });
+                    $data = ['confirmation_code' => $confirmation_code, 'username' => $username];
+            
+                    Mail::send('email.verify',$data, function($message) use ($email){
+                    $message->from('freeajabanget@gmail.com','Marketinc');
+                    $message->to($email)->subject('Account Activation: Verify your email address');
+            });
+
                 }
                 //berhasil harusnya return halaman berhasil regis silahkan cek email untuk melakukan pembayaran
                 //sekaligus kasih link untuk akses free
@@ -189,16 +197,31 @@ class RegisterController extends Controller
             throw new InvalidConfirmationCodeException;
         }
         $brand = Brand::whereConfirmationCode($confirmation_code)->first();
-
+        
         if(!$brand){
             throw new InvalidConfirmationCodeException;
         }
 
+        $transaction = Transaction::where('name','=',$brand->brand_name)->first();
+        
+        if($transaction){
+            $email = $transaction->email;
+            $data = [
+                    'username' => $brand->username,
+                    'transaction_id' => $transaction->transaction_id,
+                    'total_payment' => $transaction->total_payment
+                    ];
+            Mail::send('email.payment',$data, function($message) use ($email){
+                $message->from('freeajabanget@gmail.com','Marketinc');
+                $message->to($email)->subject('Account Activation: Payment');
+            });
+        }
+        
         $brand->confirmed = 1;
         $brand->confirmation_code = null;
         $brand->save();
 
-        //Kasih kayak selamat udah berhasil aktifasi akun
+        //Kasih kayak selamat udah berhasil aktifasi akun jika anda memilih paid package silahkan cek email anda untuk melanjutkan
 
         return redirect('/login');
 

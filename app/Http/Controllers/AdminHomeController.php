@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Transaction;
+use App\Brand;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class AdminHomeController extends Controller
 {
@@ -18,22 +21,26 @@ class AdminHomeController extends Controller
 
     public function approveTransaction($id) {
     	$transaction = Transaction::where("id", "=", $id)->first();
-    	$transaction->flag = Auth::user('admin')->name;
-
+    	$transaction->flag = Auth::guard('admin_users')->user()->name;
+        $name = $transaction->name;
     	if($transaction->save() && $transaction->confirmation_code != NULL) {
-    		$transaction_id = $transaction->transaction_id;
-    		$username = $transaction->username;
-    		$email = $transaction->email;
-            $total_payment = $transaction->total_payment;
-
-            $sesuatu = ['transaction_id' => $transaction_id, 'username' => $username];
+    		$brand = Brand::where('brand_name','=',$name)->first();
+            if($brand){
+                $brand->membership = $transaction->type;
+                if ($brand->save()){
+                    $email = $brand->email;
+                    $data = [
+                                'username' => $brand->username, 
+                                'membership' => $transaction->type,
+                            ];
         
-        	Mail::send('email.verifypayment',$sesuatu, function($message) use ($email){
-	            $message->from('freeajabanget@gmail.com','Marketinc');
-	            $message->to($email)->subject('Verify your email address');
-	        });
-
-    		return Redirect::to('admin/home');
+                    Mail::send('email.upgrade',$data, function($message) use ($email){
+                        $message->from('freeajabanget@gmail.com','Marketinc');
+                        $message->to($email)->subject('Account Activation: Membership Upgrade');
+                    });
+                    return redirect('admin/home');
+                }
+            }
     	}
 
     	return false; //error gagal approve
@@ -48,11 +55,11 @@ class AdminHomeController extends Controller
     	if($transaction->delete()) {
     		$data = ['transaction_id' => $transaction_id, 'username' => $username];
 
-        	Mail::send('email.verifypayment',$Ddat, function($message) use ($email){
+        	Mail::send('email.deleteTransaction',$data, function($message) use ($email){
 	            $message->from('freeajabanget@gmail.com','Marketinc');
-	            $message->to($email)->subject('Verify your email address');
+	            $message->to($email)->subject('Account Activation: Expired Payment');
 	    	});	
-    		return Redirect::to('admin/home');
+    		return redirect('admin/home');
     		
    		}
     }
