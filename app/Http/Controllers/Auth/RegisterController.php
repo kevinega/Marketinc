@@ -58,7 +58,6 @@ class RegisterController extends Controller
             'phone_two' => 'regex:/^[+]{0,1}[0-9]{5,15}/',
             'email' => 'required|email',
             'password' => 'required|min:6|max:25|confirmed',
-            'password.confirmed' => 'required',
             'membership' => 'required',
         ],
 
