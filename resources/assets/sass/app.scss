@@ -1,15 +1,11 @@
-// Variables
+// VARIABLES
 @import "variables";
 
-// Bootstrap
+// BOOTSTRAP
 @import "node_modules/bootstrap/scss/bootstrap";
 
-// Margins
-.margin-bottom-10 { margin-bottom: 10px; }
-
-a {
-	color: $yellow;
-}
+// FUNDAMENTAL BOOTSTRAP OVERRIDE
+a { color: $yellow; }
 
 a:hover, a:visited {
 	color: $yellow-dark;
@@ -20,13 +16,7 @@ button, input, optgroup, select, textarea {
 	font-family: 'Lato', sans-serif; // 1
 }
 
-.yellow {
-	color: $yellow;
-}
-
-.form-control, .btn {
-	border-radius: 0;
-}
+.form-control, .btn { border-radius: 0; }
 
 .btn-primary {
 	background-color: $yellow;
@@ -37,3 +27,11 @@ button, input, optgroup, select, textarea {
     background-color: $yellow-dark;
     border-color: $yellow-dark;
 }
+
+// ADDITIONAL STYLES
+
+// Margins
+.margin-bottom-10 { margin-bottom: 10px; }
+
+// Colors
+.yellow { color: $yellow; }

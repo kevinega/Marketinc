@@ -1,5 +1,8 @@
-// Variables
-@import "variables";
+// CORE APP STYLE
+@import "app.scss";
+
+// ADDITIONAL STYLE
+@import "navbar.scss";
 
 .container {
 	display: flex;
@@ -22,7 +25,7 @@ h2 {
 	align-items: center;
 
 	.registration-flex-row, .registration-flex-error-row {
-		width: 500px;
+		width: 350px;
 
 		.alert-danger {
 			background-color: transparent;
@@ -36,9 +39,6 @@ h2 {
 		}
 	}
 }
-
-
-
 
 .registration-form {
 
@@ -60,6 +60,10 @@ h2 {
 		    border-color: $yellow-dark;
 		}
 		&.focus {
+			background-color: $yellow-dark;
+		    border-color: $yellow-dark;	
+		}
+		a:visited {
 			background-color: $yellow-dark;
 		    border-color: $yellow-dark;	
 		}
@@ -91,7 +95,7 @@ h2 {
 	}
 }
 
-@media(min-width: 1000px) {
+@media(min-width: 1200px) {
 	.registration-flex-error {
 		display: none;
 	}
@@ -105,7 +109,7 @@ h2 {
 	}
 }
 
-@media(max-width: 1000px) {
+@media(max-width: 1200px) {
 	.registration-flex-row {
 		display: none;
 	}

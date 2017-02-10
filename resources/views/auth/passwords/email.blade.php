@@ -4,20 +4,13 @@
 <link href="{{ elixir('css/reset-password.css') }}" rel="stylesheet">
 @endsection
 
+@section('navbar')
+@include('navbar')
+@endsection
+
 <!-- Main Content -->
 @section('content')
-<nav class="navbar navbar-inverse fixed-top bg-inverse">
-    <div class="container">
-        <a href="#" class="navbar-brand"><img src="{{ elixir('img/favicon.png') }}" alt=""></a>Reset Password
-    </div>
-</nav>
-
 <div class="container">
-    {{-- @if ($errors->has('email'))
-        <div class="alert alert-danger" role="alert">
-            <strong>Oh snap!</strong> The email you entered did not match our records. Please double-check and try again.
-        </div>
-    @endif --}}
 
     <div class="mt-1">
         @if ($errors->has('email'))
@@ -34,9 +27,9 @@
         @endif
     </p>
     @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
     @endif
 
     <form role="form" method="POST" action="{{ url('/password/email') }}">
@@ -52,5 +45,6 @@
             </button>
         </div>
     </form>
+
 </div>
 @endsection

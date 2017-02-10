@@ -1,13 +1,19 @@
-@import "variables";
+.container-nav {
+	display: flex;
+	align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
 
-.navbar {
-	background-color: $yellow-dark;
+    a {
+    	color: #fff;
+    }
 }
 
 .yellow-spacing {
-	background-color: #ffcc46; // prefer new var
+	background-color: $yellow;
 	width: 100%;
 	height: 250px;
+	margin-top: 56px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
