@@ -24,6 +24,7 @@
             <thead>
                 <tr>
                     <th>Brand Name</th>
+                    <th>Transaction ID</th>
                     <th>Transaction Added</th>
                     <th>Valid Until</th>
                     <th>Confirmation Code</th>
@@ -36,12 +37,14 @@
             <tbody>
                 @foreach ($transactions as $transaction)
                 <tr>
+                    
                     <td>{{ $transaction->brand->brand_name }}</td>
+                    <td>{{ $transaction->id }}</td>
                     <td>{{ $transaction->created_at->format('F d, Y h:ia') }}</td>
                     <td>{{ $transaction->brand->valid_until }}</td>
                     <td>{{ $transaction->confirmation_code }}</td>
                     <td>{{ $transaction->flag }}</td>
-                    <td>{{ $transaction->total_payment }}
+                    <td>{{ $transaction->total_payment }}</td>
                     <td>
                         <a href="/admin/approve/{{ $transaction->id }}" class="btn btn-info pull-left" style="margin-right: 3px;">Approve</a>
                         <a href="/admin/delete/{{ $transaction->id }}" class="btn btn-danger pull-left" style="margin-right: 3px;">Delete</a>
