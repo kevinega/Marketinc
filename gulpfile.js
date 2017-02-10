@@ -20,6 +20,6 @@ elixir((mix) => {
        .sass('register.scss')
        .sass('reset-password.scss')
        .sass('admin-login.scss')
-       .sass('admin-home.scss')
+       .sass('admin.scss')
        .webpack('app.js');
 });

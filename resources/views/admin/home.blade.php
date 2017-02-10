@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('page-style')
+<link href="{{ elixir('css/admin.css') }}" rel="stylesheet">
+@endsection
+
+@section('navbar')
+@include('navbar')
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -14,8 +22,8 @@
         </div>
     <div class="col-lg-10 col-lg-offset-1">
 
-    <h1><i class="fa fa-users"></i> Transaction Management </h1>
-    <a class="btn btn-default pull-right"> Hello,  <b> {{ Auth::guard('admin_users')->user()->name }} </b></a>
+    <h1><i class="fa fa-users"></i>Transaction Management</h1>
+    {{-- <a class="btn btn-default pull-right"> Hello,  <b> {{ Auth::guard('admin_users')->user()->name }} </b></a> --}}
     <a href="/logout" class="btn btn-default pull-right">Logout</a>
 
     <div class="table-responsive">
