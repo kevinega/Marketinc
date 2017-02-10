@@ -14,7 +14,7 @@
         </div>
     <div class="col-lg-10 col-lg-offset-1">
 
-    <h1><i class="fa fa-users"></i> User Administration </h1>
+    <h1><i class="fa fa-users"></i> Transaction Management </h1>
     <a class="btn btn-default pull-right"> Hello,  <b> {{ Auth::guard('admin_users')->user()->name }} </b></a>
     <a href="/logout" class="btn btn-default pull-right">Logout</a>
 

@@ -37,13 +37,15 @@ Route::get('register/verify/{confirmationCode}', [
 */
 
 //LOGIN
-Route::get('admin/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
-Route::post('admin/login', 'AdminAuth\LoginController@login');
-Route::post('admin/logout', 'AdminAuth\LoginController@logout')->name('logout');
+Route::get('unicorn/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
+Route::post('unicorn/login', 'AdminAuth\LoginController@login');
+Route::post('unicorn/logout', 'AdminAuth\LoginController@logout')->name('logout');
 //CMS
-Route::get('admin/home', 'AdminHomeController@index');
-Route::get('/admin/approve/{id}', 'AdminHomeController@approveTransaction');
-Route::get('/admin/delete/{id}', 'AdminHomeController@deleteTransaction');
+Route::get('unicorn/home', 'AdminHomeController@transactionManagementPage');
+Route::get('unicorn/brand', 'AdminHomeController@brandManagementPage');
+Route::get('/unicorn/approve/{id}', 'AdminHomeController@approveTransaction');
+Route::get('/unicorn/delete/{id}', 'AdminHomeController@deleteTransaction');
+Route::get('/unicorn/reset/{id}', 'AdminHomeController@resetMembership');
 
 /**
 *  Confirmation Page

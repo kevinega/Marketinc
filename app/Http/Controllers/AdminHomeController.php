@@ -14,11 +14,15 @@ class AdminHomeController extends Controller
         $this->middleware('admin');
    	}
 
-    public function index(){
+    public function transactionManagementPage(){
         $transactions = Transaction::all();
-        return view('admin-home')->with(['transactions'=>$transactions]);
+        return view('admin.home')->with(['transactions'=>$transactions]);
     }
 
+    public function brandManagementPage(){
+        $brands = Brand::all();
+        return view('admin.brand-management')->with(['brands'=>$brands]);
+    }
     public function approveTransaction($id) {
     	$transaction = Transaction::where("id", "=", $id)->first();
     	$transaction->flag = Auth::guard('admin_users')->user()->name;
@@ -40,7 +44,7 @@ class AdminHomeController extends Controller
                         $message->from('freeajabanget@gmail.com','Marketinc');
                         $message->to($email)->subject('Account Activation: Membership Upgrade');
                     });
-                    return redirect('admin/home');
+                    return redirect('unicorn/home')->w;
                 }
             }
     	}
@@ -61,9 +65,30 @@ class AdminHomeController extends Controller
 	            $message->from('freeajabanget@gmail.com','Marketinc');
 	            $message->to($email)->subject('Account Activation: Expired Payment');
 	    	});	
-    		return redirect('admin/home');
+    		return redirect('unicorn/home');
     		
    		}
+    }
+
+    function resetMembership($id) {
+
+        $brand = Brand::where("id", "=", $id)->first();
+        if(!$brand){
+            throw new Exception("There are some issues reseting the membership please try again later.", 1);
+        }
+        $email = $brand->email;
+        $brand->membership = 'free';
+
+        if($brand->save()) {
+            $data = ['brand_name' => $brand->brand_name, 'username' => $brand->username];
+
+            Mail::send('email.deleteTransaction',$data, function($message) use ($email){
+                $message->from('freeajabanget@gmail.com','Marketinc');
+                $message->to($email)->subject('Account Activation: Expired Payment');
+            }); 
+            return redirect('unicorn/brand');
+            
+        }
     }
   
 }

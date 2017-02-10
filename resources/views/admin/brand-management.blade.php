@@ -14,7 +14,7 @@
         </div>
     <div class="col-lg-10 col-lg-offset-1">
 
-    <h1><i class="fa fa-users"></i> User Administration </h1>
+    <h1><i class="fa fa-users"></i> Brand Management </h1>
     <a class="btn btn-default pull-right"> Hello,  <b> {{ Auth::guard('admin_users')->user()->name }} </b></a>
     <a href="/logout" class="btn btn-default pull-right">Logout</a>
 
@@ -24,31 +24,25 @@
             <thead>
                 <tr>
                     <th>Brand Name</th>
-                    <th>Transaction ID</th>
-                    <th>Transaction Added</th>
                     <th>Valid Until</th>
-                    <th>Confirmation Code</th>
-                    <th>Flag</th>
-                    <th>Payment</th>
+                    <th>Status</th>
+                    <th>Membership</th>
                     <th></th>
                 </tr>
             </thead>
 
             <tbody>
-                @foreach ($transactions as $transaction)
+                @foreach ($brands as $brand)
                 <tr>
-                    
-                    <td>{{ $transaction->brand->brand_name }}</td>
-                    <td>{{ $transaction->id }}</td>
-                    <td>{{ $transaction->created_at->format('F d, Y h:ia') }}</td>
-                    <td>{{ $transaction->brand->valid_until }}</td>
-                    <td>{{ $transaction->confirmation_code }}</td>
-                    <td>{{ $transaction->flag }}</td>
-                    <td>{{ $transaction->total_payment }}</td>
+                    @if($brand->verified)
+                    <td>{{ $brand->brand_name }}</td>
+                    <td>{{ $brand->valid_until }}</td>
+                    <td>{{ $brand->status }}</td>
+                    <td>{{ $brand->membership }}</td>
                     <td>
-                        <a href="/unicorn/approve/{{ $transaction->id }}" class="btn btn-info pull-left" style="margin-right: 3px;">Approve</a>
-                        <a href="/unicorn/delete/{{ $transaction->id }}" class="btn btn-danger pull-left" style="margin-right: 3px;">Delete</a>
+                        <a href="/unicorn/reset/{{ $brand->id }}" class="btn btn-danger pull-left" style="margin-right: 3px;">Reset Membership</a>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>
