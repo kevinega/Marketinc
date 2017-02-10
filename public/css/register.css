@@ -2350,8 +2350,6 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 .form-inline {
   display: -webkit-box;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
   flex-flow: row wrap;
   -webkit-box-align: center;
   align-items: center;
@@ -2376,8 +2374,6 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
     display: flex;
     -webkit-box-flex: 0;
     flex: 0 0 auto;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     flex-flow: row wrap;
     -webkit-box-align: center;
     align-items: center;
@@ -4275,8 +4271,6 @@ tbody.collapse.show {
   .card-deck {
     display: -webkit-box;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     flex-flow: row wrap;
   }
   .card-deck .card {
@@ -4300,8 +4294,6 @@ tbody.collapse.show {
   .card-group {
     display: -webkit-box;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     flex-flow: row wrap;
   }
   .card-group .card {
@@ -4754,8 +4746,6 @@ a.badge:focus, a.badge:hover {
   position: relative;
   display: -webkit-box;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
   flex-flow: row wrap;
   -webkit-box-align: center;
   align-items: center;
@@ -8611,7 +8601,7 @@ button, input, optgroup, select, textarea {
   height: auto;
 }
 
-.container {
+.container > .container-register {
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
@@ -8622,8 +8612,9 @@ button, input, optgroup, select, textarea {
   margin: 50px auto 50px;
 }
 
-.container .button {
+.container > .container-register .button {
   text-align: right;
+  margin-top: 30px;
 }
 
 h2 {
@@ -8669,23 +8660,19 @@ h2 {
 .registration-form .btn-membership {
   background-color: rgba(0, 0, 0, 0.3);
   border-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
   font-weight: bold;
   font-size: 18px;
 }
 
+.registration-form .btn-membership:active, .registration-form .btn-membership.active, .registration-form .show > .btn-membership.dropdown-toggle {
+  background-color: #384452;
+  border-color: #384452;
+}
+
 .registration-form .btn-membership:hover {
-  background-color: #C79F37;
-  border-color: #C79F37;
-}
-
-.registration-form .btn-membership.focus {
-  background-color: #C79F37;
-  border-color: #C79F37;
-}
-
-.registration-form .btn-membership a:visited {
-  background-color: #C79F37;
-  border-color: #C79F37;
+  background-color: #384452;
+  border-color: #384452;
 }
 
 .registration-form .label {
