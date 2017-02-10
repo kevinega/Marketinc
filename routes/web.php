@@ -25,7 +25,9 @@ Route::post('admin/logout', 'AdminAuth\LoginController@logout')->name('logout');
 /**
  *  Route
  */
-Route::get('home', 'HomeController@index');
+// Route::get('home', 'HomeController@index');
+Route::get('brand', 'HomeController@redirect');
+Route::get('brand/{username}', 'HomeController@index');
 Route::get('admin/home', 'AdminHomeController@index');
 
 /**
