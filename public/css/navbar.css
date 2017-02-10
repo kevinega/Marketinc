@@ -1,11 +1,22 @@
-.navbar {
-  background-color: #C79F37;
+.container-nav {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.container-nav a {
+  color: #fff;
 }
 
 .yellow-spacing {
   background-color: #ffcc46;
   width: 100%;
   height: 250px;
+  margin-top: 56px;
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
