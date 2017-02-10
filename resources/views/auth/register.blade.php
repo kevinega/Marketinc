@@ -9,6 +9,9 @@
 @endsection
 
 @section('content')
+<div class="yellow-spacing">
+    <img src="{{ asset("/img/marketinc.gif")}}" loop="-1">
+</div>
 
 <div class="container">
     <div class="registration-flex">
