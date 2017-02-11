@@ -9,19 +9,14 @@
     a {
     	color: #fff;
     }
+
+    .dropdown-menu {
+    	a {
+    		color: black;
+    	}
+    }
 }
 
-.yellow-spacing {
-	background-color: $yellow;
-	width: 100%;
-	height: 250px;
+.navbar-seperation {
 	margin-top: 56px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	img {
-		width: 300px;
-		height: auto;
-	}
 }
