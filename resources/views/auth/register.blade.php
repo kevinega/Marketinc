@@ -73,7 +73,7 @@
                 <div class="registration-flex-row"></div>
                 <div class="registration-form">
                     <div class="input-group">
-                        <span class="input-group-addon">marketinc.us/brand/</span>
+                        <span class="input-group-addon">marketinc.us/</span>
                         {!! Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'ex: dapur.desa']) !!}
                     </div>
                 </div>
@@ -348,10 +348,10 @@
                 <div class="registration-form">
                      <div class="btn-group" data-toggle="buttons">
                         <label class="btn btn-membership">
-                            {!! Form::radio('membership', 'free', 'autofocus', ['id' => 'membership1', 'class' => 'btn-membership']) !!} FREE
+                            {!! Form::radio('membership', 'free', ['id' => 'membership1']) !!} FREE
                         </label>
                         <label class="btn btn-membership"> 
-                            {!! Form::radio('membership', 'basic', 'autofocus', ['id' => 'membership2', 'class' => 'btn-membership']) !!} BASIC
+                            {!! Form::radio('membership', 'basic', ['id' => 'membership2']) !!} BASIC
                         </label>
                     </div>
                 </div>

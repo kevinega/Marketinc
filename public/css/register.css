@@ -11,6 +11,7 @@
 
 .container .button {
   text-align: right;
+  margin-top: 30px;
 }
 
 h2 {
@@ -56,23 +57,14 @@ h2 {
 .registration-form .btn-membership {
   background-color: rgba(0, 0, 0, 0.3);
   border-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
   font-weight: bold;
   font-size: 18px;
 }
 
-.registration-form .btn-membership:hover {
-  background-color: #C79F37;
-  border-color: #C79F37;
-}
-
-.registration-form .btn-membership.focus {
-  background-color: #C79F37;
-  border-color: #C79F37;
-}
-
-.registration-form .btn-membership a:visited {
-  background-color: #C79F37;
-  border-color: #C79F37;
+.registration-form .btn-membership:active, .registration-form .btn-membership.active, .registration-form .show > .btn-membership.dropdown-toggle {
+  background-color: #384452;
+  border-color: #384452;
 }
 
 .registration-form .label {
