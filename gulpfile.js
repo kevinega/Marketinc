@@ -16,10 +16,8 @@ require('laravel-elixir-vue-2');
  */
 
 elixir((mix) => {
-    mix.sass('app.scss')
-       .sass('login.scss')
+    mix.sass('login.scss')
        .sass('register.scss')
-       .sass('navbar.scss')
        .sass('reset-password.scss')
        .webpack('app.js');
 });
