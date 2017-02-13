@@ -44,7 +44,7 @@ class LoginController extends Controller
     //override method credentials
     protected function credentials(Request $request)
     {
-        return array_merge($request->only($this->username(), 'password'), ['confirmed' => 1]);
+        return array_merge($request->only($this->username(), 'password'), ['verified' => 1]);
     }
     
 
@@ -64,7 +64,7 @@ class LoginController extends Controller
         //         $this->username() => Lang::get('auth.failed'),
         //         'credentials' => 'We were unable to sign you in'
         //     ]);
-
+        
          if ( ! Brand::where('username', $request->username)->first() ) {
             return redirect()->back()
                 ->withInput($request->only($this->username(), 'remember'))
@@ -74,20 +74,24 @@ class LoginController extends Controller
         }
 
         if ( ! Brand::where('username', $request->username)->where('password', bcrypt($request->password))->first() ) {
-            return redirect()->back()
-                ->withInput($request->only($this->username(), 'remember'))
-                ->withErrors([
-                    'password' => Lang::get('auth.password'),
-                ]);
-        }
-
-        if($request->confirmed != 1){
+            
+            if( ! Brand::where('username', $request->username)->where('verified', 1)->first()){
             return redirect()->back()
                 ->withInput($request->only($this->username(), 'remember'))
                 ->withErrors([
                     'confirmed' => Lang::get('auth.confirmed'),
                 ]);
             }
+            
+            return redirect()->back()
+                ->withInput($request->only($this->username(), 'remember'))
+                ->withErrors([
+                    'password' => Lang::get('auth.password'),
+                ]);
         }
+    }
+
+        
+        
 
 }
