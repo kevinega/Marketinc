@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Transaction;
 use App\Brand;
+use DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,10 +17,26 @@ class AdminHomeController extends Controller
 
     public function transactionManagementPage(){
         $transactions = Transaction::all();
+        dd($transactions);
         return view('admin.home')->with(['transactions'=>$transactions]);
     }
 
-    public function brandManagementPage(){
+    public function transactionManagementPageOrder($orderBy){
+        if($orderBy == 'brand_name' || $orderBy =='valid_until'){
+        $transactions =  Transaction::select(DB::raw('transactions.*, count(*) as `aggregate`'))
+                        ->join('brands', 'transactions.brand_id', '=', 'brands.id')
+                        ->groupBy('brands.id')
+                        ->orderBy($orderBy, 'desc')
+                        ->paginate(10);
+
+        }else{
+        $transactions = Transaction::orderBy($orderBy, 'desc')->get();
+        }
+        //dd($transactions);
+        return view('admin.home')->with(['transactions'=>$transactions]);
+    }
+
+    public function brandManagementPage($sort){
         $brands = Brand::all();
         return view('admin.brand-management')->with(['brands'=>$brands]);
     }

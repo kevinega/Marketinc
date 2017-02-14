@@ -41,7 +41,9 @@ Route::get('unicorn/login', 'AdminAuth\LoginController@showLoginForm')->name('lo
 Route::post('unicorn/login', 'AdminAuth\LoginController@login');
 Route::post('unicorn/logout', 'AdminAuth\LoginController@logout')->name('logout');
 //CMS
-Route::get('unicorn/transaction', 'AdminHomeController@transactionManagementPage');
+
+Route::get('unicorn/transaction/order/{orderBy}', 'AdminHomeController@transactionManagementPageOrder');
+Route::get('unicorn/transaction/', 'AdminHomeController@transactionManagementPage');
 Route::get('unicorn/home', 'AdminHomeController@brandManagementPage');
 Route::get('/unicorn/approve/{id}', 'AdminHomeController@approveTransaction');
 Route::get('/unicorn/delete/{id}', 'AdminHomeController@deleteTransaction');
