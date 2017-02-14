@@ -21,8 +21,8 @@
                     <thead>
                         <tr>
                             <th>Brand Name</th>
-                            <th>Transaction ID</th>
-                            <th>Transaction Added</th>
+                            <th>Transaction ID <a href="{{url('unicorn/transaction/order/id')}}">sort</a></th>
+                            <th>Transaction Added <a href="{{url('unicorn/transaction/order/created_at')}}">sort</a></th>
                             <th>Valid Until</th>
                             <th>Confirmation Code</th>
                             <th>Flag</th>
