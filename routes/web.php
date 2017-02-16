@@ -20,7 +20,7 @@ Route::get('/', function () {
 */
 
 Auth::routes();
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('logout', 'Auth\LoginController@logout');
 Route::get('home', 'HomeController@index');
 
 /**
@@ -39,11 +39,12 @@ Route::get('register/verify/{confirmationCode}', [
 //LOGIN
 Route::get('unicorn/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
 Route::post('unicorn/login', 'AdminAuth\LoginController@login');
-Route::post('unicorn/logout', 'AdminAuth\LoginController@logout')->name('logout');
+Route::post('unicorn/logout', 'AdminAuth\LoginController@logout');
 //CMS
 
 Route::get('unicorn/transaction/order/{orderBy}', 'AdminHomeController@transactionManagementPageOrder');
 Route::get('unicorn/transaction/', 'AdminHomeController@transactionManagementPage');
+Route::get('unicorn/', 'AdminHomeController@brandManagementPage');
 Route::get('unicorn/home', 'AdminHomeController@brandManagementPage');
 Route::get('unicorn/home/order/{orderBy}', 'AdminHomeController@brandManagementPageOrder');
 Route::get('/unicorn/approve/{id}', 'AdminHomeController@approveTransaction');

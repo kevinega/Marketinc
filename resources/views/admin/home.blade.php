@@ -15,7 +15,7 @@
 
             <h1><i class="fa fa-users"></i>Transaction Management</h1>
             {!! Form::open([
-                'route' => 'logout',
+                'url' => '/unicorn/logout',
                 'name' => 'logout-form',
                 'id' => 'logout-form',
             ]) !!}
