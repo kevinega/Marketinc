@@ -14,6 +14,15 @@
         <div class="col-lg-10 col-lg-offset-1">
 
             <h1><i class="fa fa-users"></i>Transaction Management</h1>
+            {!! Form::open([
+                'route' => 'logout',
+                'name' => 'logout-form',
+                'id' => 'logout-form',
+            ]) !!}
+            {!! Form::button('Log Out', [
+            {!! Form::close() !!}
+                'type' => 'submit'
+            ]) !!}
 
             <div class="table-responsive">
 

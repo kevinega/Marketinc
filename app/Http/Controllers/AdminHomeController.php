@@ -24,7 +24,7 @@ class AdminHomeController extends Controller
     */
     public function transactionManagementPage(){
         $transactions = Transaction::all();
-        dd($transactions);
+        //dd($transactions);
         return view('admin.home')->with(['transactions'=>$transactions]);
     }
 
