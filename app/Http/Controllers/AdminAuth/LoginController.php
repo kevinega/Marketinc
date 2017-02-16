@@ -62,7 +62,7 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        $this->guard()->logout();
+        $this->guard('admin_users')->logout();
 
         $request->session()->flush();
 
