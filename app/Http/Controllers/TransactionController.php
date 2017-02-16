@@ -18,6 +18,11 @@ class TransactionController extends Controller
 		return view('confirmation');
 	}
 
+    /**
+    *  Handling User Payment Confirmation
+    *  @Args: request from form
+    *  @Author: Kevin Ega
+    */
 	function postConfirmation(Request $request) {
     	$transaction_id = $request->input('transaction_id');
     	$confirmation = $request->input('confirmation');

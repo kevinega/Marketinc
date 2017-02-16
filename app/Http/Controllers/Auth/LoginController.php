@@ -58,13 +58,6 @@ class LoginController extends Controller
     //override failed attempt login
     protected function sendFailedLoginResponse(Request $request)
     {
-        // return redirect()->back()
-        //     ->withInput($request->only($this->username(), 'remember'))
-        //     ->withErrors([
-        //         $this->username() => Lang::get('auth.failed'),
-        //         'credentials' => 'We were unable to sign you in'
-        //     ]);
-
          if ( ! Brand::where('username', $request->username)->first() ) {
             return redirect()->back()
                 ->withInput($request->only($this->username(), 'remember'))
