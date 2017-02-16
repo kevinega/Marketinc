@@ -11,16 +11,28 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminHomeController extends Controller
 {
+    /**
+    * Function for checking if admin
+    */
     public function __construct(){
         $this->middleware('admin');
    	}
 
+    /**
+    *  Handling Transaction Page Request without sorting
+    *  @Author: Kevin Ega
+    */
     public function transactionManagementPage(){
         $transactions = Transaction::all();
         dd($transactions);
         return view('admin.home')->with(['transactions'=>$transactions]);
     }
 
+    /**
+    *  Handling Transaction Page Request with sorting
+    *  @Args: orderBy (sorted by what)
+    *  @Author: Kevin Ega
+    */
     public function transactionManagementPageOrder($orderBy){
         if($orderBy == 'brand_name' || $orderBy =='valid_until'){
         $transactions =  Transaction::select(DB::raw('transactions.*, count(*) as `aggregate`'))
@@ -36,10 +48,24 @@ class AdminHomeController extends Controller
         return view('admin.home')->with(['transactions'=>$transactions]);
     }
 
-    public function brandManagementPage($sort){
+    /**
+    *  Handling Brand Management Page Request without sorting
+    *  @Author: Kevin Ega
+    */
+    public function brandManagementPage(){
         $brands = Brand::all();
         return view('admin.brand-management')->with(['brands'=>$brands]);
     }
+
+    public function brandManagementPageOrder($orderBy){
+        $brands = Brand::orderBy($orderBy, 'desc')->get();
+        return view('admin.brand-management')->with(['brands'=>$brands]);
+    }
+    /**
+    *  Handling for Approving Transaction in Transaction Management Page
+    *  @Args: id (which id will be affected)
+    *  @Author: Kevin Ega
+    */
     public function approveTransaction($id) {
     	$transaction = Transaction::where("id", "=", $id)->first();
     	$transaction->flag = Auth::guard('admin_users')->user()->name;
@@ -69,6 +95,12 @@ class AdminHomeController extends Controller
     	return false; //error gagal approve
     }
 
+
+    /**
+    *  Handling for Deleting a Transaction in Transaction Management Page
+    *  @Args: id (which id will be affected)
+    *  @Author: Kevin Ega
+    */
     function deleteTransaction($id) {
     	$transaction = Transaction::where("id", "=", $id)->first();
     	$transaction_id = $transaction->transaction_id;
@@ -87,6 +119,11 @@ class AdminHomeController extends Controller
    		}
     }
 
+     /**
+    *  Handling for Reseting Brand's Membership in Brand Management Page
+    *  @Args: id (which id will be affected)
+    *  @Author: Kevin Ega
+    */
     function resetMembership($id) {
 
         $brand = Brand::where("id", "=", $id)->first();

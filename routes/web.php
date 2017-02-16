@@ -45,6 +45,7 @@ Route::post('unicorn/logout', 'AdminAuth\LoginController@logout')->name('logout'
 Route::get('unicorn/transaction/order/{orderBy}', 'AdminHomeController@transactionManagementPageOrder');
 Route::get('unicorn/transaction/', 'AdminHomeController@transactionManagementPage');
 Route::get('unicorn/home', 'AdminHomeController@brandManagementPage');
+Route::get('unicorn/home/order/{orderBy}', 'AdminHomeController@brandManagementPageOrder');
 Route::get('/unicorn/approve/{id}', 'AdminHomeController@approveTransaction');
 Route::get('/unicorn/delete/{id}', 'AdminHomeController@deleteTransaction');
 Route::get('/unicorn/reset/{id}', 'AdminHomeController@resetMembership');
