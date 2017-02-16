@@ -55,6 +55,17 @@ class LoginController extends Controller
         return 'username';
     }
 
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect('/login');
+    }
+
     //override failed attempt login
     protected function sendFailedLoginResponse(Request $request)
     {

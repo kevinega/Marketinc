@@ -60,4 +60,15 @@ class LoginController extends Controller
         return Auth::guard('admin_users');
     }
 
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect('unicorn/');
+    }
+
 }

@@ -20,9 +20,9 @@
                 'id' => 'logout-form',
             ]) !!}
             {!! Form::button('Log Out', [
-            {!! Form::close() !!}
                 'type' => 'submit'
             ]) !!}
+            {!! Form::close() !!}
 
             <div class="table-responsive">
 
