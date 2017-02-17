@@ -51,13 +51,13 @@ class Handler extends ExceptionHandler
                 // not found
                 case 404:
                 //please add our own page for 404 not found
-                return redirect()->guest('home');
+                return redirect()->guest('brand');
                 break;
 
                 // internal error
                 case '500':
                 //please add our own page for 500 internal error
-                return redirect()->guest('home');
+                return redirect()->guest('brand');
                 break;
 
                 default:

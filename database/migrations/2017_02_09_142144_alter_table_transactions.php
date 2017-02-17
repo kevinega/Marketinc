@@ -18,8 +18,7 @@ class AlterTableTransactions extends Migration
             $table->dropColumn('email');
             $table->dropColumn('address');
             $table->dropColumn('name');
-            $table->dropPrimary('transactions_id_primary');
-            $table->dropColumn('transactions_id_primary');
+            $table->dropColumn('id');
             $table->renameColumn('transaction_id','id');
         });
         Schema::table('transactions', function (Blueprint $table) {

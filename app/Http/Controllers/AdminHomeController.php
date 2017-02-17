@@ -87,7 +87,7 @@ class AdminHomeController extends Controller
                         $message->from('freeajabanget@gmail.com','Marketinc');
                         $message->to($email)->subject('Account Activation: Membership Upgrade');
                     });
-                    return redirect('unicorn/home')->w;
+                    return redirect('unicorn/home');
                 }
             }
     	}

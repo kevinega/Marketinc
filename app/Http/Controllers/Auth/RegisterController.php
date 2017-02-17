@@ -7,6 +7,7 @@ use App\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
@@ -224,10 +225,14 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         $user = $this->create($request->all());
+        $path = Brand::where('username', $request->username)->value('id');
 
         if($user){
-            return redirect('login');
+            // dd(brand::."dalam");
+        File::makeDirectory(public_path('/brands/'. $path));
+        return redirect('login');
         }
+        // dd($user."luar");
     }
 
 }

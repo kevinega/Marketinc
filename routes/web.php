@@ -21,7 +21,8 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
-Route::get('home', 'HomeController@index');
+Route::get('brand', 'HomeController@redirect');
+Route::get('brand/{username}', 'HomeController@index');
 
 /**
  *  Register
