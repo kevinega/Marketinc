@@ -109,8 +109,7 @@ class RegisterController extends Controller
         Brand::create([
             'brand_name' => $data['brand_name'],
             'username' => $username, 
-            'address' => $data['address'], 
-            'location' => NULL, 
+            'address' => $data['address'],  
             'phone_one' => $data['phone_one'], 
             'phone_two' => $data['phone_two'],
             'membership' => $data['membership'], 
@@ -121,7 +120,8 @@ class RegisterController extends Controller
             'email' => $email,
             'password' => bcrypt($data['password']),
             'confirmation_code' => $confirmation_code,
-            'confirmed' => 0, 
+            'confirmed' => 0,
+            'music' => NULL,
         ]);
         $sesuatu = ['confirmation_code' => $confirmation_code, 'username' => $username];
         

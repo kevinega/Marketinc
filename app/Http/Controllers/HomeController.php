@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
@@ -29,8 +31,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($username)
     {
-        return view('home');
+        if($username == Auth::user()->username) {
+            return view('brand-home');    
+        }
+        
+        return 404;
+    }
+
+    public function redirect()
+    {
+        return redirect('brand/'.Auth::user()->username);    
     }
 }
