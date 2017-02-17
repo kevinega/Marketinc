@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class RedirectIfAdmin
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,10 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next, $guard = 'admin_users')
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/brand');
+            return redirect('/unicorn/home');
         }
 
         return $next($request);

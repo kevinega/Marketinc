@@ -7,11 +7,11 @@
         <h2>Verify Your Email Address</h2>
 
         <div>
-            Hi {{ $username }},
-            
-            Thanks for creating an account with the verification demo app.
-            Please follow the link below to verify your email address
-            {{ URL::to('register/verify/' . $confirmation_code) }}.<br/>
+            <p>Hi {{ $username }},</p>
+            </br>
+            <p>Thanks for joining Marketinc. </p>
+            <p>Please verify your email address by clicking the link below</p>
+            <p>{{ URL::to('register/verify/' . $confirmation_code) }}.</p><br/>
 
         </div>
 

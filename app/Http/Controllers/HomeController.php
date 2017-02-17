@@ -36,8 +36,7 @@ class HomeController extends Controller
         if($username == Auth::user()->username) {
             return view('brand-home');    
         }
-        
-        return 404;
+            return '404';
     }
 
     public function redirect()

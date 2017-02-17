@@ -1,27 +1,22 @@
 @extends('layouts.app')
 
-
 @section('page-style')
-<link href="{{ elixir('css/login.css') }}" rel="stylesheet">
+<link href="{{ elixir('css/admin-login.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
 <div class="overlay">
     <div class="container">
-    <h2>ADMIN</h2>
         {!! Form::open(['id' => 'login-route-form']) !!}
-            <img src="/img/logo-full.png" class="mx-auto d-block" alt="responsive_image">
-            @if ($errors->has('username') || $errors->has('password'))
-                {{-- {!! $errors->first('failed', '<span class="alert-danger">:message</span>') !!} --}}
-                <div class="alert alert-danger" role="alert">
-                    <strong>Oh snap!</strong> The username and password you entered did not match our records. Please double-check and try again.
-                </div>
-            @endif
-            {!! Form::text('username', old('username'), ['id' => 'username', 'class' => 'form-control margin-bottom-10', 'placeholder' => 'Username', 'required']) !!}
-            {!! Form::password('password', ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Password', 'required']) !!}
-            <a id="forgot-password" class="margin-bottom-10" href="{{ url('/password/reset') }}">Forgot Password?</a>    
-            {!! Form::button('Log in', ['class' => 'btn btn-primary btn-block margin-bottom-10', 'type' => 'submit']) !!}
-            <a id="register-question" href='{{ url('/register') }}'>Don't have any account? Join now!</a>
+        <img src="/img/logo-full.png" class="mx-auto d-block" alt="responsive_image">
+        @if ($errors->has('username') || $errors->has('password'))
+        <div class="alert alert-danger" role="alert">
+            <strong>Oh snap!</strong> The username and password you entered did not match our records. Please double-check and try again.
+        </div>
+        @endif
+        {!! Form::text('username', old('username'), ['id' => 'username', 'class' => 'form-control margin-bottom-10', 'placeholder' => 'Username', 'required']) !!}
+        {!! Form::password('password', ['id' => 'password', 'class' => 'form-control margin-bottom-10', 'placeholder' => 'Password', 'required']) !!}
+        {!! Form::button('Log in', ['class' => 'btn btn-primary btn-block', 'type' => 'submit']) !!}
         {!! Form::close() !!}
     </div>
 </div>

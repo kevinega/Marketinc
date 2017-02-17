@@ -15,30 +15,46 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('admin/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
-Route::post('admin/login', 'AdminAuth\LoginController@login');
-Route::post('admin/logout', 'AdminAuth\LoginController@logout')->name('logout');
-
-
 /**
- *  Route
- */
-// Route::get('home', 'HomeController@index');
+*   User Default Auth Routes
+*/
+
+Auth::routes();
+Route::get('logout', 'Auth\LoginController@logout');
 Route::get('brand', 'HomeController@redirect');
 Route::get('brand/{username}', 'HomeController@index');
-Route::get('admin/home', 'AdminHomeController@index');
 
 /**
  *  Register
  */
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::post('register', 'Auth\RegisterController@register');
-
 Route::get('register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
     'uses' => 'Auth\RegisterController@confirm'
 ]);
 
-Route::resource('admin/home','AdminHomeController');
+/**
+*   Admin CMS Routes 
+*/
+
+//LOGIN
+Route::get('unicorn/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
+Route::post('unicorn/login', 'AdminAuth\LoginController@login');
+Route::post('unicorn/logout', 'AdminAuth\LoginController@logout');
+//CMS
+
+Route::get('unicorn/transaction/order/{orderBy}', 'AdminHomeController@transactionManagementPageOrder');
+Route::get('unicorn/transaction/', 'AdminHomeController@transactionManagementPage');
+Route::get('unicorn/', 'AdminHomeController@brandManagementPage');
+Route::get('unicorn/home', 'AdminHomeController@brandManagementPage');
+Route::get('unicorn/home/order/{orderBy}', 'AdminHomeController@brandManagementPageOrder');
+Route::get('/unicorn/approve/{id}', 'AdminHomeController@approveTransaction');
+Route::get('/unicorn/delete/{id}', 'AdminHomeController@deleteTransaction');
+Route::get('/unicorn/reset/{id}', 'AdminHomeController@resetMembership');
+
+/**
+*  Confirmation Page
+*/
+
+Route::get('confirmation', 'TransactionController@index');
+Route::post('confirmation', 'TransactionController@postConfirmation');

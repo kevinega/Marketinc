@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'admin/home';
+    protected $redirectTo = 'unicorn/home';
     protected $guard = 'admin_users';
 
     /**
@@ -39,7 +39,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest_admin', ['except' => 'logout']);
     }
 
 
@@ -58,6 +58,17 @@ class LoginController extends Controller
     protected function guard()
     {
         return Auth::guard('admin_users');
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard('admin_users')->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect('/unicorn/login');
     }
 
 }

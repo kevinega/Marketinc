@@ -1,0 +1,77 @@
+// CORE APP STYLE
+@import "app.scss";
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background: url('/img/background-2.png') no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.overlay {
+	z-index: 1;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	overflow: auto;
+	top: 0px;
+	left: 0px;
+	background: rgba(110, 65, 80, 0.7);
+}
+
+.container {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+form {
+	width: 330px;
+
+	img {
+		max-width: 200px;
+		margin-bottom: 60px;
+	}
+}
+
+#forgot-password {
+	display: flex;
+	justify-content: flex-end;
+	font-size: 0.8rem;
+}
+
+#register-question {
+	display: flex;
+	justify-content: center;
+}
+
+.footer {
+	font-size: 0.8rem;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 20%;
+	z-index: 2;
+
+	> .container {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+
+		img {
+			max-width: 30px;
+		}
+
+		div {
+			max-width: 330px;
+			color: #fff;
+		}
+	}
+}
