@@ -229,7 +229,7 @@ class RegisterController extends Controller
 
         if($user){
             // dd(brand::."dalam");
-        File::makeDirectory(public_path('/brands/'. $path));
+        File::makeDirectory(public_path('brands\\'. $path), 0755, true);
         return redirect('login');
         }
         // dd($user."luar");
