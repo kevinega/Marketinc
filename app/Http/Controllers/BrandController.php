@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
-class HomeController extends Controller
+class BrandController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -42,5 +43,25 @@ class HomeController extends Controller
     public function redirect()
     {
         return redirect('brand/'.Auth::user()->username);    
+    }
+
+    public function uploadPhoto(Request $request)
+    {
+        $file = $request -> file('logo');
+        $ext = $file->extension();
+        $id = auth()->id();
+
+        $file->storeAs("public/brands/{$id}", "logo-{$id}.{$ext}");
+        
+        return $this -> storePhoto("brands/{$id}/logo-{$id}.{$ext}");
+    }
+
+    public function storePhoto($photo){
+
+        $brand = Brand::where("id", "=", Auth::user()->id)->first();
+        $brand->logo = $photo;
+        $brand->save();
+
+        return back();
     }
 }

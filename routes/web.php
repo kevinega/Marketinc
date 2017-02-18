@@ -18,11 +18,10 @@ Route::get('/', function () {
 /**
 *   User Default Auth Routes
 */
-
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
-Route::get('brand', 'HomeController@redirect');
-Route::get('brand/{username}', 'HomeController@index');
+Route::get('brand', 'BrandController@redirect');
+Route::get('brand/{username}', 'BrandController@index');
 
 /**
  *  Register
@@ -41,8 +40,8 @@ Route::get('register/verify/{confirmationCode}', [
 Route::get('unicorn/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
 Route::post('unicorn/login', 'AdminAuth\LoginController@login');
 Route::post('unicorn/logout', 'AdminAuth\LoginController@logout');
-//CMS
 
+//CMS
 Route::get('unicorn/transaction/order/{orderBy}', 'AdminHomeController@transactionManagementPageOrder');
 Route::get('unicorn/transaction/', 'AdminHomeController@transactionManagementPage');
 Route::get('unicorn/', 'AdminHomeController@brandManagementPage');
@@ -55,6 +54,10 @@ Route::get('/unicorn/reset/{id}', 'AdminHomeController@resetMembership');
 /**
 *  Confirmation Page
 */
-
 Route::get('confirmation', 'TransactionController@index');
 Route::post('confirmation', 'TransactionController@postConfirmation');
+
+/**
+*  Upload
+*/
+Route::post('brand/upload', 'BrandController@uploadPhoto');
