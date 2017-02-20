@@ -1,0 +1,135 @@
+// CORE APP STYLE
+@import "app.scss";
+
+// ADDITIONAL STYLE
+@import "navbar.scss";
+
+.feature-photo {
+    .photo-360 {
+        width: 100%;
+        height: auto;
+        margin-left: -1px;
+    }
+
+    .upload-logo {
+      padding-bottom: 25px;
+    }
+}
+
+.feature {
+    padding-bottom: 100px;
+}
+
+.feature-flex-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;    
+}
+
+.feature-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+.feature-promotions {
+    text-align: center;
+}
+
+.promotion {
+    display: inline-block;
+    margin: 10px;
+}
+
+.feature-details-about {
+    display: flex;
+    flex-direction: row;
+
+    .maps {
+        width: 40%;
+        height: 400px;
+    }
+
+    .about-us {
+        width: 60%;
+        height: 400px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// .multi-item-carousel{
+//   .carousel-inner{
+//     > .carousel-item{
+//       transition: 500ms ease-in-out left;
+//     }
+//     .active{
+//       &.left{
+//         left:-25%;
+//       }
+//       &.right{
+//         left:25%;
+//       }
+//     }
+//     .next{
+//       left: 25%;
+//     }
+//     .prev{
+//       left: -25%;
+//     }
+//     @media all and (transform-3d), (-webkit-transform-3d) {
+//       > .carousel-item{
+//         // use your favourite prefixer here
+//         transition: 500ms ease-in-out left;
+//         transition: 500ms ease-in-out all;
+//         backface-visibility: visible;
+//         transform: none!important;
+//       }
+//     }
+//   }
+//   .carousel-control-prev, .carousel-control-next{
+//       background-image: none;
+//       color: #000;
+//   }
+// }
+
+// .floating-box {
+//     display: inline-block;
+//     width: 250px;
+//     height: 250px;
+//     margin: 10px;
+//     border: 3px solid #73AD21;  
+// }
+
+.carousel-control-prev, .carousel-control-next        { width:  4%; }
+.carousel-control-prev,.carousel-control.right {margin-left:15px;background-image:none;}
+@media (max-width: 767px) {
+  .carousel-inner .active.left { left: -100%; }
+  .carousel-inner .next        { left:  100%; }
+  .carousel-inner .prev    { left: -100%; }
+  .active > div { display:none; }
+  .active > div:first-child { display:block; }
+
+}
+@media (min-width: 767px) and (max-width: 992px ) {
+  .carousel-inner .active.left { left: -50%; }
+  .carousel-inner .next        { left:  50%; }
+  .carousel-inner .prev    { left: -50%; }
+  .active > div { display:none; }
+  .active > div:first-child { display:block; }
+  .active > div:first-child + div { display:block; }
+}
+@media (min-width: 992px ) {
+  .carousel-inner .active.left { left: -25%; }
+  .carousel-inner .next        { left:  25%; }
+  .carousel-inner .prev    { left: -25%; }  
+}
