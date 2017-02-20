@@ -8624,6 +8624,10 @@ button, input, optgroup, select, textarea {
   justify-content: space-between;
 }
 
+.feature-header .btn-edit {
+  color: #ffcc46;
+}
+
 .feature-promotions {
   text-align: center;
 }
@@ -8649,6 +8653,33 @@ button, input, optgroup, select, textarea {
 .feature-details-about .about-us {
   width: 60%;
   height: 400px;
+}
+
+.feature-details-about .about-us .description, .feature-details-about .about-us .location {
+  margin: 10px;
+}
+
+.feature-details-facilities {
+  width: 100%;
+  background-color: #f4f4f4;
+  margin-top: 25px;
+}
+
+.feature-details-facilities .facilities-flex {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.feature-details-facilities .facilities-flex .facility {
+  width: 15%;
+}
+
+.feature-details-facilities .facilities-flex .facility img {
+  width: 24px;
 }
 
 .carousel-control-prev, .carousel-control-next {

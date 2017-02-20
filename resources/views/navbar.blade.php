@@ -10,3 +10,5 @@
 		@endif
 	</div>
 </nav>
+
+<div class="navbar-seperation"></div>
