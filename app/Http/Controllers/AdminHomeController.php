@@ -25,6 +25,7 @@ class AdminHomeController extends Controller
     public function transactionManagementPage(){
         $orderBy = \Request::get('orderBy');
         $sort = \Request::get('sort'); 
+        $search = \Request::get('search');
         if($sort != ''){
             //dd('masuk');
             if($orderBy != ''){
@@ -42,11 +43,18 @@ class AdminHomeController extends Controller
                 $transactions = Transaction::orderBy('created_at', $sort)->paginate(10);
             }
         }else{
-             $transactions = Transaction::orderBy('created_at', 'desc')->paginate(10);
-        }
+         $transactions = Transaction::orderBy('created_at', 'desc')->paginate(10);
+     }
         //dd($transactions);
-        return view('admin.home')->with(['transactions'=>$transactions]);
-    }
+    if($search != ''){
+     $transactions = Transaction::select(DB::raw('transactions.*, count(*) as `aggregate`'))
+                    ->join('brands', 'transactions.brand_id', '=', 'brands.id')
+                    ->groupBy('brands.id')
+                    ->where('brand_name', 'like', '%'.$search.'%')
+                    ->paginate(10);
+     }
+     return view('admin.home')->with(['transactions'=>$transactions]);
+ }
 
     /**
     *  Handling Brand Management Page Request without sorting
@@ -54,12 +62,22 @@ class AdminHomeController extends Controller
     */
     public function brandManagementPage(){
         $orderBy = \Request::get('orderBy');
-        if($orderBy != ''){
-           $brands = Brand::orderBy($orderBy, 'desc')->paginate(10);
+        $sort = \Request::get('sort'); 
+        $search = \Request::get('search');
+        if($sort != ''){
+            if($orderBy != ''){
+                $brands = Brand::orderBy($orderBy, $sort)->paginate(10);
+           }else{
+               $brands = Brand::orderBy('updated_at', $sort)->paginate(10);
+           }
        }else{
-           $brands = Brand::orderBy('updated_at', 'desc')->paginate(10);
+             $brands = Brand::orderBy('updated_at', 'desc')->paginate(10);
        }
-       
+       if($search != ''){
+            $brands = Brand::where('brand_name','like','%'.$search.'%')
+            ->orderBy('brand_name')
+            ->paginate(10);
+       }        
        return view('admin.brand-management')->with(['brands'=>$brands]);
    }
 

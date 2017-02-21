@@ -9,6 +9,7 @@
 @endsection
 
 @php
+$url = url()->current();
 if(Request::input('sort','asc') == 'asc'){
     $sort='desc';
 }else{
@@ -20,8 +21,20 @@ if(Request::input('sort','asc') == 'asc'){
 <div class="container">
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
-
+            {!! Form::open(['method'=>'GET','url'=> $url,'class'=>'navbar-form navbar-left','role'=>'search'])  !!}
+            <div class="input-group custom-search-form">
+                <input type="text" class="form-control" name="search" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default-sm" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+            {!! Form::close() !!}
             <h1><i class="fa fa-users"></i>Transaction Management</h1>
+            @if($transactions->total() == 0)
+                TRANSACTION NOT FOUND
+            @endif
             {!! Form::open([
                 'url' => '/unicorn/logout',
                 'name' => 'logout-form',
