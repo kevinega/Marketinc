@@ -68,7 +68,7 @@ class TransactionController extends Controller
                 $message->to($email)->subject('Account Activation: Payment Confirmation');
             });
                 
-    		return view('confirmation')->with('message', 'confirmation submitted, check your email for further details');
+    		return view('confirmation')->with('message', 'Confirmation is successfully submitted, please wait 2x24 hours our admin will process your payment confirmation and will send you an email to access your paid membership');
     	}
     	 dd('failed');
 
