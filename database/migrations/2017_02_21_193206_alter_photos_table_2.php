@@ -29,7 +29,7 @@ class AlterPhotosTable2 extends Migration
     {
         Schema::table('photos', function (Blueprint $table) {
             $table->dropColumn('title');
-            $table->dropForeign('photos_album_id_foreign')''
+            $table->dropForeign('photos_album_id_foreign');
             $table->dropColumn('album_id');
         });
     }
