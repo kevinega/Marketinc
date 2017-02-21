@@ -14,6 +14,7 @@ class AlterPhotosTable extends Migration
     public function up()
     {
         Schema::table('photos', function (Blueprint $table) {
+            $table->dropForeign('photos_brand_id_foreign');
             $table->dropColumn('brand_id');
         });
     }
