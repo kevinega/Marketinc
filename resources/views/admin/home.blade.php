@@ -8,6 +8,14 @@
 @include('navbar')
 @endsection
 
+@php
+if(Request::input('sort','asc') == 'asc'){
+    $sort='desc';
+}else{
+    $sort='asc';
+}
+@endphp
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -29,13 +37,13 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Brand Name</th>
-                            <th>Transaction ID <a href="{{url('unicorn/transaction/order/id')}}">sort</a></th>
-                            <th>Transaction Added <a href="{{url('unicorn/transaction/order/created_at')}}">sort</a></th>
-                            <th>Valid Until</th>
-                            <th>Confirmation Code</th>
-                            <th>Flag</th>
-                            <th>Payment</th>
+                            <th>Brand Name <a href="{{url('unicorn/transaction?orderBy=brand_name&sort=')}}{{$sort}}">sort</a></th>
+                            <th>Transaction ID <a href="{{url('unicorn/transaction?orderBy=id&sort=')}}{{$sort}}">sort</a></th>
+                            <th>Transaction Added <a href="{{url('unicorn/transaction?orderBy=created_at&sort=')}}{{$sort}}">sort</a></th>
+                            <th>Valid Until <a href="{{url('unicorn/transaction?orderBy=valid_until&sort=')}}{{$sort}}">sort</a></th>
+                            <th>Confirmation Code <a href="{{url('unicorn/transaction?orderBy=confirmation_code&sort=')}}{{$sort}}">sort</a></th>
+                            <th>Flag <a href="{{url('unicorn/transaction?orderBy=flag&sort=')}}{{$sort}}">sort</a></th>
+                            <th>Payment <a href="{{url('unicorn/transaction?orderBy=total_payment&sort=')}}{{$sort}}">sort</a></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -56,6 +64,8 @@
                             </td>
                         </tr>
                         @endforeach
+
+                        {{ $transactions->links() }}
                     </tbody>
                 </table>
                 
