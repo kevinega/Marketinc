@@ -63,7 +63,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/login');
+        return redirect('/brand/login');
     }
 
     //override failed attempt login

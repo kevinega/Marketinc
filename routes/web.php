@@ -19,16 +19,43 @@ Route::get('/', function () {
 *   User Default Auth Routes
 */
 
-Auth::routes();
-Route::get('logout', 'Auth\LoginController@logout');
+// Auth::routes();
+
+
+	    Route::get('brand/login', 'Auth\LoginController@showLoginForm')->name('login');
+        Route::post('brand/login', 'Auth\LoginController@login');
+        Route::post('brand/logout', 'Auth\LoginController@logout')->name('logout');
+
+        // Registration Routes...
+        Route::get('brand/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+        Route::post('brand/register', 'Auth\RegisterController@register');
+
+        // Password Reset Routes...
+        Route::get('brand/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+        Route::post('brand/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+        Route::get('brand/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+        Route::post('brand/password/reset', 'Auth\ResetPasswordController@reset');
+ 
+
+
+
+
+
+
+
+
+
+
+
+Route::get('brand/logout', 'Auth\LoginController@logout');
 Route::get('brand', 'HomeController@redirect');
 Route::get('brand/{username}', 'HomeController@index');
 
 /**
  *  Register
  */
-Route::post('register', 'Auth\RegisterController@register');
-Route::get('register/verify/{confirmationCode}', [
+Route::post('brand/register', 'Auth\RegisterController@register');
+Route::get('brand/register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
     'uses' => 'Auth\RegisterController@confirm'
 ]);
