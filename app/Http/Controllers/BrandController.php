@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 
 class BrandController extends Controller
@@ -39,14 +40,22 @@ class BrandController extends Controller
         }
             return '404';
     }
-
+    
+    /**
+     * redirect to brand homesite
+     */
     public function redirect()
     {
         return redirect('brand/'.Auth::user()->username);    
     }
 
+    /**
+     * upload photo
+     */
     public function uploadPhoto(Request $request)
     {
+        $this->validator($request->all())->validate();
+
         $file = $request -> file('logo');
         $ext = $file->extension();
         $id = auth()->id();
@@ -63,5 +72,23 @@ class BrandController extends Controller
         $brand->save();
 
         return back();
+    }
+
+    /**
+     * Get a validator for an incoming upload photo request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+                'logo' => 'image|dimensions:min_width=520,min_height=520',
+            ],
+            [
+                'logo.image' => 'Your format is not supported',  
+                'logo.dimensions' => 'Minimum & Maximum image size is 520',
+            ]
+        );
     }
 }

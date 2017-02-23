@@ -11,8 +11,16 @@
 @section('content')
     <div class="feature-photo">
         <!-- display picture -->
-        <?php $path = Auth::guard()->user()->logo; ?>
+        @php 
+            $path = Auth::guard()->user()->logo;
+        @endphp
         <img src="{{ asset("storage/$path") }}" class="photo-360">
+         @if ($errors->has('logo'))
+            <div class="error-label">
+                <i class="material-icons alert-danger">clear</i>
+                {!! $errors->first('logo', '<span class="alert-danger">:message</span>') !!}
+            </div>
+        @endif
 
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-logo-modal">
