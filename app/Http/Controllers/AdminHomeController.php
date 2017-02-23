@@ -16,51 +16,71 @@ class AdminHomeController extends Controller
     */
     public function __construct(){
         $this->middleware('admin');
-   	}
+    }
 
     /**
-    *  Handling Transaction Page Request without sorting
+    *  Handling Transaction Page Request with default sorting by newest transaction
     *  @Author: Kevin Ega
     */
     public function transactionManagementPage(){
-        $transactions = Transaction::all();
-        //dd($transactions);
-        return view('admin.home')->with(['transactions'=>$transactions]);
-    }
+        $orderBy = \Request::get('orderBy');
+        $sort = \Request::get('sort'); 
+        $search = \Request::get('search');
+        if($sort != ''){
+            //dd('masuk');
+            if($orderBy != ''){
+                if($orderBy == 'brand_name' || $orderBy =='valid_until'){
+                    $transactions =  Transaction::select(DB::raw('transactions.*, count(*) as `aggregate`'))
+                    ->join('brands', 'transactions.brand_id', '=', 'brands.id')
+                    ->groupBy('brands.id')
+                    ->orderBy($orderBy, $sort)
+                    ->paginate(10);
 
-    /**
-    *  Handling Transaction Page Request with sorting
-    *  @Args: orderBy (sorted by what)
-    *  @Author: Kevin Ega
-    */
-    public function transactionManagementPageOrder($orderBy){
-        if($orderBy == 'brand_name' || $orderBy =='valid_until'){
-        $transactions =  Transaction::select(DB::raw('transactions.*, count(*) as `aggregate`'))
-                        ->join('brands', 'transactions.brand_id', '=', 'brands.id')
-                        ->groupBy('brands.id')
-                        ->orderBy($orderBy, 'desc')
-                        ->paginate(10);
-
+                }else{
+                    $transactions = Transaction::orderBy($orderBy, $sort)->paginate(10);
+                }
+            }else{
+                $transactions = Transaction::orderBy('created_at', $sort)->paginate(10);
+            }
         }else{
-        $transactions = Transaction::orderBy($orderBy, 'desc')->get();
-        }
+         $transactions = Transaction::orderBy('created_at', 'desc')->paginate(10);
+     }
         //dd($transactions);
-        return view('admin.home')->with(['transactions'=>$transactions]);
-    }
+    if($search != ''){
+     $transactions = Transaction::select(DB::raw('transactions.*, count(*) as `aggregate`'))
+                    ->join('brands', 'transactions.brand_id', '=', 'brands.id')
+                    ->groupBy('brands.id')
+                    ->where('brand_name', 'like', '%'.$search.'%')
+                    ->paginate(10);
+     }
+     return view('admin.transaction-management')->with(['transactions'=>$transactions]);
+ }
 
     /**
     *  Handling Brand Management Page Request without sorting
     *  @Author: Kevin Ega
     */
     public function brandManagementPage(){
-        $brands = Brand::all();
-        return view('admin.brand-management')->with(['brands'=>$brands]);
-    }
+        $orderBy = \Request::get('orderBy');
+        $sort = \Request::get('sort'); 
+        $search = \Request::get('search');
+        if($sort != ''){
+            if($orderBy != ''){
+                $brands = Brand::orderBy($orderBy, $sort)->paginate(10);
+           }else{
+               $brands = Brand::orderBy('updated_at', $sort)->paginate(10);
+           }
+       }else{
+             $brands = Brand::orderBy('updated_at', 'desc')->paginate(10);
+       }
+       if($search != ''){
+            $brands = Brand::where('brand_name','like','%'.$search.'%')
+            ->orderBy('brand_name')
+            ->paginate(10);
+       }        
+       return view('admin.brand-management')->with(['brands'=>$brands]);
+   }
 
-    public function brandManagementPageOrder($orderBy){
-        $brands = Brand::orderBy($orderBy, 'desc')->get();
-        return view('admin.brand-management')->with(['brands'=>$brands]);
-    }
     /**
     *  Handling for Approving Transaction in Transaction Management Page
     *  @Args: id (which id will be affected)
@@ -70,27 +90,27 @@ class AdminHomeController extends Controller
     	$transaction = Transaction::where("id", "=", $id)->first();
     	$transaction->flag = Auth::guard('admin_users')->user()->name;
         $name = $transaction->name;
-    	if($transaction->save() && $transaction->confirmation_code != NULL) {
-    		$brand = $transaction->brand;
-            if($brand){
-                $brand->membership = $transaction->type;
-                $brand->valid_until = date('Y-m-d H:i:s', strtotime("+30 days"));
-                $brand->status = 'active';
-                if ($brand->save()){
-                    $email = $brand->email;
-                    $data = [
-                                'username' => $brand->username, 
-                                'membership' => $transaction->type,
-                            ];
-        
-                    Mail::send('email.upgrade',$data, function($message) use ($email){
-                        $message->from('freeajabanget@gmail.com','Marketinc');
-                        $message->to($email)->subject('Account Activation: Membership Upgrade');
-                    });
-                    return redirect('unicorn/home');
-                }
+        if($transaction->save() && $transaction->confirmation_code != NULL) {
+          $brand = $transaction->brand;
+          if($brand){
+            $brand->membership = $transaction->type;
+            $brand->valid_until = date('Y-m-d H:i:s', strtotime("+30 days"));
+            $brand->status = 'active';
+            if ($brand->save()){
+                $email = $brand->email;
+                $data = [
+                'username' => $brand->username, 
+                'membership' => $transaction->type,
+                ];
+
+                Mail::send('email.upgrade',$data, function($message) use ($email){
+                    $message->from('freeajabanget@gmail.com','Marketinc');
+                    $message->to($email)->subject('Account Activation: Membership Upgrade');
+                });
+                return redirect('unicorn/home');
             }
-    	}
+        }
+    }
 
     	return false; //error gagal approve
     }
@@ -110,21 +130,21 @@ class AdminHomeController extends Controller
     	if($transaction->delete()) {
     		$data = ['transaction_id' => $transaction_id, 'username' => $username];
 
-        	Mail::send('email.deleteTransaction',$data, function($message) use ($email){
-	            $message->from('freeajabanget@gmail.com','Marketinc');
-	            $message->to($email)->subject('Account Activation: Expired Payment');
-	    	});	
-    		return redirect('unicorn/home');
-    		
-   		}
-    }
+         Mail::send('email.deleteTransaction',$data, function($message) use ($email){
+             $message->from('freeajabanget@gmail.com','Marketinc');
+             $message->to($email)->subject('Account Activation: Expired Payment');
+         });	
+         return redirect('unicorn/home');
+
+     }
+ }
 
      /**
     *  Handling for Reseting Brand's Membership in Brand Management Page
     *  @Args: id (which id will be affected)
     *  @Author: Kevin Ega
     */
-    function resetMembership($id) {
+     function resetMembership($id) {
 
         $brand = Brand::where("id", "=", $id)->first();
         if(!$brand){
@@ -144,7 +164,7 @@ class AdminHomeController extends Controller
             
         }
     }
-  
+
 }
 
 

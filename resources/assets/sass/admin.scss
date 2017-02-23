@@ -4,6 +4,18 @@
 // ADDITIONAL STYLE
 @import "navbar.scss";
 
-.container {
+.container-fluid {
 	padding-top: 90px;
+}
+
+th, .center {
+	text-align: center;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.search-bar {
+	margin-bottom: 10px;
 }
