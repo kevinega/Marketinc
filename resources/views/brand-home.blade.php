@@ -9,6 +9,24 @@
 @endsection
 
 @section('content')
+        @php 
+            $path = Auth::guard()->user()->cover;
+        @endphp
+        <img src="{{ asset("storage/$path") }}">
+         @if ($errors->has('cover'))
+            <div class="error-label">
+                <i class="material-icons alert-danger">clear</i>
+                {!! $errors->first('cover', '<span class="alert-danger">:message</span>') !!}
+            </div>
+        @endif
+
+        {!! Form::open(['method' => 'post', 'url' => 'brand/upload', 'enctype' => 'multipart/form-data']) !!}
+        {{ csrf_field() }}
+
+        {!! Form::file('cover') !!}
+        {!! Form::button('Save Cover', ['type' => 'submit']) !!}
+        {!! Form::close() !!}
+
     <div class="feature-photo">
         <!-- display picture -->
         @php 
