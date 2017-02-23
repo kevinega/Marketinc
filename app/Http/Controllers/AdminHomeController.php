@@ -53,7 +53,7 @@ class AdminHomeController extends Controller
                     ->where('brand_name', 'like', '%'.$search.'%')
                     ->paginate(10);
      }
-     return view('admin.home')->with(['transactions'=>$transactions]);
+     return view('admin.transaction-management')->with(['transactions'=>$transactions]);
  }
 
     /**
