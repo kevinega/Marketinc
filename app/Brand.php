@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticable;
+use App\Notifications\MyOwnResetPassword as ResetPasswordNotification;
 
 class Brand extends Authenticable
 {
@@ -21,5 +22,16 @@ class Brand extends Authenticable
 
     public function transaction(){
     	return $this->hasMany('App\Transaction');
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }
