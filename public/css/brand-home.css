@@ -8583,116 +8583,135 @@ button, input, optgroup, select, textarea {
   color: #fff;
 }
 
-.yellow-spacing {
-  background-color: #ffcc46;
-  width: 100%;
-  height: 250px;
-  margin-top: 56px;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
+.container-nav .dropdown-menu a {
+  color: black;
 }
 
-.yellow-spacing img {
-  width: 300px;
+.navbar-seperation {
+  margin-top: 56px;
+}
+
+.feature-photo .photo-360 {
+  width: 100%;
   height: auto;
 }
 
-.container > .container-register {
+.feature-photo .upload-logo {
+  padding-bottom: 25px;
+}
+
+.feature-photo .btn-upload-modal {
+  margin-top: -46px;
+  margin-bottom: 0px;
+  text-align: right;
+}
+
+.feature-followers {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 16px 0px;
+  margin-top: -57px;
+  z-index: 1;
+  border-bottom: 5px solid #ffcc46;
+}
+
+.feature-followers h6 {
+  margin: 0px 8px;
+  color: #fff;
+  z-index: 1;
+}
+
+.feature-followers .btn-follow {
+  width: 100px;
+  height: 25px;
+  padding: 0px;
+  font-size: 14px;
+  margin: 0px 16px;
+}
+
+.feature {
+  padding-bottom: 100px;
+}
+
+.feature-header {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.feature-header .btn-edit {
+  color: #ffcc46;
+}
+
+.feature-flex-menu {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.feature-flex-menu h5 {
+  color: #000;
+}
+
+.feature-promotions {
+  text-align: center;
+}
+
+.feature-details-about {
+  display: -webkit-box;
+  display: flex;
+}
+
+.feature-details-about .about-us .description {
+  margin: 10px;
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   flex-direction: column;
-  -webkit-box-align: center;
-  align-items: center;
-  margin: 50px auto 50px;
 }
 
-.container > .container-register .button {
-  text-align: right;
-  margin-top: 30px;
+.feature-details-about .about-us .location {
+  margin: 10px;
+  bottom: 10px;
 }
 
-h2 {
-  text-align: center;
-}
-
-.registration-flex, .registration-flex-error {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-}
-
-.registration-flex .registration-flex-row, .registration-flex .registration-flex-error-row, .registration-flex-error .registration-flex-row, .registration-flex-error .registration-flex-error-row {
-  width: 350px;
-}
-
-.registration-flex .registration-flex-row .alert-danger, .registration-flex .registration-flex-error-row .alert-danger, .registration-flex-error .registration-flex-row .alert-danger, .registration-flex-error .registration-flex-error-row .alert-danger {
-  background-color: transparent;
-  margin-left: 3px;
-}
-
-.registration-flex .registration-flex-row .error-label, .registration-flex .registration-flex-error-row .error-label, .registration-flex-error .registration-flex-row .error-label, .registration-flex-error .registration-flex-error-row .error-label {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  flex-direction: row;
-  -webkit-box-align: center;
-  align-items: center;
-}
-
-.registration-form .membership-label {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  margin-top: 15px;
-}
-
-.registration-form .btn-membership {
-  background-color: rgba(0, 0, 0, 0.3);
-  border-color: rgba(0, 0, 0, 0.3);
-  color: #fff;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.registration-form .btn-membership:active, .registration-form .btn-membership.active, .registration-form .show > .btn-membership.dropdown-toggle {
-  background-color: #384452;
-  border-color: #384452;
-}
-
-.registration-form .btn-membership:hover {
-  background-color: #384452;
-  border-color: #384452;
-}
-
-.registration-form .label {
-  margin: 15px 0px 3px;
-}
-
-.package-form {
+.feature-details-facilities {
   width: 100%;
-  display: none;
+  background-color: #f4f4f4;
+  margin-top: 25px;
+  padding: 20px 0px;
 }
 
-.package-form th, .package-form td {
-  text-align: center;
+.feature-details-facilities .facilities-flex {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0px 10px;
 }
 
-.package-form .green {
-  color: green;
-}
-
-.package-form .package-form-header {
+.feature-details-facilities .facilities-flex .facility {
+  width: 15%;
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: horizontal;
@@ -8700,45 +8719,156 @@ h2 {
   flex-direction: row;
   -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  margin-bottom: 25px;
 }
 
-@media (min-width: 1200px) {
-  .registration-flex-error {
+.feature-details-facilities .facilities-flex .facility img {
+  width: 24px;
+}
+
+.feature-details-facilities .facilities-flex .facility p {
+  margin: 0px 10px;
+}
+
+@media (min-width: 945px) {
+  .feature-details-about {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+  }
+  .feature-details-about .maps {
+    width: 40%;
+  }
+  .feature-details-about .about-us {
+    width: 60%;
+    height: 400px;
+  }
+}
+
+@media (max-width: 945px) {
+  .feature-details-about {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+  }
+  .feature-details-about .maps {
+    width: 100%;
+  }
+  .feature-details-about .about-us {
+    width: 100%;
+  }
+}
+
+@media (max-width: 458px) {
+  .detail-icon {
     display: none;
   }
-  .registration-form {
-    width: 500px;
-  }
-  .registration-form .btn-membership {
-    width: 250px;
+}
+
+.multi-item-carousel .carousel-inner > .carousel-item {
+  -webkit-transition: 500ms ease-in-out left;
+  transition: 500ms ease-in-out left;
+}
+
+.multi-item-carousel .carousel-inner .active.left {
+  left: -25%;
+}
+
+.multi-item-carousel .carousel-inner .active.right {
+  left: 25%;
+}
+
+.multi-item-carousel .carousel-inner .next {
+  left: 25%;
+}
+
+.multi-item-carousel .carousel-inner .prev {
+  left: -25%;
+}
+
+@media all and (transform-3d), (-webkit-transform-3d) {
+  .multi-item-carousel .carousel-inner > .carousel-item {
+    -webkit-transition: 500ms ease-in-out left;
+    transition: 500ms ease-in-out left;
+    -webkit-transition: 500ms ease-in-out all;
+    transition: 500ms ease-in-out all;
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+    -webkit-transform: none !important;
+    transform: none !important;
   }
 }
 
-@media (max-width: 1200px) {
-  .registration-flex-row {
+.multi-item-carousel .carousel-control-prev, .multi-item-carousel .carousel-control-next {
+  background-image: none;
+  color: #000;
+}
+
+.floating-box {
+  display: inline-block;
+  width: 250px;
+  height: 250px;
+  margin: 10px;
+  border: 3px solid #73AD21;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  width: 4%;
+}
+
+.carousel-control-prev, .carousel-control.right {
+  margin-left: 15px;
+  background-image: none;
+}
+
+@media (max-width: 767px) {
+  .carousel-inner .active.left {
+    left: -100%;
+  }
+  .carousel-inner .next {
+    left: 100%;
+  }
+  .carousel-inner .prev {
+    left: -100%;
+  }
+  .active > div {
     display: none;
   }
-}
-
-@media (max-width: 1200px) and (min-width: 412px) {
-  .registration-form, .registration-flex-error {
-    width: 300px;
-  }
-  .registration-form .btn-membership, .registration-flex-error .btn-membership {
-    width: 150px;
+  .active > div:first-child {
+    display: block;
   }
 }
 
-@media (max-width: 1200px) and (max-width: 411px) {
-  .registration-form, .registration-flex-error {
-    width: 200px;
+@media (min-width: 767px) and (max-width: 992px) {
+  .carousel-inner .active.left {
+    left: -50%;
   }
-  .registration-form .btn-membership, .registration-flex-error .btn-membership {
-    width: 100px;
+  .carousel-inner .next {
+    left: 50%;
+  }
+  .carousel-inner .prev {
+    left: -50%;
+  }
+  .active > div {
+    display: none;
+  }
+  .active > div:first-child {
+    display: block;
+  }
+  .active > div:first-child + div {
+    display: block;
   }
 }
 
-/*# sourceMappingURL=register.css.map */
+@media (min-width: 992px) {
+  .carousel-inner .active.left {
+    left: -25%;
+  }
+  .carousel-inner .next {
+    left: 25%;
+  }
+  .carousel-inner .prev {
+    left: -25%;
+  }
+}
+
+/*# sourceMappingURL=brand-home.css.map */
