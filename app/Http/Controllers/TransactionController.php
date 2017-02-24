@@ -49,7 +49,7 @@ class TransactionController extends Controller
     	$transaction = Transaction::where("id", "=", $transaction_id)->first();
     	
     	if($transaction == null || $transaction == "") {
-    		return view('confirmation')->with( 'message', "Transaction ID Invalid" );
+    		return view('confirmation',['message' => "Transaction ID Invalid"]);
     	}
 
     	$transaction->confirmation_code = $confirmation_code;
@@ -68,7 +68,7 @@ class TransactionController extends Controller
                 $message->to($email)->subject('Account Activation: Payment Confirmation');
             });
                 
-    		return view('confirmation')->with('message', 'Confirmation is successfully submitted, please wait 2x24 hours our admin will process your payment confirmation and will send you an email to access your paid membership');
+    		return view('confirmation',['message' => 'Confirmation is successfully submitted, please wait 2x24 hours our admin will process your payment confirmation and will send you an email to access your paid membership']);
     	}
     	 dd('failed');
 
