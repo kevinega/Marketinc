@@ -16,9 +16,9 @@
             <strong>Oh snap!</strong> The username and password you entered did not match our records. Please double-check and try again.
         </div>
         @endif
-        @if (!empty($message))
+        @if (session('message'))
         <div class="alert alert-success" role="alert">
-            {{ $message }}
+            {{ session('message') }}
         </div>
         @endif
         {!! Form::text('username', old('username'), ['id' => 'username', 'class' => 'form-control margin-bottom-10', 'placeholder' => 'Username', 'required']) !!}
