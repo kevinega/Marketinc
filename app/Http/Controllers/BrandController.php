@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Image;
 use App\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+
 
 
 class BrandController extends Controller
@@ -62,11 +64,13 @@ class BrandController extends Controller
             $ext = $file->extension();
             $id = auth()->id();
 
+            //delete unused file with different extension
             $imgFiles = Storage::files("public/brands/{$id}/");
             $prevImg = preg_grep("/cover-{$id}/", $imgFiles);
             Storage::delete($prevImg);
 
-            $file->storeAs("public/brands/{$id}", "cover-{$id}.{$ext}");
+            Image::make($file)->resize(1550,310)->save(storage_path("app/public/brands/{$id}/cover-{$id}.{$ext}"));
+            // $file->storeAs("public/brands/{$id}", "cover-{$id}.{$ext}");
             return $this -> storePhoto("brands/{$id}/cover-{$id}.{$ext}", "cover");
 
         } elseif($request -> hasFile('logo')){
@@ -74,14 +78,16 @@ class BrandController extends Controller
             $ext = $file->extension();
             $id = auth()->id();
 
+            //delete unused file with different extension
             $imgFiles = Storage::files("public/brands/{$id}/");
             $prevImg = preg_grep("/logo-{$id}/", $imgFiles);
             Storage::delete($prevImg);
 
             $file->storeAs("public/brands/{$id}", "logo-{$id}.{$ext}");
             return $this -> storePhoto("brands/{$id}/logo-{$id}.{$ext}", "logo");
-
         } 
+
+        return back();
     }
 
     public function storePhoto($photo, $type){
@@ -113,8 +119,8 @@ class BrandController extends Controller
                 'logo' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
             ],
             [  
-                'cover.dimensions' => 'Minimum & Maximum image size is 530', 
-                'logo.dimensions' => 'Minimum & Maximum image size is 520',
+                'cover.dimensions' => 'Minimum image size is 530', 
+                'logo.dimensions' => 'Minimum image size is 520',
             ]
         );
     }
