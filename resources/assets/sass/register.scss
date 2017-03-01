@@ -20,6 +20,14 @@ h2 {
 	text-align: center;
 }
 
+.yellow-spacing {
+	background-color: $yellow;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 25px 0px;
+}
+
 .registration-flex, .registration-flex-error {
 	display: flex;
 	justify-content: center;
