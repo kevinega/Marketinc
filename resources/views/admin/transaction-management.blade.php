@@ -130,10 +130,16 @@ if(Request::input('sort','asc') == 'asc'){
                                         {{ $transaction->confirmation_code }}
                                         @endif
                                     </td>
-                                    <td>{{ $transaction->flag }}</td>
+                                    <td>
+                                        @if ($transaction->flag != '')
+                                        {{ $transaction->flag }}
+                                        @else
+                                        -
+                                        @endif
+                                    </td>
                                     <td>{{ $transaction->total_payment }}</td>
                                     <td class="row-buttons">
-                                        <a href="/unicorn/approve/{{ $transaction->id }}" class="btn btn-success pull-right @if ($transaction->confirmation_code != '') disabled @endif" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                        <a href="/unicorn/approve/{{ $transaction->id }}" class="btn btn-success pull-right @if ($transaction->flag != '') disabled @endif" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
                                         <a href="/unicorn/delete/{{ $transaction->id }}" class="btn btn-danger pull-right" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
