@@ -35,18 +35,24 @@ $.ajax({
             dataType: 'json', 
             //contentType: "application/json", 
             success: function(data) { 
-                    console.log('sukses'); 
-                    console.log(data);
-                    // console.log(data.message.title); 
-                    // document.getElementById('title').innerHTML = "<b>" + data.message.title + "</b>";
-                    // document.getElementById('image').src = data.message.image;
-                    // document.getElementById('url').href = data.message.url;
-                    // document.getElementById('author').innerHTML = data.message.author;
-                    // document.getElementById('published_on').innerHTML = data.message.published_on;
+                    //console.log('sukses'); 
+                    //console.log(data);
+                    var articles = data;
+                    var htmlText = '';
 
+                    for ( var key in articles ) {
+                        htmlText += '<div class="div-container">';
+                        htmlText += '<p class="p-name"> Title: ' + data[key].title + '</p>';
+                        htmlText += '<img class="p-desc" src=' + data[key].image + '></img></br>';
+                        htmlText += '<a class="p-loc" href=' + data[key].url + '>'+ data[key].url +'</a>';
+                        htmlText += '<p class="p-created"> Created by: ' + data[key].author + '</p>';
+                        htmlText += '<p class="p-uname"> Publish Date: ' + data[key].published_on + '</p>';
+                        htmlText += '</div>';
+                    }
 
+                    document.getElementById('title').innerHTML += htmlText;
                   } ,error:function(e) { 
-                    console.log('gagal'); 
+                     console.log('failed'); 
                   } 
             }); 
 });

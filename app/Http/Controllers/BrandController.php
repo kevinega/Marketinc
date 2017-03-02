@@ -160,32 +160,16 @@ class BrandController extends Controller
         ); 
     } 
   
-    public function embedArticle(){  
-        $message = ''; 
-        $article =  Article::select(DB::raw('articles.*, count(*) as `aggregate`'))  
-                      ->join('brands', 'articles.brand_id', '=', 'brands.id')  
-                      ->groupBy('brands.id')  
-                      ->where('brands.id','=', Auth::user()->id)->first();          
-        //dd($article); 
-        if ($article) { 
-            $info = [  
-                'url' => Embed::create($article->url)  
-            ];  
-        }else{ 
-            $info = "is empty"; 
-        } 
-         
-        if($info){ 
-            $message = [ 
-                'image' => $article->image, 
-                'url' => $article->url, 
-                'author' => $article->author, 
-                'title' => $article->title, 
-                'published_on' => $article->published_on 
-            ]; 
-        }   
-        return \Response::json(['status' => 'success', 'message' => $message],200);  
-         // return 'lutpi gay';  
-        //dd('wadaw');  
+    public function embedArticle(){   
+        $article = Article::whereBrandId(Auth::user()->id)->get(); 
+        if(!$article->isEmpty()){ 
+            $message = $article;
+        }else{
+            return 500;
+        }
+        // dd($article);  
+        // return \Response::json(['status' => 'success', 'message' => $message],200);  
+        return $article;
+          
     }  
 }
