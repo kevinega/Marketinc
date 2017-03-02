@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Brand;
+use App\Article;
+use Embed\Embed;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -118,4 +121,71 @@ class BrandController extends Controller
             ]
         );
     }
+
+    public function createArticle(Request $request){  
+        $article_info = Embed::create($request->url); 
+       //dd($article_info); 
+        //$this->articleValidator($request->all())->validate(); 
+        $article = new Article();  
+        $article->brand_id = Auth::user()->id;  
+        $article->title = $request->title;  
+        $article->url = $request->url; 
+        $article->image = $article_info->image; 
+        if($request->author == ''){ 
+            $article->author = $article_info->authorName; 
+        }else{ 
+            $article->author = $request->author; 
+        } 
+ 
+        if($request->published_on == ''){ 
+            $article->published_on = $article_info->publishedTime; 
+        }else{ 
+            $article->published_on = $request->published_on; 
+        } 
+ 
+        if($article->save()){ 
+            dd('success'); 
+            return back(); 
+        }else{ 
+            return 404; 
+        } 
+    }  
+ 
+    public function articleValidator(array $data){ 
+ 
+        return Validator::make($data, [ 
+            'url' => 'url|required' 
+        ] 
+ 
+        ); 
+    } 
+  
+    public function embedArticle(){  
+        $message = ''; 
+        $article =  Article::select(DB::raw('articles.*, count(*) as `aggregate`'))  
+                      ->join('brands', 'articles.brand_id', '=', 'brands.id')  
+                      ->groupBy('brands.id')  
+                      ->where('brands.id','=', Auth::user()->id)->first();          
+        //dd($article); 
+        if ($article) { 
+            $info = [  
+                'url' => Embed::create($article->url)  
+            ];  
+        }else{ 
+            $info = "is empty"; 
+        } 
+         
+        if($info){ 
+            $message = [ 
+                'image' => $article->image, 
+                'url' => $article->url, 
+                'author' => $article->author, 
+                'title' => $article->title, 
+                'published_on' => $article->published_on 
+            ]; 
+        }   
+        return \Response::json(['status' => 'success', 'message' => $message],200);  
+         // return 'lutpi gay';  
+        //dd('wadaw');  
+    }  
 }
