@@ -8,39 +8,37 @@
     @include('navbar')
 @endsection
 
-@section('content')
-        <img id="cover">
-         @if ($errors->has('cover'))
+@section('content')        
+    <div class="feature-photo">
+        <!-- display picture -->
+        @php 
+            $path = Auth::guard()->user()->cover;
+        @endphp
+        @if (is_null($path))
+            <img src="{{ asset("img/default-cover.png") }}" class="cover">
+        @else
+            <img src="{{ asset("storage/$path") }}" class="cover">
+        @endif
+        @if ($errors->has('cover'))
             <div class="error-label">
                 <i class="material-icons alert-danger">clear</i>
                 {!! $errors->first('cover', '<span class="alert-danger">:message</span>') !!}
             </div>
         @endif
 
-        {!! Form::open(['method' => 'post', 'url' => 'brand/upload', 'enctype' => 'multipart/form-data']) !!}
-        {{ csrf_field() }}
-
-        {!! Form::file('cover') !!}
-        {!! Form::button('Save Cover', ['type' => 'submit']) !!}
-        {!! Form::close() !!}
-        
-    <div class="feature-photo">
-        <!-- display picture -->
-        <img id="logo" class="photo-360">
-
         <!-- button trigger modal -->
         <div class="btn-upload-modal">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-logo-modal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-cover-modal">
                 <i class="material-icons">add_a_photo</i>
             </button>
         </div>
 
         <!-- modal -->
-        <div class="modal fade" id="upload-logo-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+        <div class="modal fade" id="upload-cover-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modal-label">Upload Logo</h5>
+                        <h5 class="modal-title" id="modal-label">Upload Cover</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -49,8 +47,8 @@
                         {!! Form::open(['method' => 'post', 'url' => 'brand/upload', 'enctype' => 'multipart/form-data']) !!}
                         {{ csrf_field() }}
 
-                        {!! Form::file('logo', ['class' => 'upload-logo']) !!}
-                        {!! Form::button('Save Logo', ['class' => 'btn btn-primary btn-block', 'type' => 'submit']) !!}
+                        {!! Form::file('cover', ['class' => 'upload-cover']) !!}
+                        {!! Form::button('Save Cover', ['class' => 'btn btn-primary btn-block', 'type' => 'submit']) !!}
                         {!! Form::close() !!}
                     </div>
                 </div>
@@ -58,7 +56,7 @@
         </div>
     </div>
 
-{{--     <div class="feature-followers">
+    {{-- <div class="feature-followers">
         <h6>1234 followers</h6>
         <button type="button" class="btn btn-primary btn-follow">Follow</button>
     </div> --}}
