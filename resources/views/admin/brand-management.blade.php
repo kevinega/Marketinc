@@ -39,7 +39,7 @@ if (Request::input('sort','asc') == 'asc') {
 
             {!! Form::open(['method'=>'GET','url'=> $url,'class'=>'search-bar','role'=>'search'])  !!}
             <div class="input-group custom-search-form">
-                <input type="text" class="form-control" name="search" placeholder="Search...">
+                <input type="text" class="form-control" name="search" placeholder="Search by brand name">
                 <span class="input-group-btn">
                     <button class="btn btn-default-sm" type="submit">
                         <i class="fa fa-search"></i>
@@ -64,11 +64,31 @@ if (Request::input('sort','asc') == 'asc') {
                         <table class="table table-sm table-striped table-hover">
                             <thead class="thead-inverse">
                                 <tr>
-                                    <th>Brand Name<a href="{{url('unicorn?orderBy=brand_name&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></a></th>
-                                    <th>Valid Until<a href="{{url('unicorn?orderBy=valid_until&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></th>
-                                    <th>Status<a href="{{url('unicorn?orderBy=status&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></th>
-                                    <th>Membership<a href="{{url('unicorn?orderBy=membership&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></th>
-                                    <th>Email Verification<a href="{{url('unicorn?orderBy=verified&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></th>
+                                    <th>
+                                        <div class="table-header">
+                                            <div>Brand Name</div>
+                                            <a href="{{url('unicorn?orderBy=brand_name&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></a>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="table-header">
+                                            <div>Valid Until</div>
+                                            <a href="{{url('unicorn?orderBy=valid_until&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></a>
+                                        </div>
+                                    </th>
+
+                                    <th>
+                                        <div class="table-header">
+                                            <div>Membership</div>
+                                            <a href="{{url('unicorn?orderBy=membership&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></a>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="table-header">
+                                            <div>Email Verification</div>
+                                            <a href="{{url('unicorn?orderBy=verified&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></a>
+                                        </div>
+                                    </th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -92,7 +112,7 @@ if (Request::input('sort','asc') == 'asc') {
                                         <span class="badge badge-default">NOT VERIFIED</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="row-buttons">
                                         <a href="/unicorn/reset/{{ $brand->id }}" class="btn btn-primary btn-block btn-sm" style="margin-right: 3px;"><strong>Reset Membership</strong></a>
                                     </td>
                                 </tr>
@@ -101,6 +121,7 @@ if (Request::input('sort','asc') == 'asc') {
                         </table>
                     </div> <!-- table-responsive -->
                     {{ $brands->links()}}
+
                     @endif
 
                 </div> <!-- col -->

@@ -18,76 +18,6 @@ if(Request::input('sort','asc') == 'asc'){
 @endphp
 
 @section('content')
-{{-- <div class="container">
-    <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
-            {!! Form::open(['method'=>'GET','url'=> $url,'class'=>'navbar-form navbar-left','role'=>'search'])  !!}
-            <div class="input-group custom-search-form">
-                <input type="text" class="form-control" name="search" placeholder="Search...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default-sm" type="submit">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
-            {!! Form::close() !!}
-            <h1><i class="fa fa-users"></i>Transaction Management</h1>
-            @if($transactions->total() == 0)
-                TRANSACTION NOT FOUND
-            @endif
-            {!! Form::open([
-                'url' => '/unicorn/logout',
-                'name' => 'logout-form',
-                'id' => 'logout-form',
-            ]) !!}
-            {!! Form::button('Log Out', [
-                'type' => 'submit'
-            ]) !!}
-            {!! Form::close() !!}
-
-            <div class="table-responsive">
-
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Brand Name <a href="{{url('unicorn/transaction?orderBy=brand_name&sort=')}}{{$sort}}">sort</a></th>
-                            <th>Transaction ID <a href="{{url('unicorn/transaction?orderBy=id&sort=')}}{{$sort}}">sort</a></th>
-                            <th>Transaction Added <a href="{{url('unicorn/transaction?orderBy=created_at&sort=')}}{{$sort}}">sort</a></th>
-                            <th>Valid Until <a href="{{url('unicorn/transaction?orderBy=valid_until&sort=')}}{{$sort}}">sort</a></th>
-                            <th>Confirmation Code <a href="{{url('unicorn/transaction?orderBy=confirmation_code&sort=')}}{{$sort}}">sort</a></th>
-                            <th>Flag <a href="{{url('unicorn/transaction?orderBy=flag&sort=')}}{{$sort}}">sort</a></th>
-                            <th>Payment <a href="{{url('unicorn/transaction?orderBy=total_payment&sort=')}}{{$sort}}">sort</a></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @foreach ($transactions as $transaction)
-                        <tr>
-                            <td>{{ $transaction->brand->brand_name }}</td>
-                            <td>{{ $transaction->id }}</td>
-                            <td>{{ $transaction->created_at->format('F d, Y h:ia') }}</td>
-                            <td>{{ $transaction->brand->valid_until }}</td>
-                            <td>{{ $transaction->confirmation_code }}</td>
-                            <td>{{ $transaction->flag }}</td>
-                            <td>{{ $transaction->total_payment }}</td>
-                            <td>
-                                <a href="/unicorn/approve/{{ $transaction->id }}" class="btn btn-info pull-left" style="margin-right: 3px;">Approve</a>
-                                <a href="/unicorn/delete/{{ $transaction->id }}" class="btn btn-danger pull-left" style="margin-right: 3px;">Delete</a>
-                            </td>
-                        </tr>
-                        @endforeach
-
-                        {{ $transactions->links() }}
-                    </tbody>
-                </table>
-                
-            </div>
-        </div>
-
-    </div>
-</div> --}}
-
 <div class="container-fluid">
 
     <div class="row row-offcanvas row-offcanvas-left">
@@ -109,7 +39,7 @@ if(Request::input('sort','asc') == 'asc'){
 
             {!! Form::open(['method'=>'GET','url'=> $url,'class'=>'search-bar','role'=>'search'])  !!}
             <div class="input-group custom-search-form">
-                <input type="text" class="form-control" name="search" placeholder="Search...">
+                <input type="text" class="form-control" name="search" placeholder="Search by brand name">
                 <span class="input-group-btn">
                     <button class="btn btn-default-sm" type="submit">
                         <i class="fa fa-search"></i>
@@ -134,14 +64,49 @@ if(Request::input('sort','asc') == 'asc'){
                         <table class="table table-sm table-striped table-hover">
                             <thead class="thead-inverse">
                                 <tr>
-                                    <th>Brand Name <a href="{{url('unicorn/transaction?orderBy=brand_name&sort=')}}{{$sort}}">sort</a></th>
-                                    <th>Transaction ID <a href="{{url('unicorn/transaction?orderBy=id&sort=')}}{{$sort}}">sort</a></th>
-                                    <th>Transaction Added <a href="{{url('unicorn/transaction?orderBy=created_at&sort=')}}{{$sort}}">sort</a></th>
-                                    <th>Valid Until <a href="{{url('unicorn/transaction?orderBy=valid_until&sort=')}}{{$sort}}">sort</a></th>
-                                    <th>Confirmation Code <a href="{{url('unicorn/transaction?orderBy=confirmation_code&sort=')}}{{$sort}}">sort</a></th>
-                                    <th>Flag <a href="{{url('unicorn/transaction?orderBy=flag&sort=')}}{{$sort}}">sort</a></th>
-                                    <th>Payment <a href="{{url('unicorn/transaction?orderBy=total_payment&sort=')}}{{$sort}}">sort</a></th>
-                                    <th></th>
+                                    <th>
+                                        <div class="table-header">
+                                            <div>Brand Name</div>
+                                            <a href="{{url('unicorn/transaction?orderBy=brand_name&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></a>    
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="table-header">
+                                            <div>Transaction ID</div>
+                                            <a href="{{url('unicorn/transaction?orderBy=id&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></a>    
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="table-header">
+                                            <div>Date Added</div>
+                                            <a href="{{url('unicorn/transaction?orderBy=created_at&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></a>    
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="table-header">
+                                            <div>Valid Until</div>
+                                            <a href="{{url('unicorn/transaction?orderBy=valid_until&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></a>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="table-header">
+                                            <div>Confirmation Code</div>
+                                            <a href="{{url('unicorn/transaction?orderBy=confirmation_code&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></a>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="table-header">
+                                            <div>Approved By</div>
+                                            <a href="{{url('unicorn/transaction?orderBy=flag&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></a>    
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="table-header">
+                                            <div>Amount</div>
+                                            <a href="{{url('unicorn/transaction?orderBy=total_payment&sort=')}}{{$sort}}"><i class="fa fa-fw fa-sort"></i></a>
+                                        </div>
+                                    </th>
+                                    <th><div class="table-header"></div></th>
                                 </tr>
                             </thead>
 
@@ -150,14 +115,26 @@ if(Request::input('sort','asc') == 'asc'){
                                 <tr>
                                     <td>{{ $transaction->brand->brand_name }}</td>
                                     <td>{{ $transaction->id }}</td>
-                                    <td>{{ $transaction->created_at->format('F d, Y h:ia') }}</td>
-                                    <td>{{ $transaction->brand->valid_until }}</td>
-                                    <td>{{ $transaction->confirmation_code }}</td>
+                                    <td class="center">{{ $transaction->created_at->format('d M Y') }}</td>
+                                    <td class="center">
+                                        @if ($transaction->brand->valid_until=='0000-00-00 00:00:00')
+                                        -
+                                        @else
+                                        {{ date('d M Y', strtotime($transaction->brand->valid_until)) }}
+                                        @endif
+                                    </td>
+                                    <td class="center">
+                                        @if ($transaction->confirmation_code == '')
+                                        -
+                                        @else
+                                        {{ $transaction->confirmation_code }}
+                                        @endif
+                                    </td>
                                     <td>{{ $transaction->flag }}</td>
                                     <td>{{ $transaction->total_payment }}</td>
-                                    <td>
-                                        <a href="/unicorn/approve/{{ $transaction->id }}" class="btn btn-info pull-left" style="margin-right: 3px;">Approve</a>
-                                        <a href="/unicorn/delete/{{ $transaction->id }}" class="btn btn-danger pull-left" style="margin-right: 3px;">Delete</a>
+                                    <td class="row-buttons">
+                                        <a href="/unicorn/approve/{{ $transaction->id }}" class="btn btn-success pull-right @if ($transaction->confirmation_code != '') disabled @endif" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                        <a href="/unicorn/delete/{{ $transaction->id }}" class="btn btn-danger pull-right" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
