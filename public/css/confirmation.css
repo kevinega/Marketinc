@@ -8607,6 +8607,7 @@ button, input, optgroup, select, textarea {
 
 body > .container {
   padding: 20px 15px 0;
+  margin-bottom: 200px;
 }
 
 .container {
@@ -8634,6 +8635,7 @@ body {
 }
 
 .footer {
+  margin-top: 100px;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -8643,4 +8645,4 @@ body {
   /* Vertically center the text there */
 }
 
-/*# sourceMappingURL=reset-password.css.map */
+/*# sourceMappingURL=confirmation.css.map */
