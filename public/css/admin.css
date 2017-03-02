@@ -8571,6 +8571,10 @@ button, input, optgroup, select, textarea {
   border-color: #C79F37;
 }
 
+.alert {
+  border-radius: 0;
+}
+
 .margin-bottom-10 {
   margin-bottom: 10px;
 }
@@ -8602,7 +8606,7 @@ button, input, optgroup, select, textarea {
 }
 
 .container-fluid {
-  padding-top: 90px;
+  padding-top: 80px;
 }
 
 th, .center {
@@ -8615,6 +8619,68 @@ th, .center {
 
 .search-bar {
   margin-bottom: 10px;
+}
+
+@media screen and (max-width: 48em) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+  .row-offcanvas-left .sidebar-offcanvas {
+    left: -33%;
+  }
+  .row-offcanvas-left.active {
+    left: 33%;
+    margin-left: -6px;
+  }
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 33%;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 34em) {
+  .row-offcanvas-left .sidebar-offcanvas {
+    left: -45%;
+  }
+  .row-offcanvas-left.active {
+    left: 45%;
+    margin-left: -6px;
+  }
+  .sidebar-offcanvas {
+    width: 45%;
+  }
+}
+
+.active {
+  background-color: #ffcc46;
+}
+
+.active > a {
+  color: #fff;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px;
+  /* Vertically center the text there */
 }
 
 /*# sourceMappingURL=admin.css.map */
