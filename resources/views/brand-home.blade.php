@@ -9,10 +9,7 @@
 @endsection
 
 @section('content')
-    @php 
-            $path = Auth::guard()->user()->cover;
-        @endphp
-        <img src="{{ asset("storage/$path") }}">
+        <img id="cover">
          @if ($errors->has('cover'))
             <div class="error-label">
                 <i class="material-icons alert-danger">clear</i>
@@ -29,8 +26,7 @@
         
     <div class="feature-photo">
         <!-- display picture -->
-        <?php $path = Auth::guard()->user()->logo; ?>
-        <img src="{{ asset("storage/$path") }}" class="photo-360">
+        <img id="logo" class="photo-360">
 
         <!-- button trigger modal -->
         <div class="btn-upload-modal">
@@ -62,10 +58,10 @@
         </div>
     </div>
 
-    <div class="feature-followers">
+{{--     <div class="feature-followers">
         <h6>1234 followers</h6>
         <button type="button" class="btn btn-primary btn-follow">Follow</button>
-    </div>
+    </div> --}}
 
     <div class="container">
         <div class="feature">
@@ -104,6 +100,17 @@
 
 @section('page-script')
 <script>
+<?php 
+    $pathCover = Auth::guard()->user()->cover; 
+    $pathLogo = Auth::guard()->user()->logo; 
+?>
+
+$(document).ready(function(){
+    document.getElementById('cover').src = '{{ asset("storage/$pathCover") }}';
+    document.getElementById('logo').src = '{{ asset("storage/$pathLogo") }}';
+});
+
+
 $('.multi-item-carousel').carousel({
   interval: false
 });
