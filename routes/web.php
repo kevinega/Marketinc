@@ -20,8 +20,6 @@ Route::get('/', function () {
 */
 
 
-// Auth::routes();
-
 
 Route::get('brand/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('brand/login', 'Auth\LoginController@login');
@@ -37,12 +35,22 @@ Route::post('brand/password/email', 'Auth\ForgotPasswordController@sendResetLink
 Route::get('brand/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::post('brand/password/reset', 'Auth\ResetPasswordController@reset');
 
+/**
+*	Semuua Route yang diakses setelah login taro sini yah
+*/ 
 
+Route::group(['middleware' => 'auth_brand'], function () {
+	Route::post('/brand/embedArticle', 'BrandController@embedArticle');
+	Route::get('/brand/embedArticle', 'BrandController@embedArticle');
+/**
+*  Upload
+*/
+	Route::post('brand/upload', 'BrandController@uploadPhoto');
+	Route::get('brand/logout', 'Auth\LoginController@logout');
+	Route::get('brand', 'BrandController@redirect');
+	Route::get('brand/{username}', 'BrandController@index');
 
-Route::get('brand/logout', 'Auth\LoginController@logout');
-Route::get('brand', 'BrandController@redirect');
-Route::get('brand/{username}', 'BrandController@index');
-
+});
 
 /**
  *  Register
@@ -52,6 +60,13 @@ Route::get('brand/register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
     'uses' => 'Auth\RegisterController@confirm'
 ]);
+
+/**
+*  Payment Confirmation
+*/
+	Route::get('/brand/confirmation', 'TransactionController@index');
+	Route::post('/brand/confirmation', 'TransactionController@postConfirmation');
+
 
 /**
 *   Admin CMS Routes 
@@ -72,13 +87,4 @@ Route::get('/unicorn/approve/{id}', 'AdminHomeController@approveTransaction');
 Route::get('/unicorn/delete/{id}', 'AdminHomeController@deleteTransaction');
 Route::get('/unicorn/reset/{id}', 'AdminHomeController@resetMembership');
 
-/**
-*  Confirmation Page
-*/
-Route::get('/brand/confirmation', 'TransactionController@index');
-Route::post('/brand/confirmation', 'TransactionController@postConfirmation');
 
-/**
-*  Upload
-*/
-Route::post('brand/upload', 'BrandController@uploadPhoto');
