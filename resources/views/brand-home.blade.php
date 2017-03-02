@@ -11,14 +11,8 @@
 @section('content')        
     <div class="feature-photo">
         <!-- display picture -->
-        @php 
-            $path = Auth::guard()->user()->cover;
-        @endphp
-        @if (is_null($path))
-            <img src="{{ asset("img/default-cover.png") }}" class="cover">
-        @else
-            <img src="{{ asset("storage/$path") }}" class="cover">
-        @endif
+        <img id="cover" class="cover">
+
         @if ($errors->has('cover'))
             <div class="error-label">
                 <i class="material-icons alert-danger">clear</i>
@@ -99,13 +93,14 @@
 @section('page-script')
 <script>
 <?php 
-    $pathCover = Auth::guard()->user()->cover; 
-    $pathLogo = Auth::guard()->user()->logo; 
+    $pathCover = "storage/".Auth::guard()->user()->cover; 
+    if($pathCover == "storage/"){
+        $pathCover = "img/default-cover.png";
+    }
 ?>
 
 $(document).ready(function(){
-    document.getElementById('cover').src = '{{ asset("storage/$pathCover") }}';
-    document.getElementById('logo').src = '{{ asset("storage/$pathLogo") }}';
+    document.getElementById("cover").src = '{{ asset("$pathCover") }}';
 });
 
 
