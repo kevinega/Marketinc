@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/brand';
+    protected $redirectTo = '/brand/';
 
     /**
      * Create a new controller instance.
@@ -63,7 +63,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/login');
+        return redirect('/brand/login');
     }
 
     //override failed attempt login

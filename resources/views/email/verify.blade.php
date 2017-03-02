@@ -11,7 +11,7 @@
             </br>
             <p>Thanks for joining Marketinc. </p>
             <p>Please verify your email address by clicking the link below</p>
-            <p>{{ URL::to('register/verify/' . $confirmation_code) }}.</p><br/>
+            <p>{{ URL::to('brand/register/verify/' . $confirmation_code) }}.</p><br/>
 
         </div>
 

@@ -8561,10 +8561,6 @@ button, input, optgroup, select, textarea {
   border-color: #C79F37;
 }
 
-.alert {
-  border-radius: 0;
-}
-
 .margin-bottom-10 {
   margin-bottom: 10px;
 }
@@ -8595,82 +8591,177 @@ button, input, optgroup, select, textarea {
   margin-top: 56px;
 }
 
-.container-fluid {
-  padding-top: 80px;
+.feature-photo .photo-360 {
+  width: 100%;
+  height: auto;
 }
 
-th, .center {
+.feature-photo .upload-logo {
+  padding-bottom: 25px;
+}
+
+.feature-photo .btn-upload-modal {
+  margin-top: -46px;
+  margin-bottom: 0px;
+  text-align: right;
+}
+
+.feature-followers {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 16px 0px;
+  margin-top: -57px;
+  z-index: 1;
+  border-bottom: 5px solid #ffcc46;
+}
+
+.feature-followers h6 {
+  margin: 0px 8px;
+  color: #fff;
+  z-index: 1;
+}
+
+.feature-followers .btn-follow {
+  width: 100px;
+  height: 25px;
+  padding: 0px;
+  font-size: 14px;
+  margin: 0px 16px;
+}
+
+.feature {
+  padding-bottom: 100px;
+}
+
+.feature-header {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.feature-header .btn-edit {
+  color: #ffcc46;
+}
+
+.feature-flex-menu {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.feature-flex-menu h5 {
+  color: #000;
+}
+
+.feature-promotions {
   text-align: center;
 }
 
-.uppercase {
-  text-transform: uppercase;
+.feature-details-about {
+  display: -webkit-box;
+  display: flex;
 }
 
-.search-bar {
-  margin-bottom: 10px;
+.feature-details-about .about-us .description {
+  margin: 10px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
 }
 
-@media screen and (max-width: 48em) {
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-  }
-  .row-offcanvas-left .sidebar-offcanvas {
-    left: -33%;
-  }
-  .row-offcanvas-left.active {
-    left: 33%;
-    margin-left: -6px;
-  }
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 33%;
-    height: 100%;
-  }
+.feature-details-about .about-us .location {
+  margin: 10px;
+  bottom: 10px;
 }
 
-@media screen and (max-width: 34em) {
-  .row-offcanvas-left .sidebar-offcanvas {
-    left: -45%;
-  }
-  .row-offcanvas-left.active {
-    left: 45%;
-    margin-left: -6px;
-  }
-  .sidebar-offcanvas {
-    width: 45%;
-  }
-}
-
-.active {
-  background-color: #ffcc46;
-}
-
-.active > a {
-  color: #fff;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
+.feature-details-facilities {
   width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px;
-  /* Vertically center the text there */
+  background-color: #f4f4f4;
+  margin-top: 25px;
+  padding: 20px 0px;
 }
 
-/*# sourceMappingURL=admin.css.map */
+.feature-details-facilities .facilities-flex {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0px 10px;
+}
+
+.feature-details-facilities .facilities-flex .facility {
+  width: 15%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.feature-details-facilities .facilities-flex .facility img {
+  width: 24px;
+}
+
+.feature-details-facilities .facilities-flex .facility p {
+  margin: 0px 10px;
+}
+
+@media (min-width: 945px) {
+  .feature-details-about {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+  }
+  .feature-details-about .maps {
+    width: 40%;
+  }
+  .feature-details-about .about-us {
+    width: 60%;
+    height: 400px;
+  }
+}
+
+@media (max-width: 945px) {
+  .feature-details-about {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+  }
+  .feature-details-about .maps {
+    width: 100%;
+  }
+  .feature-details-about .about-us {
+    width: 100%;
+  }
+}
+
+@media (max-width: 458px) {
+  .detail-icon {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=brand-home.css.map */

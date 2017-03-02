@@ -14,7 +14,7 @@
             <p>Bank Account No. : BNI 6000300200 a/n Marketinc</p>
             <p>Amount you have to pay: Rp. {{ $total_payment }}</p>
             </br>
-            <p>Then please do payment confirmation here: {{ URL::to('confirmation') }}</p>
+            <p>Then please do payment confirmation here: {{ URL::to('brand/confirmation') }}</p>
             <p>Put <b>{{ $transaction_id }} </b> as your transaction code</p>
             <br/>
 
