@@ -152,15 +152,16 @@ class AdminHomeController extends Controller
         }
         $email = $brand->email;
         $brand->membership = 'free';
+        $brand->valid_until = '0000-00-00 00:00:00';
 
         if($brand->save()) {
             $data = ['brand_name' => $brand->brand_name, 'username' => $brand->username];
 
-            Mail::send('email.deleteTransaction',$data, function($message) use ($email){
+            Mail::send('email.reset-membership',$data, function($message) use ($email){
                 $message->from('freeajabanget@gmail.com','Marketinc');
-                $message->to($email)->subject('Account Activation: Expired Payment');
+                $message->to($email)->subject('Account Activation: Expired Account');
             }); 
-            return redirect('unicorn/brand');
+            return redirect('unicorn/home');
             
         }
     }
