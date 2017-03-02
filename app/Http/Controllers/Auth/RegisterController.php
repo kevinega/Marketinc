@@ -33,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/brand/login';
 
     /**
      * Create a new controller instance.
@@ -190,6 +190,7 @@ class RegisterController extends Controller
 
         //cek ada ga ditable transaction id brand
         $transaction = $brand->transaction->first();
+        $paid = false;
         //kirim email payment kalo idnya terdaftar di transaction
         if($transaction){
             $email = $brand->email;
@@ -206,10 +207,16 @@ class RegisterController extends Controller
         //verifikasi akun
         $brand->verified = 1;
         $brand->confirmation_code = null;
-        $brand->save();
+        if($brand->save()){
+            if($paid){
+                return redirect('brand/login')->with('message','Thank you for confirming your email address, now you can use Marketinc as a free member. We\'ve sent an email concerning payment details for your paid membership');    
+            }
+            
+            return redirect('brand/login')->with('message','Thank you for confirming your email address, now you can use Marketinc as a free member');
+        }
 
         //Kasih kayak selamat udah berhasil aktifasi akun jika anda memilih paid package silahkan cek email anda untuk melanjutkan
-        return redirect('/login');
+        
 
 
     }
@@ -229,8 +236,8 @@ class RegisterController extends Controller
 
         if($user){
             // dd(brand::."dalam");
-        File::makeDirectory(public_path('/brands/'. $path));
-        return redirect('login');
+            File::makeDirectory(storage_path('app/public/brands/'. $path), 0755, true);
+            return redirect('brand/login')->with('message','Thank you for registering, we\'ve sent you an email to verify your email address');
         }
         // dd($user."luar");
     }

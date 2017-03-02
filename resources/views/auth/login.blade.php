@@ -16,11 +16,16 @@
             <strong>Oh snap!</strong> The username and password you entered did not match our records. Please double-check and try again.
         </div>
         @endif
+        @if (session('message'))
+        <div class="alert alert-success" role="alert">
+            {{ session('message') }}
+        </div>
+        @endif
         {!! Form::text('username', old('username'), ['id' => 'username', 'class' => 'form-control margin-bottom-10', 'placeholder' => 'Username', 'required']) !!}
         {!! Form::password('password', ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Password', 'required']) !!}
-        <a id="forgot-password" class="margin-bottom-10" href="{{ url('/password/reset') }}">Forgot Password?</a>    
+        <a id="forgot-password" class="margin-bottom-10" href="{{ url('/brand/password/reset') }}">Forgot Password?</a>    
         {!! Form::button('Log in', ['class' => 'btn btn-primary btn-block margin-bottom-10', 'type' => 'submit']) !!}
-        <a id="register-question" href='{{ url('/register') }}'>Don't have any account? Join now!</a>
+        <a id="register-question" href='{{ url('/brand/register') }}'>Don't have any account? Join now!</a>
         {!! Form::close() !!}
         <!-- /LOGIN FORM -->
 

@@ -1,0 +1,161 @@
+// CORE APP STYLE
+@import "app.scss";
+
+// ADDITIONAL STYLE
+@import "navbar.scss";
+
+.feature-photo {
+    .photo-360 {
+        width: 100%;
+        height: auto;
+    }
+
+    .upload-logo {
+       padding-bottom: 25px;
+    }
+
+    .btn-upload-modal {
+        margin-top: -46px;
+        margin-bottom: 0px;
+        text-align: right;
+    }
+}
+
+.feature-followers {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: rgba(0,0,0, 0.5);
+    padding: 16px 0px;
+    margin-top: -57px;
+    z-index: 1;
+    border-bottom: 5px solid $yellow;
+
+    h6 {
+        margin: 0px 8px;
+        color: #fff;
+        z-index: 1;
+    }
+
+    .btn-follow {
+        width: 100px;
+        height: 25px;
+        padding: 0px;
+        font-size: 14px;
+        margin: 0px 16px;
+    }
+}
+
+.feature {
+    padding-bottom: 100px;
+}
+
+.feature-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .btn-edit {
+        color: $yellow;
+    }
+}
+
+.feature-flex-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 10px;
+
+    h5 {
+        color: #000;
+    } 
+}
+
+// PROMOTIONS  STYLE
+.feature-promotions {
+    text-align: center;
+}
+
+// DETAILS STYLE
+.feature-details-about {
+    display: flex;
+
+    .about-us {
+    
+        .description {
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .location {
+            margin: 10px;
+            bottom: 10px;
+        }
+    }
+}
+
+.feature-details-facilities {
+    width: 100%;
+    background-color: #f4f4f4;
+    margin-top: 25px;
+    padding: 20px 0px;
+
+    .facilities-flex {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 0px 10px;
+
+        .facility {
+            width: 15%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            img {
+                width: 24px;
+            }
+
+            p {
+                margin: 0px 10px;
+            }
+        }
+    }
+}
+
+@media(min-width: 945px) {
+    .feature-details-about {
+        flex-direction: row;
+            
+        .maps {
+            width: 40%;
+        }
+
+        .about-us {
+            width: 60%;
+            height: 400px;
+        }
+    }
+}
+
+@media(max-width: 945px) {
+    .feature-details-about {
+        flex-direction: column;
+        .maps {
+            width: 100%;
+        }
+
+        .about-us {
+            width: 100%;
+        }
+    }
+}
+
+@media(max-width: 458px) {
+    .detail-icon {
+        display: none;
+    }
+}

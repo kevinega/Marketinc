@@ -21,5 +21,6 @@ elixir((mix) => {
        .sass('reset-password.scss')
        .sass('admin-login.scss')
        .sass('admin.scss')
+       .sass('brand-home.scss')
        .webpack('app.js');
 });
