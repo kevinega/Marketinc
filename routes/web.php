@@ -18,73 +18,72 @@ Route::get('/', function () {
 /**
 *   User Default Auth Routes
 */
+Route::group(['middleware' => 'guest'], function () {
+	Route::get('brand/login', 'Auth\LoginController@showLoginForm')->name('login');
+	Route::post('brand/login', 'Auth\LoginController@login');
+	Route::post('brand/logout', 'Auth\LoginController@logout')->name('logout');
 
+	// Registration Routes...
+	Route::get('brand/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+	Route::post('brand/register', 'Auth\RegisterController@register');
+	
+	//Email Verification
+	Route::get('brand/register/verify/{confirmationCode}', [
+    	'as' => 'confirmation_path',
+    	'uses' => 'Auth\RegisterController@confirm'
+	]);	
 
-
-Route::get('brand/login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('brand/login', 'Auth\LoginController@login');
-Route::post('brand/logout', 'Auth\LoginController@logout')->name('logout');
-
-// Registration Routes...
-Route::get('brand/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('brand/register', 'Auth\RegisterController@register');
-
-// Password Reset Routes...
-Route::get('brand/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
-Route::post('brand/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-Route::get('brand/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-Route::post('brand/password/reset', 'Auth\ResetPasswordController@reset');
+	// Password Reset Routes...
+	Route::get('brand/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+	Route::post('brand/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+	Route::get('brand/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+	Route::post('brand/password/reset', 'Auth\ResetPasswordController@reset');
+});
 
 /**
-*	Semuua Route yang diakses setelah login taro sini yah
-*/ 
-
-Route::group(['middleware' => 'auth_brand'], function () {
-	Route::post('/brand/embedArticle', 'BrandController@embedArticle');
-	Route::get('/brand/embedArticle', 'BrandController@embedArticle');
-/**
-*  Upload
+*Routes group dimana route2 disini diakses apabila setelah login
 */
-	Route::post('brand/upload', 'BrandController@uploadPhoto');
+Route::group(['middleware' => 'auth_brand'], function () {
+	
+	/**
+	* Home Access and Logout
+	*/	
 	Route::get('brand/logout', 'Auth\LoginController@logout');
 	Route::get('brand', 'BrandController@redirect');
 	Route::get('brand/{username}', 'BrandController@index');
 
-});
-
-/**
- *  Register
- */
-Route::post('brand/register', 'Auth\RegisterController@register');
-Route::get('brand/register/verify/{confirmationCode}', [
-    'as' => 'confirmation_path',
-    'uses' => 'Auth\RegisterController@confirm'
-]);
-
-/**
-*  Payment Confirmation
-*/
+	/**
+	*  Confirmation Page
+	*/
 	Route::get('/brand/confirmation', 'TransactionController@index');
 	Route::post('/brand/confirmation', 'TransactionController@postConfirmation');
+
+	/**
+	*  Upload
+	*/
+	Route::post('brand/upload', 'BrandController@uploadPhoto');
+});
 
 
 /**
 *   Admin CMS Routes 
 */
+Route::group(['middleware' => 'guest_admin'], function () {
+	//LOGIN
+	Route::get('unicorn/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
+	Route::post('unicorn/login', 'AdminAuth\LoginController@login');
+});
 
-//LOGIN
-Route::get('unicorn/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
-Route::post('unicorn/login', 'AdminAuth\LoginController@login');
-Route::post('unicorn/logout', 'AdminAuth\LoginController@logout');
-
-//CMS
-Route::get('unicorn/transaction/order/{orderBy}', 'AdminHomeController@transactionManagementPageOrder');
-Route::get('unicorn/transaction/', 'AdminHomeController@transactionManagementPage');
-Route::get('unicorn/', 'AdminHomeController@brandManagementPage');
-Route::get('unicorn/home', 'AdminHomeController@brandManagementPage');
-Route::get('unicorn/home/order/{orderBy}', 'AdminHomeController@brandManagementPageOrder');
-Route::get('/unicorn/approve/{id}', 'AdminHomeController@approveTransaction');
-Route::get('/unicorn/delete/{id}', 'AdminHomeController@deleteTransaction');
-Route::get('/unicorn/reset/{id}', 'AdminHomeController@resetMembership');
-
-
+Route::group(['middleware' => 'admin'], function () {
+	//logout
+	Route::post('unicorn/logout', 'AdminAuth\LoginController@logout');
+	//CMS
+	Route::get('unicorn/transaction/order/{orderBy}', 'AdminHomeController@transactionManagementPageOrder');
+	Route::get('unicorn/transaction/', 'AdminHomeController@transactionManagementPage');
+	Route::get('unicorn/', 'AdminHomeController@brandManagementPage');
+	Route::get('unicorn/home', 'AdminHomeController@brandManagementPage');
+	Route::get('unicorn/home/order/{orderBy}', 'AdminHomeController@brandManagementPageOrder');
+	Route::get('/unicorn/approve/{id}', 'AdminHomeController@approveTransaction');
+	Route::get('/unicorn/delete/{id}', 'AdminHomeController@deleteTransaction');
+	Route::get('/unicorn/reset/{id}', 'AdminHomeController@resetMembership');
+});
