@@ -26,9 +26,9 @@
         ?>
         <div class="location">
         	<p>
-        		Jl. MT Haryono Kav 8 No. 9, TIS Square</br>
-        		021-4891644</br>
-        		<strong>Open Hours:</strong> 08.00 - 22.00
+        		{{ $add }}</br>
+        		{{ $phone1 }}</br>
+        		<strong>Open Hours:</strong> {{ $openh }}
         	</p>
         </div>
     </div>
