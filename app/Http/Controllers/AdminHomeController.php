@@ -125,12 +125,12 @@ class AdminHomeController extends Controller
     	$transaction = Transaction::where("id", "=", $id)->first();
     	$transaction_id = $transaction->transaction_id;
     	$username = $transaction->username;
-    	$email = $transaction->email;
+    	$email = $transaction->brand->email;
 
     	if($transaction->delete()) {
     		$data = ['transaction_id' => $transaction_id, 'username' => $username];
 
-         Mail::send('email.deleteTransaction',$data, function($message) use ($email){
+         Mail::send('email.delete-transaction',$data, function($message) use ($email){
              $message->from('freeajabanget@gmail.com','Marketinc');
              $message->to($email)->subject('Account Activation: Expired Payment');
          });	
