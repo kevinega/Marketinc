@@ -8619,11 +8619,6 @@ body > .container {
   max-width: 400px;
 }
 
-.alert-danger {
-  background-color: transparent;
-  border-color: transparent;
-}
-
 html {
   position: relative;
   min-height: 100%;
