@@ -7,10 +7,23 @@
     <div class="maps">
     	<iframe width="100%" height="400px" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJweaD5rvzaS4RkWhE7KiP38Y&key=AIzaSyDcfHgRTp-c6n4lachCjzNi73DDY5GFdag" allowfullscreen></iframe>
     </div>
+    <?php 
+    	$desc = Auth::guard()->user()->description;
+    	$add = Auth::guard()->user()->address;
+    	$phone1 = Auth::guard()->user()->phone_one;
+    	$phone2 = Auth::guard()->user()->phone_two;
+    	$openh = Auth::guard()->user()->open_hour;
+    ?>
     <div class="about-us" style="border:1px solid grey;">
         <div class="description">
-        	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        	<p>
+        	{{ $desc }}
+        	<!--Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.-->
+        	</p>
         </div>
+        <?php 
+
+        ?>
         <div class="location">
         	<p>
         		Jl. MT Haryono Kav 8 No. 9, TIS Square</br>
