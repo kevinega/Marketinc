@@ -9,9 +9,12 @@
     }
 
     .dropdown-menu {
-    	a {
-    		color: black;
-    	}
+    	min-width: 6rem;
+        padding: 0.5rem 8px;
+
+        a {
+            color: #000;
+        }
     }
 }
 
