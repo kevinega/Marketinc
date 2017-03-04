@@ -43,18 +43,20 @@ class AdminHomeController extends Controller
                 $transactions = Transaction::orderBy('created_at', $sort)->paginate(10);
             }
         }else{
-         $transactions = Transaction::orderBy('created_at', 'desc')->paginate(10);
-     }
+           $transactions = Transaction::orderBy('created_at', 'desc')->paginate(10);
+       }
         //dd($transactions);
-    if($search != ''){
-     $transactions = Transaction::select(DB::raw('transactions.*, count(*) as `aggregate`'))
-                    ->join('brands', 'transactions.brand_id', '=', 'brands.id')
-                    ->groupBy('brands.id')
-                    ->where('brand_name', 'like', '%'.$search.'%')
-                    ->paginate(10);
-     }
-     return view('admin.transaction-management')->with(['transactions'=>$transactions]);
- }
+       if($search != ''){
+           $transactions = Transaction::select(DB::raw('transactions.*, count(*) as `aggregate`'))
+           ->join('brands', 'transactions.brand_id', '=', 'brands.id')
+           ->groupBy('brands.id')
+           ->where('brand_name', 'like', '%'.$search.'%')
+           ->paginate(10);
+
+       }
+       $transactions->setPath('/unicorn/transaction?orderBy='.$orderBy.'&sort='.$sort.'&search='.$search);
+       return view('admin.transaction-management')->with(['transactions'=>$transactions]);
+   }
 
     /**
     *  Handling Brand Management Page Request without sorting
@@ -67,19 +69,20 @@ class AdminHomeController extends Controller
         if($sort != ''){
             if($orderBy != ''){
                 $brands = Brand::orderBy($orderBy, $sort)->paginate(10);
-           }else{
-               $brands = Brand::orderBy('updated_at', $sort)->paginate(10);
-           }
-       }else{
-             $brands = Brand::orderBy('updated_at', 'desc')->paginate(10);
-       }
-       if($search != ''){
-            $brands = Brand::where('brand_name','like','%'.$search.'%')
-            ->orderBy('brand_name')
-            ->paginate(10);
-       }        
-       return view('admin.brand-management')->with(['brands'=>$brands]);
+            }else{
+             $brands = Brand::orderBy('updated_at', $sort)->paginate(10);
+         }
+     }else{
+       $brands = Brand::orderBy('updated_at', 'desc')->paginate(10);
    }
+   if($search != ''){
+    $brands = Brand::where('brand_name','like','%'.$search.'%')
+    ->orderBy('brand_name')
+    ->paginate(10);
+}
+$brands->setPath('/unicorn/home?orderBy='.$orderBy.'&sort='.$sort.'&search='.$search);        
+return view('admin.brand-management')->with(['brands'=>$brands]);
+}
 
     /**
     *  Handling for Approving Transaction in Transaction Management Page
@@ -88,31 +91,32 @@ class AdminHomeController extends Controller
     */
     public function approveTransaction($id) {
     	$transaction = Transaction::where("id", "=", $id)->first();
-    	$transaction->flag = Auth::guard('admin_users')->user()->name;
         $name = $transaction->name;
-        if($transaction->save() && $transaction->confirmation_code != NULL) {
-          $brand = $transaction->brand;
-          if($brand){
-            $brand->membership = $transaction->type;
-            $brand->valid_until = date('Y-m-d H:i:s', strtotime("+30 days"));
-            $brand->status = 'active';
-            if ($brand->save()){
-                $email = $brand->email;
-                $data = [
-                'username' => $brand->username, 
-                'membership' => $transaction->type,
-                ];
+        if($transaction->confirmation_code != '') {
+          $transaction->flag = Auth::guard('admin_users')->user()->name;
+          if($transaction->save()){
+              $brand = $transaction->brand;
+              if($brand){
+                $brand->membership = $transaction->type;
+                $brand->valid_until = date('Y-m-d H:i:s', strtotime("+30 days"));
+                $brand->status = 'active';
+                if ($brand->save()){
+                    $email = $brand->email;
+                    $data = [
+                    'username' => $brand->username, 
+                    'membership' => $transaction->type,
+                    ];
 
-                Mail::send('email.upgrade',$data, function($message) use ($email){
-                    $message->from('freeajabanget@gmail.com','Marketinc');
-                    $message->to($email)->subject('Account Activation: Membership Upgrade');
-                });
-                return redirect('unicorn/home');
+                    Mail::send('email.upgrade',$data, function($message) use ($email){
+                        $message->from('freeajabanget@gmail.com','Marketinc');
+                        $message->to($email)->subject('Account Activation: Membership Upgrade');
+                    });
+                    return redirect('unicorn/home');
+                }
             }
         }
     }
-
-    	return false; //error gagal approve
+    	return redirect('unicorn/transaction')->with('message','Sorry, you cannot approve a user who has not done a payment confirmation'); //error gagal approve
     }
 
 
@@ -130,14 +134,14 @@ class AdminHomeController extends Controller
     	if($transaction->delete()) {
     		$data = ['transaction_id' => $transaction_id, 'username' => $username];
 
-         Mail::send('email.delete-transaction',$data, function($message) use ($email){
-             $message->from('freeajabanget@gmail.com','Marketinc');
-             $message->to($email)->subject('Account Activation: Expired Payment');
-         });	
-         return redirect('unicorn/home');
+           Mail::send('email.delete-transaction',$data, function($message) use ($email){
+               $message->from('freeajabanget@gmail.com','Marketinc');
+               $message->to($email)->subject('Account Activation: Expired Payment');
+           });	
+           return redirect('unicorn/home');
 
-     }
- }
+       }
+   }
 
      /**
     *  Handling for Reseting Brand's Membership in Brand Management Page
