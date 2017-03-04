@@ -32,9 +32,9 @@
 
     // initiate cropper
     $('#cover').Jcrop({
-        boxWidth: 1550, 
-        boxHeight: 300,
-        setSelect: [ 175, 100, 400, 300 ],
+        boxWidth: 400,
+        boxHeight: 400,
+        setSelect: initCoords(),
         aspectRatio: 5 / 1,
         onSelect: updateCoords
     });
@@ -46,4 +46,19 @@
         $('#w').val(c.w);
         $('#h').val(c.h);
     };
+
+    function initCoords()
+  {
+        $('#x').val(0);
+        $('#y').val(0);
+        $('#w').val(300);
+        $('#h').val(300);
+
+         return [
+           $('#x').val(),
+           $('#y').val(),
+           $('#w').val(),
+           $('#h').val(),  
+          ];
+  };
 </script>

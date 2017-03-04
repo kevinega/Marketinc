@@ -42,7 +42,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                @include('jcrop')
+                                @include('sections.crop')
                             </div>
                         </div>
                     </div>

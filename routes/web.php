@@ -44,13 +44,6 @@ Route::group(['middleware' => 'guest'], function () {
 *Routes group dimana route2 disini diakses apabila setelah login
 */
 Route::group(['middleware' => 'auth_brand'], function () {
-	
-		/**
-	*  Upload
-	*/
-	Route::post('brand/upload', 'BrandController@uploadPhoto');
-	Route::get('brand/crop', 'BrandController@cropPhoto');
-	
 	/**
 	* Home Access and Logout
 	*/	
@@ -64,6 +57,10 @@ Route::group(['middleware' => 'auth_brand'], function () {
 	Route::get('/brand/confirmation', 'TransactionController@index');
 	Route::post('/brand/confirmation', 'TransactionController@postConfirmation');
 
+	/**
+	*  Upload
+	*/
+	Route::post('brand/upload', 'BrandController@uploadPhoto');
 
 });
 

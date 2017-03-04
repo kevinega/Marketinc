@@ -60,7 +60,7 @@ class BrandController extends Controller
     public function uploadPhoto(Request $request)
     {
         $this->validator($request->all())->validate();
-        // return json_encode($request->input('x'));
+
         if ($request -> hasFile('cover')) {
             $width = (int)$request -> input('w');
             $height = (int)$request -> input('h');
@@ -80,7 +80,6 @@ class BrandController extends Controller
                 ->crop($width, $height, $coorX, $coorY)
                 ->fit(1550,310)
                 ->save(storage_path("app/public/brands/{$id}/cover-{$id}.{$ext}"));
-            // $file->storeAs("public/brands/{$id}", "cover-{$id}.{$ext}");
 
             return $this -> storePhoto("brands/{$id}/cover-{$id}.{$ext}", "cover");
 
@@ -99,10 +98,6 @@ class BrandController extends Controller
         } 
 
         return redirect('brand');
-    }
-
-    public function cropPhoto() {
-        return view('jcrop');
     }
 
     public function storePhoto($photo, $type) {
@@ -130,12 +125,12 @@ class BrandController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'cover' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=530,min_height=530',
-            'logo' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
+                'cover' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=500,min_height=500',
+                'logo' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
             ],
             [  
-            'cover.dimensions' => 'Minimum image size is 530', 
-            'logo.dimensions' => 'Minimum image size is 520',
+                'cover.dimensions' => 'Minimum image size is 500', 
+                'logo.dimensions' => 'Minimum image size is 520',
             ]
             );
     }
