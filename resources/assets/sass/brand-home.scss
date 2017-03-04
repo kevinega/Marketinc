@@ -4,6 +4,10 @@
 // ADDITIONAL STYLE
 @import "navbar.scss";
 
+.container-fluid {
+    padding: 31px 0px;
+}
+
 .feature-photo {
     .cover {
         width: 100%;
@@ -18,6 +22,12 @@
         margin-top: -46px;
         margin-bottom: 0px;
         text-align: right;
+    }
+
+    #cover {
+        display: none;
+        width: 100%;
+        height: auto;
     }
 }
 

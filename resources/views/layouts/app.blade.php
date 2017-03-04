@@ -31,6 +31,10 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+    <link href="{{ asset('css/Jcrop.min.css') }}" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="{{ asset('js/Jcrop.min.js') }}"></script>>
 </head>
 <body>
     @yield('navbar')
@@ -41,6 +45,7 @@
 
     <!-- Scripts -->
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    @yield('script-jcrop')
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="{{ elixir('js/app.js') }}"></script>

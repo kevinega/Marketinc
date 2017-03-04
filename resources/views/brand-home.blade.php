@@ -11,56 +11,49 @@
 @include('navbar')
 @endsection
 
-@section('content')        
-<div class="feature-photo">
-    <!-- display picture -->
-    <img id="cover" class="cover">
+@section('content')       
+    <div class="container-fluid"> 
+        <div class="feature-photo">
+            <!-- display picture -->
+            <img id="cover-uploaded" class="cover">
 
-    @if ($errors->has('cover'))
-    <div class="error-label">
-        <i class="material-icons alert-danger">clear</i>
-        {!! $errors->first('cover', '<span class="alert-danger">:message</span>') !!}
-    </div>
-    @endif
-
-    <!-- button trigger modal -->
-    <div class="btn-upload-modal">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-cover-modal">
-            <i class="material-icons">add_a_photo</i>
-        </button>
-    </div>
-    <a href="crop">crop</a>
-    <!-- modal -->
-{{--         <div class="modal fade" id="upload-cover-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modal-label">Upload Cover</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body"> --}}
-                        {!! Form::open(['method' => 'post', 'url' => 'brand/upload', 'enctype' => 'multipart/form-data']) !!}
-                        {{ csrf_field() }}
-
-                        {!! Form::file('cover', ['id' => 'uploaded', 'class' => 'upload-cover']) !!}
-                        {!! Form::hidden('x', '', array('id' => 'x')) !!}
-                        {!! Form::hidden('y', '', array('id' => 'y')) !!}
-                        {!! Form::hidden('w', '', array('id' => 'w')) !!}
-                        {!! Form::hidden('h', '', array('id' => 'h')) !!}
-                        {!! Form::button('Save Cover', ['class' => 'btn btn-primary btn-block', 'type' => 'submit']) !!}
-                        {!! Form::close() !!}
-      {{--               </div>
-                </div>
+            @if ($errors->has('cover'))
+            <div class="error-label">
+                <i class="material-icons alert-danger">clear</i>
+                {!! $errors->first('cover', '<span class="alert-danger">:message</span>') !!}
             </div>
+            @endif
+
+            <!-- button trigger modal -->
+            <div class="btn-upload-modal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-cover-modal">
+                    <i class="material-icons">add_a_photo</i>
+                </button>
+            </div>
+
+            <!-- modal -->
+                <div class="modal fade" id="upload-cover-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-label">Upload Cover</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @include('jcrop')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        {{-- <div class="feature-followers">
+            <h6>1234 followers</h6>
+            <button type="button" class="btn btn-primary btn-follow">Follow</button>
         </div> --}}
     </div>
-
-    {{-- <div class="feature-followers">
-        <h6>1234 followers</h6>
-        <button type="button" class="btn btn-primary btn-follow">Follow</button>
-    </div> --}}
 
     <div class="container">
         <div class="feature">
@@ -95,44 +88,10 @@
             @include('sections.video')
         </div>
     </div>
-    @endsection
+@endsection
 
-    @section('page-script')
+@section('page-script')
     <script>
-
-        function readURL(input) {
-
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#cover').attr('src', e.target.result);
-
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#uploaded").change(function(){
-            readURL(this);
-            $('#cover').Jcrop({
-               boxWidth: 1550, 
-               boxHeight: 300,
-                setSelect: [ 175, 100, 400, 300 ],
-                aspectRatio: 5 / 1,
-                onSelect: updateCoords
-            });
-        });
-
-
-        function updateCoords(c) {
-            $('#x').val(c.x);
-            $('#y').val(c.y);
-            $('#w').val(c.w);
-            $('#h').val(c.h);
-        };
-
         <?php 
         $pathCover = "storage/".Auth::guard()->user()->cover; 
         if($pathCover == "storage/"){
@@ -141,55 +100,7 @@
         ?>
 
         $(document).ready(function(){
-            document.getElementById("cover").src = '{{ asset("$pathCover") }}';
+            document.getElementById("cover-uploaded").src = '{{ asset("$pathCover") }}';
         });
-
-      //   $('.multi-item-carousel').carousel({
-      //     interval: false
-      // });
-
-      //   $('.multi-item-carousel .carousel-item').each(function(){
-      //       var next = $(this).next();
-      //       if (!next.length) {
-      //           next = $(this).siblings(':first');
-      //       }
-            // next.children(':first-child').clone().appendTo($(this));
-
-    // for (var i=0;i<2;i++) {
-    //     next=next.next();
-    //     if (!next.length) {
-    //         next = $(this).siblings(':first');
-    //     }
-
-    //     next.children(':first-child').clone().appendTo($(this));
-    // }
-//     if (next.next().length>0) {
-//         next.next().children(':first-child').clone().appendTo($(this));
-//     } else {
-//         $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-//     }
-// });
-
-// // Instantiate the Bootstrap carousel
-// $('.multi-item-carousel').carousel({
-//   interval: false
-// });
-
-// // for every slide in carousel, copy the next slide's item in the slide.
-// // Do the same for the next, next item.
-// $('.multi-item-carousel .carousel-item').each(function(){
-//   var next = $(this).next();
-
-//   if (!next.length) {
-//     next = $(this).siblings(':first');
-//   }
-//   next.children(':first-child').clone().appendTo($(this));
-
-//   if (next.next().length>0) {
-//     next.next().children(':first-child').clone().appendTo($(this));
-//   } else {
-//     $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-//   }
-// });
-</script>
+    </script>
 @endsection

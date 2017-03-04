@@ -61,7 +61,7 @@ class BrandController extends Controller
     {
         $this->validator($request->all())->validate();
         // return json_encode($request->input('x'));
-        if ($request -> hasFile('cover')){
+        if ($request -> hasFile('cover')) {
             $width = (int)$request -> input('w');
             $height = (int)$request -> input('h');
             $coorX = (int)$request -> input('x');
@@ -84,7 +84,7 @@ class BrandController extends Controller
 
             return $this -> storePhoto("brands/{$id}/cover-{$id}.{$ext}", "cover");
 
-        } elseif($request -> hasFile('logo')){
+        } elseif($request -> hasFile('logo')) {
             $file = $request -> file('logo');
             $ext = $file->extension();
             $id = auth()->id();
@@ -101,11 +101,11 @@ class BrandController extends Controller
         return redirect('brand');
     }
 
-    public function cropPhoto(){
+    public function cropPhoto() {
         return view('jcrop');
     }
 
-    public function storePhoto($photo, $type){
+    public function storePhoto($photo, $type) {
 
         $brand = Brand::where("id", "=", Auth::user()->id)->first();
         
@@ -117,7 +117,7 @@ class BrandController extends Controller
         
         $brand->save();
 
-        return back();
+        return redirect('brand/'.Auth::user()->username);
     }
 
     /**

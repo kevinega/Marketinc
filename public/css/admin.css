@@ -8587,12 +8587,13 @@ button, input, optgroup, select, textarea {
   color: #fff;
 }
 
-.container-nav .dropdown-menu a {
-  color: black;
+.container-nav .dropdown-menu {
+  min-width: 6rem;
+  padding: 0.5rem 8px;
 }
 
-.navbar-seperation {
-  margin-top: 56px;
+.container-nav .dropdown-menu a {
+  color: #000;
 }
 
 .container-fluid {

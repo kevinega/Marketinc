@@ -8561,6 +8561,10 @@ button, input, optgroup, select, textarea {
   border-color: #C79F37;
 }
 
+.alert {
+  border-radius: 0;
+}
+
 .margin-bottom-10 {
   margin-bottom: 10px;
 }
@@ -8583,12 +8587,17 @@ button, input, optgroup, select, textarea {
   color: #fff;
 }
 
-.container-nav .dropdown-menu a {
-  color: black;
+.container-nav .dropdown-menu {
+  min-width: 6rem;
+  padding: 0.5rem 8px;
 }
 
-.navbar-seperation {
-  margin-top: 56px;
+.container-nav .dropdown-menu a {
+  color: #000;
+}
+
+.container-fluid {
+  padding: 31px 0px;
 }
 
 .feature-photo .cover {
@@ -8604,6 +8613,12 @@ button, input, optgroup, select, textarea {
   margin-top: -46px;
   margin-bottom: 0px;
   text-align: right;
+}
+
+.feature-photo #cover {
+  display: none;
+  width: 100%;
+  height: auto;
 }
 
 .feature {
