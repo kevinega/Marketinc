@@ -6,7 +6,9 @@ use Image;
 use App\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -41,7 +43,7 @@ class BrandController extends Controller
         if($username == Auth::user()->username) {
             return view('brand-home');    
         }
-            return '404';
+        return '404';
     }
     
     /**
@@ -58,8 +60,13 @@ class BrandController extends Controller
     public function uploadPhoto(Request $request)
     {
         $this->validator($request->all())->validate();
-
+        // return json_encode($request->input('x'));
         if ($request -> hasFile('cover')){
+            $width = (int)$request -> input('w');
+            $height = (int)$request -> input('h');
+            $coorX = (int)$request -> input('x');
+            $coorY = (int)$request -> input('y');
+
             $file = $request -> file('cover');
             $ext = $file->extension();
             $id = auth()->id();
@@ -69,8 +76,12 @@ class BrandController extends Controller
             $prevImg = preg_grep("/cover-{$id}/", $imgFiles);
             Storage::delete($prevImg);
 
-            Image::make($file)->resize(1550,310)->save(storage_path("app/public/brands/{$id}/cover-{$id}.{$ext}"));
+            Image::make($file)
+                ->crop($width, $height, $coorX, $coorY)
+                ->fit(1550,310)
+                ->save(storage_path("app/public/brands/{$id}/cover-{$id}.{$ext}"));
             // $file->storeAs("public/brands/{$id}", "cover-{$id}.{$ext}");
+
             return $this -> storePhoto("brands/{$id}/cover-{$id}.{$ext}", "cover");
 
         } elseif($request -> hasFile('logo')){
@@ -87,7 +98,11 @@ class BrandController extends Controller
             return $this -> storePhoto("brands/{$id}/logo-{$id}.{$ext}", "logo");
         } 
 
-        return back();
+        return redirect('brand');
+    }
+
+    public function cropPhoto(){
+        return view('jcrop');
     }
 
     public function storePhoto($photo, $type){
@@ -115,13 +130,13 @@ class BrandController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-                'cover' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=530,min_height=530',
-                'logo' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
+            'cover' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=530,min_height=530',
+            'logo' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
             ],
             [  
-                'cover.dimensions' => 'Minimum image size is 530', 
-                'logo.dimensions' => 'Minimum image size is 520',
+            'cover.dimensions' => 'Minimum image size is 530', 
+            'logo.dimensions' => 'Minimum image size is 520',
             ]
-        );
+            );
     }
 }

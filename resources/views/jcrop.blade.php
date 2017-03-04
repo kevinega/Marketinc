@@ -1,35 +1,14 @@
-@extends('layouts.app')
-
-@section('page-style')
-<link href="{{ elixir('css/brand-home.css') }}" rel="stylesheet">
-{{-- <link href="{{ asset('css/Jcrop.min.css') }}" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="{{ asset('js/Jcrop.min.js') }}"></script> --}}
-@endsection
-
-@section('navbar')
-@include('navbar')
-@endsection
-
-@section('content')        
-<div class="feature-photo">
-    <!-- display picture -->
+<html>
+<head>
+    <title>Laravel and Jcrop</title>
+    <meta charset="utf-8">
+    <link href="{{ asset('css/Jcrop.min.css') }}" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="{{ asset('js/Jcrop.min.js') }}"></script>>
+</head>
+<body>
     <img id="cover" class="cover">
 
-    @if ($errors->has('cover'))
-    <div class="error-label">
-        <i class="material-icons alert-danger">clear</i>
-        {!! $errors->first('cover', '<span class="alert-danger">:message</span>') !!}
-    </div>
-    @endif
-
-    <!-- button trigger modal -->
-    <div class="btn-upload-modal">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-cover-modal">
-            <i class="material-icons">add_a_photo</i>
-        </button>
-    </div>
-    <a href="crop">crop</a>
     <!-- modal -->
 {{--         <div class="modal fade" id="upload-cover-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -43,7 +22,6 @@
                     <div class="modal-body"> --}}
                         {!! Form::open(['method' => 'post', 'url' => 'brand/upload', 'enctype' => 'multipart/form-data']) !!}
                         {{ csrf_field() }}
-
                         {!! Form::file('cover', ['id' => 'uploaded', 'class' => 'upload-cover']) !!}
                         {!! Form::hidden('x', '', array('id' => 'x')) !!}
                         {!! Form::hidden('y', '', array('id' => 'y')) !!}
@@ -55,14 +33,14 @@
                 </div>
             </div>
         </div> --}}
-    </div>
+        {{-- </div> --}}
 
     {{-- <div class="feature-followers">
         <h6>1234 followers</h6>
         <button type="button" class="btn btn-primary btn-follow">Follow</button>
     </div> --}}
 
-    <div class="container">
+    {{-- <div class="container">
         <div class="feature">
             <div class="feature-flex-menu">
                 <a href="#promotions"><h5>PROMOTIONS</h5></a>
@@ -94,10 +72,10 @@
         <div class="feature">
             @include('sections.video')
         </div>
-    </div>
-    @endsection
+    </div> --}}
+    {{-- @endsection --}}
 
-    @section('page-script')
+    {{-- @section('page-script') --}}
     <script>
 
         function readURL(input) {
@@ -116,6 +94,11 @@
 
         $("#uploaded").change(function(){
             readURL(this);
+
+        });
+
+
+        // $(function() {
             $('#cover').Jcrop({
                boxWidth: 1550, 
                boxHeight: 300,
@@ -123,8 +106,7 @@
                 aspectRatio: 5 / 1,
                 onSelect: updateCoords
             });
-        });
-
+        // });
 
         function updateCoords(c) {
             $('#x').val(c.x);
@@ -133,16 +115,6 @@
             $('#h').val(c.h);
         };
 
-        <?php 
-        $pathCover = "storage/".Auth::guard()->user()->cover; 
-        if($pathCover == "storage/"){
-            $pathCover = "img/default-cover.png";
-        }
-        ?>
-
-        $(document).ready(function(){
-            document.getElementById("cover").src = '{{ asset("$pathCover") }}';
-        });
 
       //   $('.multi-item-carousel').carousel({
       //     interval: false
@@ -153,7 +125,7 @@
       //       if (!next.length) {
       //           next = $(this).siblings(':first');
       //       }
-            // next.children(':first-child').clone().appendTo($(this));
+      //       next.children(':first-child').clone().appendTo($(this));
 
     // for (var i=0;i<2;i++) {
     //     next=next.next();
@@ -192,4 +164,5 @@
 //   }
 // });
 </script>
-@endsection
+</body>
+</html>
