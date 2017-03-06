@@ -11,7 +11,12 @@
 @include('navbar')
 @endsection
 
-@section('content')       
+@section('content')
+@if (session('message') != '')
+<div class="alert alert-success" role="alert">
+  <strong>Well done!</strong> {{ session('message') }}
+</div>
+@endif
     <div class="container-fluid"> 
         <div class="feature-photo">
             <!-- display picture -->

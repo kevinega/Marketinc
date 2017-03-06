@@ -16,14 +16,14 @@
         @if ($errors->has('email'))
         <h2 class="alert-danger">We couldn't find your account with that information</h2>
         @else
-        <h2>Find your Marketinc account</h2>
+        <h2>Forgot your password?</h2>
         @endif
     </div>
     <p class="lead">
         @if ($errors->has('email'))
         Please try searching for your email address again.
         @else
-        Enter your email address.
+        We can help you find your account. Please enter your email address.
         @endif
     </p>
     @if (session('status'))
@@ -32,7 +32,7 @@
     </div>
     @endif
 
-    <form role="form" method="POST" action="{{ url('/password/email') }}">
+    <form role="form" method="POST" action="{{ url('brand/password/email') }}">
         {{ csrf_field() }}
 
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -47,4 +47,10 @@
     </form>
 
 </div>
+@endsection
+
+@section('footer')
+<footer class="footer">
+    <div class="container"><span class="text-muted">© 2017 Marketinc</span></div>
+</footer>
 @endsection

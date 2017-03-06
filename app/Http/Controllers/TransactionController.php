@@ -6,6 +6,7 @@ use App\Brand;
 use App\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Mail;
@@ -47,9 +48,10 @@ class TransactionController extends Controller
     	// }
 
     	$transaction = Transaction::where("id", "=", $transaction_id)->first();
-    	
-    	if($transaction == null || $transaction == "") {
-    		return redirect('confirmation')->with( 'message', "Transaction ID Invalid" );
+
+    	if ($transaction == null || $transaction == '' || $transaction->confirmation_code != '') {
+            // dd($transaction);
+    		return redirect('brand/confirmation')->with('message', "You entered the wrong Transaction ID.");
     	}
 
     	$transaction->confirmation_code = $confirmation_code;
@@ -68,9 +70,8 @@ class TransactionController extends Controller
                 $message->to($email)->subject('Account Activation: Payment Confirmation');
             });
                 
-    		return redirect('confirmation')->with('message', 'Confirmation is successfully submitted, please wait 2x24 hours our admin will process your payment confirmation and will send you an email to access your paid membership');
+    		return redirect('brand/' . Auth::guard()->user()->username)->with('message', 'Confirmation is successfully submitted, please wait 2x24 hours our admin will process your payment confirmation and will send you an email to access your paid membership.');
     	}
-    	 dd('failed');
 
     }
 
