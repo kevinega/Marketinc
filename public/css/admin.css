@@ -8571,6 +8571,10 @@ button, input, optgroup, select, textarea {
   border-color: #C79F37;
 }
 
+.alert {
+  border-radius: 0;
+}
+
 .margin-bottom-10 {
   margin-bottom: 10px;
 }
@@ -8602,10 +8606,32 @@ button, input, optgroup, select, textarea {
 }
 
 .container-fluid {
-  padding-top: 90px;
+  padding-top: 20px;
 }
 
-th, .center {
+th {
+  vertical-align: middle !important;
+}
+
+.table-header, .table-header a {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.table-header div {
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.table-header a {
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.center {
   text-align: center;
 }
 
@@ -8615,6 +8641,99 @@ th, .center {
 
 .search-bar {
   margin-bottom: 10px;
+}
+
+.row-buttons {
+  display: -webkit-box;
+  display: flex;
+}
+
+.row-buttons i {
+  width: 16px;
+  height: 16px;
+}
+
+@media screen and (max-width: 48em) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+  .row-offcanvas-left .sidebar-offcanvas {
+    left: -33%;
+  }
+  .row-offcanvas-left.active {
+    left: 33%;
+    margin-left: -6px;
+  }
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 33%;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 34em) {
+  .row-offcanvas-left .sidebar-offcanvas {
+    left: -45%;
+  }
+  .row-offcanvas-left.active {
+    left: 45%;
+    margin-left: -6px;
+  }
+  .sidebar-offcanvas {
+    width: 45%;
+  }
+}
+
+.nav-item.active {
+  background-color: #ffcc46;
+}
+
+.nav-item.active > a {
+  color: #fff;
+}
+
+.row-buttons a:visited {
+  color: #fff;
+}
+
+.page-link {
+  color: #ffcc46;
+}
+
+.page-link:hover {
+  color: #C79F37;
+}
+
+.page-item.active .page-link {
+  background-color: #ffcc46;
+  border-color: #ffcc46;
+}
+
+.page-item:first-child .page-link, .page-item:last-child .page-link {
+  border-radius: 0;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px;
+  /* Vertically center the text there */
 }
 
 /*# sourceMappingURL=admin.css.map */

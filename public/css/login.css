@@ -8571,6 +8571,10 @@ button, input, optgroup, select, textarea {
   border-color: #C79F37;
 }
 
+.alert {
+  border-radius: 0;
+}
+
 .margin-bottom-10 {
   margin-bottom: 10px;
 }

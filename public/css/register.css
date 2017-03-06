@@ -8571,6 +8571,10 @@ button, input, optgroup, select, textarea {
   border-color: #C79F37;
 }
 
+.alert {
+  border-radius: 0;
+}
+
 .margin-bottom-10 {
   margin-bottom: 10px;
 }
@@ -8619,6 +8623,17 @@ button, input, optgroup, select, textarea {
 
 h2 {
   text-align: center;
+}
+
+.yellow-spacing {
+  background-color: #ffcc46;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 25px 0px;
 }
 
 .registration-flex, .registration-flex-error {
