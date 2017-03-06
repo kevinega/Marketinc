@@ -6,7 +6,7 @@
 		@elseif(Auth::guard('admin_users')->check() && Request::is('unicorn*'))
 		<a href="#">Hi, <strong>{{ Auth::guard('admin_users')->user()->name }}</strong></a>
 		@else
-		<a href='{{ url('/login') }}'>Log In</a>
+		<a href='{{ url('brand/login') }}'>Log In</a>
 		@endif
 	</div>
 </nav>

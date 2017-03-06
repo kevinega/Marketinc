@@ -5,10 +5,29 @@
 @import "navbar.scss";
 
 .container-fluid {
-	padding-top: 90px;
+	padding-top: 20px;
 }
 
-th, .center {
+th {
+	vertical-align: middle !important;
+}
+
+.table-header {
+	display: flex;
+	justify-content: center;
+
+	div {
+		flex-grow: 1;
+		text-align: center;
+	}
+
+	a {
+		@extend .table-header;
+		align-items: center;
+	}
+}
+
+.center {
 	text-align: center;
 }
 
@@ -18,4 +37,112 @@ th, .center {
 
 .search-bar {
 	margin-bottom: 10px;
+}
+
+.row-buttons {
+	display: flex;
+
+	i {
+		width: 16px;
+		height: 16px;
+	}
+}
+
+// Off canvas at medium breakpoint
+@media screen and (max-width: 48em) {
+
+	.row-offcanvas {
+		position: relative;
+		-webkit-transition: all 0.25s ease-out;
+		-moz-transition: all 0.25s ease-out;
+		transition: all 0.25s ease-out;
+	}
+
+	.row-offcanvas-left
+	.sidebar-offcanvas {
+		left: -33%;
+	}
+
+	.row-offcanvas-left.active {
+		left: 33%;
+		margin-left: -6px;
+	}
+
+	.sidebar-offcanvas {
+		position: absolute;
+		top: 0;
+		width: 33%;
+		height: 100%;
+	}
+}
+
+// Off canvas at small breakpoint
+@media screen and (max-width: 34em) {
+	.row-offcanvas-left
+	.sidebar-offcanvas {
+		left: -45%;
+	}
+
+	.row-offcanvas-left.active {
+		left: 45%;
+		margin-left: -6px;
+	}
+
+	.sidebar-offcanvas {
+		width: 45%;
+	}
+}
+
+.nav-item.active {
+	background-color: $yellow;
+
+	> a {
+		color: $white;	
+	}
+}
+
+.row-buttons {
+	a:visited {
+		color: $white;
+	}
+}
+
+// Pagination
+.page-link {
+	color: $yellow;
+}
+
+.page-link:hover {
+	color: $yellow-dark;
+}
+
+.page-item.active .page-link {
+	background-color: $yellow;
+	border-color: $yellow;
+}
+
+.page-item:first-child, .page-item:last-child {
+	.page-link {
+		border-radius: 0;
+	}
+}
+
+// Footer
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	/* Margin bottom by footer height */
+	margin-bottom: 60px;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	line-height: 60px; /* Vertically center the text there */
 }

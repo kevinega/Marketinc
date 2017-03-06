@@ -44,6 +44,16 @@ Route::group(['middleware' => 'guest'], function () {
 *Routes group dimana route2 disini diakses apabila setelah login
 */
 Route::group(['middleware' => 'auth_brand'], function () {
+	/**
+	*  Confirmation Page
+	*/
+	Route::get('/brand/confirmation', 'TransactionController@index');
+	Route::post('/brand/confirmation', 'TransactionController@postConfirmation');
+	/**
+	*  Confirmation Page
+	*/
+	Route::get('/brand/confirmation', 'TransactionController@index');
+	Route::post('/brand/confirmation', 'TransactionController@postConfirmation');
 	
 	/**
 	* Home Access and Logout
@@ -52,12 +62,6 @@ Route::group(['middleware' => 'auth_brand'], function () {
 	Route::get('brand/logout', 'Auth\LoginController@logout');
 	Route::get('brand', 'BrandController@redirect');
 	Route::get('brand/{username}', 'BrandController@index');
-
-	/**
-	*  Confirmation Page
-	*/
-	Route::get('/brand/confirmation', 'TransactionController@index');
-	Route::post('/brand/confirmation', 'TransactionController@postConfirmation');
 
 	/**
 	*  Upload
