@@ -129,7 +129,7 @@ class BrandController extends Controller
                 'logo' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
             ],
             [  
-                'cover.dimensions' => 'Minimum image size is 500', 
+                'cover.dimensions' => 'Minimum image size is 500px', 
                 'logo.dimensions' => 'Minimum image size is 520',
             ]
             );

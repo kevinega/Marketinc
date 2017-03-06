@@ -8606,6 +8606,10 @@ button, input, optgroup, select, textarea {
   color: #000;
 }
 
+.navbar-seperation {
+  padding-top: 56px;
+}
+
 .container > .container-register {
   display: -webkit-box;
   display: flex;

@@ -2,9 +2,7 @@
 
 @section('page-style')
 <link href="{{ elixir('css/brand-home.css') }}" rel="stylesheet">
-{{-- <link href="{{ asset('css/Jcrop.min.css') }}" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="{{ asset('js/Jcrop.min.js') }}"></script> --}}
+<link href="{{ asset('css/Jcrop.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('navbar')
@@ -12,22 +10,92 @@
 @endsection
 
 @section('content')
+
 @if (session('message') != '')
 <div class="alert alert-success" role="alert">
   <strong>Well done!</strong> {{ session('message') }}
 </div>
 @endif
+
+<div id="mySidenav" class="sidenav">
+    <h6 class="sidenav-header">Welcome, <strong>{{ Auth::guard()->user()->brand_name }}</strong></h6>
+    
+    <div class="sidenav-menu">
+        <a href="#">
+            <div class="sidenav-package">
+                <img src="{{ asset('img/sidebar-brandhome/basic.png') }}" class="sidenav-icon">
+                BASIC
+            </div>
+        <a href="#promotions">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/promotion.png') }}" class="sidenav-icon">
+                Promotions
+            </div>
+        </a>
+        <a href="#details">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/details.png') }}" class="sidenav-icon">
+                Details
+            </div>
+        </a>
+        <a href="#pictures">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/picture.png') }}" class="sidenav-icon">
+                Image
+            </div>
+        </a>
+        <a href="#">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/promotion.png') }}" class="sidenav-icon">
+                Video
+            </div>
+        </a>
+        <a href="#">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/menu.png') }}" class="sidenav-icon">
+                Menu
+            </div>
+        </a>
+        <a href="#">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/branches.png') }}" class="sidenav-icon">
+                Branches
+            </div>
+        </a>
+        <a href="#">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/review.png') }}" class="sidenav-icon">
+                Review
+            </div>
+        </a>
+        <a href="#">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/music.png') }}" class="sidenav-icon">
+                Music
+            </div>
+        </a>
+    </div>
+
+    <div class="sidenav-preview">
+        <a href="#">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/preview.png') }}" class="sidenav-icon">
+                Preview
+            </div>
+        </a>
+    </div>
+</div>
+
+<div id="main">
     <div class="container-fluid"> 
         <div class="feature-photo">
+            @if ($errors->has('cover'))
+                <div class="alert alert-danger" role="alert">
+                    <strong> {!! $errors->first('cover', '<span class="alert-danger">:message</span>') !!} </strong>
+                </div>
+            @endif
             <!-- display picture -->
             <img id="cover-uploaded" class="cover">
-
-            @if ($errors->has('cover'))
-            <div class="error-label">
-                <i class="material-icons alert-danger">clear</i>
-                {!! $errors->first('cover', '<span class="alert-danger">:message</span>') !!}
-            </div>
-            @endif
 
             <!-- button trigger modal -->
             <div class="btn-upload-modal">
@@ -37,21 +105,21 @@
             </div>
 
             <!-- modal -->
-                <div class="modal fade" id="upload-cover-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal-label">Upload Cover</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                @include('sections.crop')
-                            </div>
+            <div class="modal fade" id="upload-cover-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-label">Upload Cover</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            @include('sections.crop')
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
 
         {{-- <div class="feature-followers">
@@ -93,6 +161,7 @@
             @include('sections.video')
         </div>
     </div>
+</div>
 @endsection
 
 @section('page-script')
