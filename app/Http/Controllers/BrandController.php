@@ -125,11 +125,13 @@ class BrandController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-                'cover' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=500,min_height=500',
-                'logo' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
+                'cover' => 'mimes:jpeg,jpg,png|dimensions:min_width=500,min_height=500|max:2000',
+                'logo' => 'mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
             ],
             [  
-                'cover.dimensions' => 'Minimum image size is 500px', 
+                'cover.mimes' => "Cover must be an image",
+                'cover.dimensions' => 'Minimum image dimension is 500px', 
+                'cover.max' => 'Maximum image size is 2mb', 
                 'logo.dimensions' => 'Minimum image size is 520',
             ]
             );
