@@ -44,7 +44,11 @@ Route::group(['middleware' => 'guest'], function () {
 *Routes group dimana route2 disini diakses apabila setelah login
 */
 Route::group(['middleware' => 'auth_brand'], function () {
-	
+	/**
+	*  Confirmation Page
+	*/
+	Route::get('/brand/confirmation', 'TransactionController@index');
+	Route::post('/brand/confirmation', 'TransactionController@postConfirmation');
 	/**
 	*  Confirmation Page
 	*/

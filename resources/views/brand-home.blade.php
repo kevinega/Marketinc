@@ -9,6 +9,11 @@
 @endsection
 
 @section('content')
+@if (session('message') != '')
+<div class="alert alert-success" role="alert">
+  <strong>Well done!</strong> {{ session('message') }}
+</div>
+@endif
     @php 
             $path = Auth::guard()->user()->cover;
         @endphp

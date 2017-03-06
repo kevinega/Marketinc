@@ -6,6 +6,7 @@
 
 body > .container {
 	padding: 20px 15px 0;
+	margin-bottom: 200px;
 }
 
 .container {
@@ -15,11 +16,6 @@ body > .container {
 
 #email {
 	max-width: 400px;
-}
-
-.alert-danger {
-	background-color: transparent;
-	border-color: transparent;
 }
 
 // Footer
@@ -34,6 +30,7 @@ body {
 }
 
 .footer {
+	margin-top: 100px;
 	position: absolute;
 	bottom: 0;
 	width: 100%;
