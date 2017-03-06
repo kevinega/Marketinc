@@ -18,8 +18,9 @@ Route::get('/', function () {
 /**
 *   User Default Auth Routes
 */
+Route::get('brand/login', 'Auth\LoginController@showLoginForm')->name('login');
+
 Route::group(['middleware' => 'guest'], function () {
-	Route::get('brand/login', 'Auth\LoginController@showLoginForm')->name('login');
 	Route::post('brand/login', 'Auth\LoginController@login');
 	Route::post('brand/logout', 'Auth\LoginController@logout')->name('logout');
 
