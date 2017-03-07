@@ -125,12 +125,13 @@ class BrandController extends Controller
     public function createArticle(Request $request){  
         $article_info = Embed::create($request->url); 
        //dd($article_info); 
-        //$this->articleValidator($request->all())->validate(); 
+        $this->articleValidator($request->all())->validate(); 
         $article = new Article();  
         $article->brand_id = Auth::user()->id;  
         $article->title = $request->title;  
         $article->url = $request->url; 
         $article->image = $article_info->image; 
+
         if($request->author == ''){ 
             $article->author = $article_info->authorName; 
         }else{ 
@@ -143,11 +144,10 @@ class BrandController extends Controller
             $article->published_on = $request->published_on; 
         } 
  
-        if($article->save()){ 
-            dd('success'); 
-            return back(); 
+        if($article->save()){  
+            return back()->with('message','The new article is successfully added'); 
         }else{ 
-            return 404; 
+            return back()->with('message','Oops, something wrong with the server, please try again.'); 
         } 
     }  
  
@@ -164,12 +164,12 @@ class BrandController extends Controller
         $article = Article::whereBrandId(Auth::user()->id)->get(); 
         if(!$article->isEmpty()){ 
             $message = $article;
+            $status = 'success';
         }else{
-            return 500;
-        }
-        // dd($article);  
-        // return \Response::json(['status' => 'success', 'message' => $message],200);  
-        return $article;
+            $message = 'Oops, something wrong with the server, please refresh the page';
+            $status = 'failed';
+        }  
+        return \Response::json(array('status'=>$status, 'message'=>$message));
           
     }  
 }

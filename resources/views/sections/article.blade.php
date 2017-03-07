@@ -1,10 +1,4 @@
-<div id='title'> Title </div>
-<img id='image' src='' height="50%" width="50%"></img></br>
-<a id='url' href=''> URL </a>
-<div id='author'> Author </div>
-<div id='published_on'> PublishDate </div>
-
-
+<div id='articles'><h2>Articles</h2></div>
 <div>
 		{!! Form::open(['url' => 'brand/article/create', 'method' => 'POST']) !!}
 
@@ -26,34 +20,39 @@
 
         {!! Form::close() !!}
 </div>
+@section('page-script')
 <script>
-$(document).ready(
-        function() {
-$.ajax({ 
-            url: '/brand/embedArticle', 
-            type: 'get', 
-            dataType: 'json', 
+  $(document).ready(
+    function() {
+      $.ajax({ 
+        url: '/brand/embedArticle', 
+        type: 'get', 
+        dataType: 'json', 
             //contentType: "application/json", 
             success: function(data) { 
-                    //console.log('sukses'); 
-                    //console.log(data);
-                    var articles = data;
-                    var htmlText = '';
+              if(data.status == 'success'){
+              var articles = data.message;
+              var htmlText = '';
+              console.log(data.message[0].title);
+              for ( var key in articles ) {
+                htmlText += '<div class="">';
+                htmlText += '<p class=""> Title: ' + data.message[key].title + '</p>';
+                htmlText += '<img class="" src=' + data.message[key].image + '></img></br>';
+                htmlText += '<a class="" href=' + data.message[key].url + '>'+ data.message[key].url +'</a>';
+                htmlText += '<p class=""> Created by: ' + data.message[key].author + '</p>';
+                htmlText += '<p class=""> Publish Date: ' + data.message[key].published_on + '</p>';
+                htmlText += '</div>';
+              }
 
-                    for ( var key in articles ) {
-                        htmlText += '<div class="div-container">';
-                        htmlText += '<p class="p-name"> Title: ' + data[key].title + '</p>';
-                        htmlText += '<img class="p-desc" src=' + data[key].image + '></img></br>';
-                        htmlText += '<a class="p-loc" href=' + data[key].url + '>'+ data[key].url +'</a>';
-                        htmlText += '<p class="p-created"> Created by: ' + data[key].author + '</p>';
-                        htmlText += '<p class="p-uname"> Publish Date: ' + data[key].published_on + '</p>';
-                        htmlText += '</div>';
-                    }
-
-                    document.getElementById('title').innerHTML += htmlText;
-                  } ,error:function(e) { 
-                     console.log('failed'); 
-                  } 
-            }); 
-});
+              document.getElementById('articles').innerHTML += htmlText;
+            }else{
+              var htmlText = data.message;
+              document.getElementById('articles').innerHTML += htmlText;
+            }
+            } ,error:function(e) { 
+             console.log('failed'); 
+           } 
+         }); 
+    });
 </script>
+@endsection
