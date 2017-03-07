@@ -49,11 +49,6 @@ Route::group(['middleware' => 'auth_brand'], function () {
 	*/
 	Route::get('/brand/confirmation', 'TransactionController@index');
 	Route::post('/brand/confirmation', 'TransactionController@postConfirmation');
-	/**
-	*  Confirmation Page
-	*/
-	Route::get('/brand/confirmation', 'TransactionController@index');
-	Route::post('/brand/confirmation', 'TransactionController@postConfirmation');
 	
 	/**
 	* Home Access and Logout
