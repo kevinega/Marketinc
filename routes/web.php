@@ -54,6 +54,12 @@ Route::group(['middleware' => 'auth_brand'], function () {
 	*/
 	Route::get('/brand/confirmation', 'TransactionController@index');
 	Route::post('/brand/confirmation', 'TransactionController@postConfirmation');
+	/*
+	*	Article
+	*/
+	//create article
+	Route::post('brand/article/create', 'BrandController@createArticle');
+	Route::post('brand/article/extractUrl', 'BrandController@extractUrl');
 	
 	/**
 	* Home Access and Logout
@@ -68,11 +74,6 @@ Route::group(['middleware' => 'auth_brand'], function () {
 	*/
 	Route::post('brand/upload', 'BrandController@uploadPhoto');
 
-	/*
-	*	Article
-	*/
-	//create article
-	Route::post('brand/article/create', 'BrandController@createArticle');
 	
 });
 

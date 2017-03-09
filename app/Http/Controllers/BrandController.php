@@ -42,7 +42,7 @@ class BrandController extends Controller
         if($username == Auth::user()->username) {
             return view('brand-home');    
         }
-            return '404';
+        return '404';
     }
     
     /**
@@ -112,54 +112,54 @@ class BrandController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-                'cover' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=530,min_height=530',
-                'logo' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
+            'cover' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=530,min_height=530',
+            'logo' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
             ],
             [  
-                'cover.dimensions' => 'Minimum & Maximum image size is 530', 
-                'logo.dimensions' => 'Minimum & Maximum image size is 520',
+            'cover.dimensions' => 'Minimum & Maximum image size is 530', 
+            'logo.dimensions' => 'Minimum & Maximum image size is 520',
             ]
-        );
+            );
     }
 
     public function createArticle(Request $request){  
-        $article_info = Embed::create($request->url); 
-       //dd($article_info); 
+        $article_info = Embed::create($request->url);  
         $this->articleValidator($request->all())->validate(); 
         $article = new Article();  
         $article->brand_id = Auth::user()->id;  
         $article->title = $request->title;  
         $article->url = $request->url; 
         $article->image = $article_info->image; 
-
         if($request->author == ''){ 
             $article->author = $article_info->authorName; 
         }else{ 
             $article->author = $request->author; 
         } 
- 
+        
         if($request->published_on == ''){ 
             $article->published_on = $article_info->publishedTime; 
         }else{ 
             $article->published_on = $request->published_on; 
         } 
- 
+        
         if($article->save()){  
             return back()->with('message','The new article is successfully added'); 
         }else{ 
             return back()->with('message','Oops, something wrong with the server, please try again.'); 
         } 
     }  
- 
+    
     public function articleValidator(array $data){ 
- 
+       
         return Validator::make($data, [ 
-            'url' => 'url|required' 
-        ] 
- 
-        ); 
+            'url' => 'url|required',
+            'title' => 'required',
+            'author' => 'required',
+            'published_on' => 'required'
+            ] 
+            ); 
     } 
-  
+    
     public function embedArticle(){   
         $article = Article::whereBrandId(Auth::user()->id)->get(); 
         if(!$article->isEmpty()){ 
@@ -170,6 +170,21 @@ class BrandController extends Controller
             $status = 'failed';
         }  
         return \Response::json(array('status'=>$status, 'message'=>$message));
-          
+        
     }  
+
+    public function extractUrl(Request $request){
+        $article_info = Embed::create($request->url);
+        $phpdate = $article_info->publishedTime;
+        $publishDate = date('mm/dd/yyyy', str_replace('-','/', $phpdate));
+        //dd('masuk'); 
+       //dd($article_info); 
+        $message = [
+        'author' => $article_info->authorName,
+        'title' => $article_info->title,
+        'published_on' => $article_info->publishedTime,
+        ];
+
+        return \Response::json(array('message'=>$message)); 
+    }
 }

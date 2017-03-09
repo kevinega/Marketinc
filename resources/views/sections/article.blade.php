@@ -6,7 +6,7 @@
         {!! Form::text('title', null, ['id' => 'title', 'class' => 'form-control', 'placeholder' => 'Original title will be used if this field is left empty']) !!}</br>
 
         {!! Form::label('url', 'Paste or write the link (URL) of the article: ') !!}</br>
-      	{!! Form::text('url', null, ['id' => 'url', 'class' => 'form-control', 'placeholder' => 'ex: http://www.facebook.com or https://www.facebook.com']) !!}
+      	{!! Form::text('url', null, ['id' => 'urlKu', 'class' => 'form-control', 'placeholder' => 'ex: http://www.facebook.com or https://www.facebook.com']) !!}
       	</br>
 
       	{!! Form::label('author', 'Author name: ') !!}</br>
@@ -24,6 +24,26 @@
 <script>
   $(document).ready(
     function() {
+
+    $('#urlKu').change(function(){
+      $.ajax({
+        url: '/brand/article/extractUrl',
+        type: 'post',
+        dataType: 'json',
+        data: {
+          "_token": "{{ csrf_token() }}",
+          "url": $('#urlKu').val()
+        }, success: function(data){
+          console.log(data.message.published_on)
+         $('#title').val(data.message.title);
+         $('#author').val(data.message.author);
+         $('#published_on').val(data.message.published_on);
+        }, error: function(e){
+        },
+      });
+    });
+
+
       $.ajax({ 
         url: '/brand/embedArticle', 
         type: 'get', 
