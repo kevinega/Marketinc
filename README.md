@@ -12,23 +12,23 @@ Marketinc uses a number of open source projects and packages to work properly:
 ## Getting Started
 1. Clone the repository
 2. Install PHP dependencies
-```
-$ composer install
-```
+   ```
+   $ composer install
+   ```
 3. Install NPM, gulp, and Bootstrap 4
-```
-$ npm install
-$ npm install -g gulp-cli
-$ npm install bootstrap@4.0.0-alpha.6
-```
+   ```
+   $ npm install
+   $ npm install -g gulp-cli
+   $ npm install bootstrap@4.0.0-alpha.6
+   ```
 4. Migrate the database
-```
-$ php artisan migrate
-```
+   ```
+   $ php artisan migrate
+   ```
 5. Create a folder `storage` inside `public` directory and create a symbolic link (assets folder for user)
-```
-php artisan storage:link
-```
+   ```
+   php artisan storage:link
+   ```
 6. You're good to go!
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
