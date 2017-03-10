@@ -136,10 +136,10 @@ class BrandController extends Controller
             $article->author = $request->author; 
         } 
         
-        if($request->published_on == ''){ 
-            $article->published_on = $article_info->publishedTime; 
+        if($request->description == ''){ 
+            $article->description = $article_info->description; 
         }else{ 
-            $article->published_on = $request->published_on; 
+            $article->description = $request->description; 
         } 
         
         if($article->save()){  
@@ -155,7 +155,7 @@ class BrandController extends Controller
             'url' => 'url|required',
             'title' => 'required',
             'author' => 'required',
-            'published_on' => 'required'
+            'description' => 'required'
             ] 
             ); 
     } 
@@ -175,14 +175,14 @@ class BrandController extends Controller
 
     public function extractUrl(Request $request){
         $article_info = Embed::create($request->url);
-        $phpdate = $article_info->publishedTime;
-        $publishDate = date('mm/dd/yyyy', str_replace('-','/', $phpdate));
+        // $phpdate = $article_info->publishedTime;
+        // $publishDate = date('mm/dd/yyyy', strtotime(str_replace('-','/', $phpdate)));
         //dd('masuk'); 
        //dd($article_info); 
         $message = [
         'author' => $article_info->authorName,
         'title' => $article_info->title,
-        'published_on' => $article_info->publishedTime,
+        'description' => $article_info->description,
         ];
 
         return \Response::json(array('message'=>$message)); 
