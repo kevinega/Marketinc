@@ -130,6 +130,8 @@ class BrandController extends Controller
         $article->title = $request->title;  
         $article->url = $request->url; 
         $article->image = $article_info->image; 
+        $article->provider_name = $article_info->providerName;
+        $article->provider_url = $article_info->providerUrl;
         if($request->author == ''){ 
             $article->author = $article_info->authorName; 
         }else{ 

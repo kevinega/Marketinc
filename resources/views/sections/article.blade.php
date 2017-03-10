@@ -52,14 +52,30 @@
               if(data.status == 'success'){
               var articles = data.message;
               var htmlText = '';
+              var title='';
+              var image='';
+              var url='';
+              var author='';
+              var description='';
+              var providerName='';
+              var providerUrl='';
               console.log(data.message[0].title);
               for ( var key in articles ) {
+                title= data.message[key].title;
+                image= data.message[key].image;
+                url= data.message[key].url;
+                author= data.message[key].author;
+                description= data.message[key].description;
+                providerName= data.message[key].provider_name;
+                providerUrl= data.message[key].provider_url;
+
                 htmlText += '<div class="">';
-                htmlText += '<p class=""> Title: ' + data.message[key].title + '</p>';
-                htmlText += '<img class="" src=' + data.message[key].image + '></img></br>';
-                htmlText += '<a class="" href=' + data.message[key].url + '>'+ data.message[key].url +'</a>';
-                htmlText += '<p class=""> Created by: ' + data.message[key].author + '</p>';
-                htmlText += '<p class=""> Description: ' + data.message[key].description + '</p>';
+                htmlText += '<p class=""> Title: ' + title + '</p>';
+                htmlText += '<img class="" src=' + image + '></img></br>';
+                htmlText += '<a class="" href=' + url + '>'+ url +'</a>';
+                htmlText += '<p class=""> Created by: ' + author + '</p>';
+                htmlText += '<p class=""> Description: ' + description + '</p>';
+                htmlText += '<a class="" href=' + providerUrl + '>' + providerName + '</a>';
                 htmlText += '</div>';
               }
 
