@@ -24,7 +24,7 @@
     }
 @endphp
 
-<div id="mySidenav" class="sidenav">
+<div class="sidenav">
     <h6 class="sidenav-header">Welcome, <strong>{{ Auth::guard()->user()->brand_name }}</strong></h6>
     
     <div class="sidenav-menu">
@@ -84,7 +84,7 @@
     </div>
 
     <div class="sidenav-preview">
-        <a href="#">
+        <a href="#" id="preview">
             <div class="sidenav-feature">
                 <img src="{{ asset('img/sidebar-brandhome/preview.png') }}" class="sidenav-icon">
                 Preview
@@ -96,11 +96,6 @@
 <div id="main">
     <div class="container-fluid"> 
         <div class="feature-photo">
-            @if ($errors->has('cover'))
-                <div class="alert alert-danger" role="alert">
-                    <strong> {!! $errors->first('cover', '<span class="alert-danger">:message</span>') !!} </strong>
-                </div>
-            @endif
             <!-- display picture -->
             <img id="cover-uploaded" class="cover">
 
@@ -122,17 +117,21 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <div class="cover-error" role="alert">
+                                <strong> {!! $errors->first('cover', '<span class="alert-danger cover-error">:message</span>') !!} </strong>
+                            </div>
                             <img id="cover" class="cover">
 
                             <!-- form cropper -->
-                            {!! Form::open(['method' => 'post', 'url' => 'brand/upload', 'enctype' => 'multipart/form-data']) !!}
+                            {{-- {!! Form::open(['method' => 'post', 'url' => 'brand/upload', 'enctype' => 'multipart/form-data']) !!} --}}
+                            {!! Form::open(['id' => 'form-cover', 'enctype' => 'multipart/form-data']) !!}
                             {{ csrf_field() }}
-                            {!! Form::file('cover', ['id' => 'uploaded', 'class' => 'upload-cover']) !!}
-                            {!! Form::hidden('x', '', array('id' => 'x')) !!}
-                            {!! Form::hidden('y', '', array('id' => 'y')) !!}
-                            {!! Form::hidden('w', '', array('id' => 'w')) !!}
-                            {!! Form::hidden('h', '', array('id' => 'h')) !!}
-                            {!! Form::button('Save Cover', ['class' => 'btn btn-primary btn-block', 'type' => 'submit']) !!}
+                            {!! Form::file('cover', ['id' => 'uploaded', 'class' => 'upload-cover', 'name' => 'cover']) !!}
+                            {!! Form::hidden('x', '', array('id' => 'x', 'name' => 'x')) !!}
+                            {!! Form::hidden('y', '', array('id' => 'y', 'name' => 'y')) !!}
+                            {!! Form::hidden('w', '', array('id' => 'w', 'name' => 'w')) !!}
+                            {!! Form::hidden('h', '', array('id' => 'h', 'name' => 'h')) !!}
+                            {!! Form::button('Save Cover', ['class' => 'btn btn-primary btn-block', 'id' => 'btn-upload-cover', 'type' => 'submit']) !!}
                             {!! Form::close() !!}
                         </div>
                     </div>
@@ -185,13 +184,44 @@
 @section('page-script')
 <script src="{{ asset('js/Jcrop.min.js') }}"></script>
     <script>
-
+        var crop;
 
         $(document).ready(function(){
             $("#cover-uploaded").attr('src', '{{ asset("$pathCover") }}');
+            // bismilla validation
+            $("#form-cover").submit(function(e) {
+                e.preventDefault();
+                var formD = new FormData(this);
+                
+                $.ajax({
+                    url: '/brand/upload/coverValidator',
+                    type: 'post',
+                    dataType: 'json',
+                    data: formD,
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function(data) {
+                        if(data.status == "errors") {
+                            $(".cover-error").addClass("alert alert-danger");
+                            $(".cover-error").append(data.message.cover);
+                            crop.destroy();
+                            crop = undefined;
+                            $('#form-cover').trigger('reset');
+                            $("#cover").removeAttr("src");
+                            $("#cover").removeAttr("style");
+
+                        } else if(data.status == "success") {
+                            location.reload();
+                        }
+                    },
+                    error: function(data) {
+                        $(".cover-error").append("Upload Cover Error");
+                    }
+                });
+            });
         });
 
-    var crop;
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -210,8 +240,6 @@
         $("#uploaded").change(function(){
             readURL(this);
             refreshJcrop();
-            $('#cover').style.display = 'block';
-            $('#cover').style.width = '100%';
         });
 
 

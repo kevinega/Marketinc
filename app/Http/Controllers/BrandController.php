@@ -20,13 +20,6 @@ class BrandController extends Controller
      *
      * @return void
      */
-
-    /**
-    * public function __construct()
-    * {
-    *     $this->middleware('auth');
-    * }
-    */
     
     public function __construct()
     {
@@ -59,8 +52,6 @@ class BrandController extends Controller
      */
     public function uploadPhoto(Request $request)
     {
-        $this->validator($request->all())->validate();
-
         if ($request -> hasFile('cover')) {
             $width = (int)$request -> input('w');
             $height = (int)$request -> input('h');
@@ -81,7 +72,7 @@ class BrandController extends Controller
                 ->fit(1550,310)
                 ->save(storage_path("app/public/brands/{$id}/cover-{$id}.{$ext}"));
 
-            return $this -> storePhoto("brands/{$id}/cover-{$id}.{$ext}", "cover");
+            $this -> storePhoto("brands/{$id}/cover-{$id}.{$ext}", "cover");
 
         } elseif($request -> hasFile('logo')) {
             $file = $request -> file('logo');
@@ -91,17 +82,15 @@ class BrandController extends Controller
             //delete unused file with different extension
             $imgFiles = Storage::files("public/brands/{$id}/");
             $prevImg = preg_grep("/logo-{$id}/", $imgFiles);
+
             Storage::delete($prevImg);
 
             $file->storeAs("public/brands/{$id}", "logo-{$id}.{$ext}");
             return $this -> storePhoto("brands/{$id}/logo-{$id}.{$ext}", "logo");
-        } 
-
-        return redirect('brand');
+        }
     }
 
     public function storePhoto($photo, $type) {
-
         $brand = Brand::where("id", "=", Auth::user()->id)->first();
         
         if($type == "cover"){
@@ -111,8 +100,6 @@ class BrandController extends Controller
         } 
         
         $brand->save();
-
-        return redirect('brand/'.Auth::user()->username);
     }
 
     /**
@@ -122,18 +109,25 @@ class BrandController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    function validator(Request $request)
     {
-        return Validator::make($data, [
-                'cover' => 'mimes:jpeg,jpg,png|dimensions:min_width=500,min_height=500|max:2000',
-                'logo' => 'mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
-            ],
-            [  
-                'cover.mimes' => "Cover must be an image",
-                'cover.dimensions' => 'Minimum image dimension is 500px', 
-                'cover.max' => 'Maximum image size is 2mb', 
-                'logo.dimensions' => 'Minimum image size is 520',
-            ]
-            );
+        $validator = Validator::make($request->all(), [
+                    'cover' => 'mimes:jpeg,jpg,png|dimensions:min_width=500,min_height=100|max:2000',
+                    'logo' => 'mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
+                ],
+                [  
+                    'cover.mimes' => "Cover must be an image",
+                    'cover.dimensions' => 'Minimum image dimension is 500x100px', 
+                    'cover.max' => 'Maximum image size is 2mb',
+                    'logo.dimensions' => 'Minimum image size is 520',
+                ]
+                );
+
+        if($validator->fails()) {
+            return \Response::json(array('status' => 'errors', 'message' => $validator->messages()));
+        } else {
+            $this->uploadPhoto($request);
+            return \Response::json(array('status' => 'success'));
+        }
     }
 }
