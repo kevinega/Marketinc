@@ -109,52 +109,72 @@
 
 @section('page-script')
 <script>
-$('.multi-item-carousel').carousel({
-  interval: false
-});
+$(document).ready(function(){
 
-$('.multi-item-carousel .carousel-item').each(function(){
-    var next = $(this).next();
-    if (!next.length) {
-        next = $(this).siblings(':first');
-    }
-    next.children(':first-child').clone().appendTo($(this));
+    $('#urlKu').change(function(){
+      $.ajax({
+        url: '/brand/article/extractUrl',
+        type: 'post',
+        dataType: 'json',
+        data: {
+          "_token": "{{ csrf_token() }}",
+          "url": $('#urlKu').val()
+        }, success: function(data){
+          console.log(data.message.published_on)
+         $('#title').val(data.message.title);
+         $('#author').val(data.message.author);
+         $('#description').val(data.message.description);
+        }, error: function(e){
+        },
+      });
+    });
 
-    // for (var i=0;i<2;i++) {
-    //     next=next.next();
-    //     if (!next.length) {
-    //         next = $(this).siblings(':first');
-    //     }
+    $.ajax({ 
+        url: '/brand/embedArticle', 
+        type: 'get',
+        async:false,
+        dataType: 'json', 
+            //contentType: "application/json", 
+            success: function(data) { 
+              if(data.status == 'success'){
+              var articles = data.message;
+              var htmlText = '';
+              var title='';
+              var image='';
+              var url='';
+              var author='';
+              var description='';
+              var providerName='';
+              var providerUrl='';
+              console.log(data.message[0].title);
+              for ( var key in articles ) {
+                title= data.message[key].title;
+                image= data.message[key].image;
+                url= data.message[key].url;
+                author= data.message[key].author;
+                description= data.message[key].description;
+                providerName= data.message[key].provider_name;
+                providerUrl= data.message[key].provider_url;
 
-    //     next.children(':first-child').clone().appendTo($(this));
-    // }
-    if (next.next().length>0) {
-    next.next().children(':first-child').clone().appendTo($(this));
-  } else {
-    $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-  }
-});
+                htmlText += '<div class="">';
+                htmlText += '<p class=""> Title: ' + title + '</p>';
+                htmlText += '<img class="" src=' + image + '></img></br>';
+                htmlText += '<a class="" href=' + url + '>'+ url +'</a>';
+                htmlText += '<p class=""> Created by: ' + author + '</p>';
+                htmlText += '<p class=""> Description: ' + description + '</p>';
+                htmlText += '<a class="" href=' + providerUrl + '>' + providerName + '</a>';
+                htmlText += '</div>';
+              }
 
-// // Instantiate the Bootstrap carousel
-// $('.multi-item-carousel').carousel({
-//   interval: false
-// });
-
-// // for every slide in carousel, copy the next slide's item in the slide.
-// // Do the same for the next, next item.
-// $('.multi-item-carousel .carousel-item').each(function(){
-//   var next = $(this).next();
-
-//   if (!next.length) {
-//     next = $(this).siblings(':first');
-//   }
-//   next.children(':first-child').clone().appendTo($(this));
-  
-//   if (next.next().length>0) {
-//     next.next().children(':first-child').clone().appendTo($(this));
-//   } else {
-//     $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-//   }
-// });
+              document.getElementById('articles').innerHTML += htmlText;
+            }else{
+              var htmlText = data.message;
+              document.getElementById('articles').innerHTML += htmlText;
+            }
+            } ,error:function(e) { 
+             console.log('failed'); 
+           } 
+         }); 
+    });
 </script>
 @endsection
