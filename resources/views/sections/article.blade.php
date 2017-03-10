@@ -2,19 +2,18 @@
 <div>
 		{!! Form::open(['url' => 'brand/article/create', 'method' => 'POST']) !!}
 
+        {!! Form::label('url', 'Paste or write the link (URL) of the article: ') !!}</br>
+        {!! Form::text('url', null, ['id' => 'urlKu', 'class' => 'form-control', 'placeholder' => 'ex: http://www.facebook.com or https://www.facebook.com']) !!}
+        </br>
+
         {!! Form::label('title', 'Title: ') !!}</br>
         {!! Form::text('title', null, ['id' => 'title', 'class' => 'form-control', 'placeholder' => 'Original title will be used if this field is left empty']) !!}</br>
+        {!! Form::label('author', 'Author name: ') !!}</br>
 
-        {!! Form::label('url', 'Paste or write the link (URL) of the article: ') !!}</br>
-      	{!! Form::text('url', null, ['id' => 'urlKu', 'class' => 'form-control', 'placeholder' => 'ex: http://www.facebook.com or https://www.facebook.com']) !!}
-      	</br>
-
-      	{!! Form::label('author', 'Author name: ') !!}</br>
         {!! Form::text('author', null, ['id' => 'author', 'class' => 'form-control', 'placeholder' => 'Original author name will be used if this field is left empty']) !!}</br>
 
-
-      	{!! Form::label('published_on', 'Publish date (Original publish date will be used if this field is left empty): ') !!}</br>
-        {!! Form::date('published_on', null, ['id' => 'published_on', 'class' => 'form-control', 'placeholder' => 'Original publish date will be used if this field is left empty']) !!}</br>
+        {!! Form::label('description', 'Article\'s description: ') !!}</br>
+        {!! Form::text('description', null, ['id' => 'description', 'class' => 'form-control', 'placeholder' => 'Original Description name will be used if this field is left empty']) !!}</br>
 
         {!! Form::button('Submit Article', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
 
@@ -37,7 +36,7 @@
           console.log(data.message.published_on)
          $('#title').val(data.message.title);
          $('#author').val(data.message.author);
-         $('#published_on').val(data.message.published_on);
+         $('#description').val(data.message.description);
         }, error: function(e){
         },
       });
@@ -60,7 +59,7 @@
                 htmlText += '<img class="" src=' + data.message[key].image + '></img></br>';
                 htmlText += '<a class="" href=' + data.message[key].url + '>'+ data.message[key].url +'</a>';
                 htmlText += '<p class=""> Created by: ' + data.message[key].author + '</p>';
-                htmlText += '<p class=""> Publish Date: ' + data.message[key].published_on + '</p>';
+                htmlText += '<p class=""> Description: ' + data.message[key].description + '</p>';
                 htmlText += '</div>';
               }
 
