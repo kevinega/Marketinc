@@ -37,7 +37,11 @@ class BrandController extends Controller
     public function index($username)
     {
         if($username == Auth::user()->username) {
-            return view('brand-home');    
+            $id = Auth::user()->id;
+            // var_dump($id);
+            $brands = Brand::findOrFail($id);
+            // var_dump($brands);
+            return view('brand-home', compact('brands'));    
         }
             return '404';
     }

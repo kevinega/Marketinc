@@ -14,11 +14,15 @@
     	$phone2 = Auth::guard()->user()->phone_two;
     	$openh = Auth::guard()->user()->open_hour;
     ?>
+
+    <!-- {{ var_dump($brands) }} -->
+    {{ Form::model($brands) }}
+    {{ csrf_field() }}
     <div class="about-us" style="border:1px solid grey;">
+    	
         <div class="description">
         	<p id="brand-desc">
-        	{{ $desc }}
-        	<!--Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.-->
+        	{{ Form::textarea('description') }}
         	</p>
         </div>
         <?php 
@@ -26,12 +30,14 @@
         ?>
         <div class="location">
         	<p>
-        		{{ $add }}</br>
-        		{{ $phone1 }}</br>
-        		<strong>Open Hours:</strong> {{ $openh }}
+        		{{ Form::text('phone_one') }}</br>
+        		{{ Form::text('phone_two') }}</br>
+        		<strong>Open Hours:</strong> {{ Form::text('open_hour') }}
         	</p>
         </div>
     </div>
+    {{ Form::submit('Save') }}
+    {{ Form::close() }}
 </div>
 <div class="feature-details-facilities">
 	<div class="facilities-flex">
