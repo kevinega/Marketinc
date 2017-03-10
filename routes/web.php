@@ -66,6 +66,11 @@ Route::group(['middleware' => 'auth_brand'], function () {
 	*  Upload
 	*/
 	Route::post('brand/upload', 'BrandController@uploadPhoto');
+
+	/*
+	*  Update Details
+	*/
+	Route::post('brand/details/update', 'BrandController@updateDetails');
 });
 
 
