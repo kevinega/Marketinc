@@ -204,7 +204,7 @@
                     success: function(data) {
                         if(data.status == "errors") {
                             $(".cover-error").addClass("alert alert-danger");
-                            $(".cover-error").append(data.message.cover[0]);
+                            $(".cover-error").text(data.message.cover[0]);
                             crop.destroy();
                             crop = undefined;
                             $('#form-cover').trigger('reset');
