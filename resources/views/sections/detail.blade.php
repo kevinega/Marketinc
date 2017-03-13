@@ -7,37 +7,15 @@
     <div class="maps">
     	<iframe width="100%" height="400px" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJweaD5rvzaS4RkWhE7KiP38Y&key=AIzaSyDcfHgRTp-c6n4lachCjzNi73DDY5GFdag" allowfullscreen></iframe>
     </div>
-    <?php 
+    @php 
     	$desc = Auth::guard()->user()->description;
     	$add = Auth::guard()->user()->address;
     	$phone1 = Auth::guard()->user()->phone_one;
     	$phone2 = Auth::guard()->user()->phone_two;
     	$openh = Auth::guard()->user()->open_hour;
-    ?>
+    @endphp
 
     <!-- {{ var_dump($brands) }} -->
-    {{ Form::model($brands) }}
-    {{ csrf_field() }}
-    <div class="about-us" style="border:1px solid grey;">
-    	
-        <div class="description">
-        	<p id="brand-desc">
-        	{{ Form::textarea('description') }}
-        	</p>
-        </div>
-        <?php 
-
-        ?>
-        <div class="location">
-        	<p>
-        		{{ Form::text('phone_one') }}</br>
-        		{{ Form::text('phone_two') }}</br>
-        		<strong>Open Hours:</strong> {{ Form::text('open_hour') }}
-        	</p>
-        </div>
-    </div>
-    {{ Form::submit('Save') }}
-    {{ Form::close() }}
 </div>
 <div class="feature-details-facilities">
 	<div class="facilities-flex">
@@ -94,15 +72,35 @@
 			<p class="detail-icon">Changing Room</p>
 		</div>
 	</div>
+
+	<div>
+	{!! Form::model($brands, ['url' => 'brand/details/update', 'method' => 'POST']) !!}
+    {!! csrf_field() !!}
+
+	{!! Form::label('description', 'Description:') !!}
+	{{ Form::textarea('description', null, ['id' => 'description', 'class' => 'form-control', 'placeholder' => 'About your restaurant']) }}</br>
+
+	{!! Form::label('address', 'Address:') !!}
+	{!! Form::text('address', null, ['id' => 'address', 'class' => 'form-control', 'placeholder' => 'Address of your restaurant'])!!}</br>
+	
+	{!! Form::label('phone_one', 'Phone 1:') !!}
+	{!! Form::text('phone_one', null, ['id' => 'phone_one', 'class' => 'form-control', 'placeholder' => 'First phone number of your restaurant']) !!}</br>
+	
+	{!! Form::label('phone_two', 'Phone 2:') !!}
+	{!! Form::text('phone_two', null, ['id' => 'phone_two', 'class' => 'form-control', 'placeholder' => 'Second phone number of your restaurant']) !!}</br>
+	
+	{!! Form::label('open_hour', 'Open Hour:') !!}
+    {!! Form::text('open_hour', null, ['id' => 'open_hour', 'class' => 'form-control', 'placeholder' => 'Ex: 09:00AM - 22:00PM']) !!}</br>
+     {!! Form::button('Update Details', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
+    {{ Form::close() }}
+    </div>
+ 
+
+
 </div>
 <script type="text/javascript">
-	$(document).ready(function() {
-		
-	});
-
-
-	function myFunction() {
-	    document.getElementById("brand-desc").contentEditable = true;
-	    document.getElementById("demo").innerHTML = "The p element above is now editable. Try to change its text.";
-	}
+	// function myFunction() {
+	//     document.("brand-desc").contentEditable = true;
+	//     document.getElementById("demo").innerHTML = "The p element above is now editable. Try to change its text.";
+	// }
 </script>

@@ -122,4 +122,35 @@ class BrandController extends Controller
             ]
         );
     }
+
+    public function updateDetails(Request $request){
+        $brand = Brand::where("id", "=", Auth::user()->id)->first();
+
+        $validator = Validator::make($request->all(), [
+                'description' => 'required',
+                'address' => 'required',
+                'open_hour' => 'required'
+            ]
+        );
+
+        if($validator->fails()){
+            return back()->with("message",$validator->messages());
+        }
+        $brand->description = $request->description;
+        $brand->address = $request->address;
+        if($request->phone_one != ''){
+            $brand->phone_one = $request->phone_one;
+        }
+        if($request->phone_two !=''){
+            $brand->phone_two = $request->phone_two;
+        }
+        $brand->open_hour = $request->open_hour;
+
+        if($brand->save()){
+            return back()->with('message','Details are updated successfully');
+        }else{
+            return back()->with('message','Oops, there is something wrong with the server. Please try again');
+        }
+
+    }
 }
