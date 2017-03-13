@@ -125,11 +125,12 @@ class BrandController extends Controller
 
     public function updateDetails(Request $request){
         $brand = Brand::where("id", "=", Auth::user()->id)->first();
+        $facility = Facility::where("id", "=", Auth::user()->id)->first();
 
         $validator = Validator::make($request->all(), [
                 'description' => 'required',
                 'address' => 'required',
-                'open_hour' => 'required'
+                'open_hour' => 'required',
             ]
         );
 
@@ -145,7 +146,17 @@ class BrandController extends Controller
             $brand->phone_two = $request->phone_two;
         }
         $brand->open_hour = $request->open_hour;
-
+        // $facility->breakfast = $request->
+        // 'wifi'
+        // 'smoking_area'
+        // 'ac'
+        // 'working_environment'
+        // 'reservation'
+        // 'private_room'
+        // 'alcohol'
+        // 'valet'
+        // 'delivery_services'
+        // 'served_pork'
         if($brand->save()){
             return back()->with('message','Details are updated successfully');
         }else{

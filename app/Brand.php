@@ -24,6 +24,10 @@ class Brand extends Authenticable
     	return $this->hasMany('App\Transaction');
     }
 
+    public function facility(){
+        return $this->hasOne('App\Facility');
+    }
+
     /**
      * Send the password reset notification.
      *
