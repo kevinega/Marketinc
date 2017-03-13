@@ -2350,8 +2350,6 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 .form-inline {
   display: -webkit-box;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
   flex-flow: row wrap;
   -webkit-box-align: center;
   align-items: center;
@@ -2376,8 +2374,6 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
     display: flex;
     -webkit-box-flex: 0;
     flex: 0 0 auto;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     flex-flow: row wrap;
     -webkit-box-align: center;
     align-items: center;
@@ -4275,8 +4271,6 @@ tbody.collapse.show {
   .card-deck {
     display: -webkit-box;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     flex-flow: row wrap;
   }
   .card-deck .card {
@@ -4300,8 +4294,6 @@ tbody.collapse.show {
   .card-group {
     display: -webkit-box;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     flex-flow: row wrap;
   }
   .card-group .card {
@@ -4754,8 +4746,6 @@ a.badge:focus, a.badge:hover {
   position: relative;
   display: -webkit-box;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
   flex-flow: row wrap;
   -webkit-box-align: center;
   align-items: center;
@@ -8666,6 +8656,11 @@ button, input, optgroup, select, textarea {
   justify-content: space-between;
 }
 
+.feature-header button {
+  background-color: transparent;
+  border-color: transparent;
+}
+
 .feature-header .btn-edit {
   color: #ffcc46;
 }
@@ -8741,6 +8736,42 @@ button, input, optgroup, select, textarea {
 
 .feature-details-facilities .facilities-flex .facility p {
   margin: 0px 10px;
+}
+
+.edit-details {
+  display: none;
+}
+
+.edit-details img {
+  width: 24px;
+}
+
+.edit-details .facilities-flex {
+  margin-bottom: 10px;
+}
+
+.edit-details .btn-facilities {
+  width: 15%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 5px;
+  background-color: grey;
+  border-color: grey;
+}
+
+.edit-details .btn-facilities p {
+  margin: 0px 10px;
+  color: #000;
+}
+
+.edit-details .btn-facilities:active, .edit-details .btn-facilities.active, .edit-details .show > .btn-facilities.dropdown-toggle {
+  background-color: #ffcc46;
+  border-color: #ffcc46;
 }
 
 @media (min-width: 945px) {

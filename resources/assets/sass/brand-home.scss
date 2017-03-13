@@ -57,6 +57,11 @@
     flex-direction: row;
     justify-content: space-between;
 
+    button {
+        background-color: transparent;
+        border-color: transparent;
+    }
+
     .btn-edit {
         color: $yellow;
     }
@@ -123,6 +128,38 @@
                 margin: 0px 10px;
             }
         }
+    }
+}
+
+.edit-details {
+    display: none;
+
+    img {
+        width: 24px;
+    }
+
+    .facilities-flex {
+        margin-bottom: 10px;
+    }
+
+    .btn-facilities {
+        width: 15%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 5px;
+        background-color: grey;
+        border-color: grey;
+
+        p {
+            margin: 0px 10px;
+            color: #000;
+        }
+    }
+
+    .btn-facilities:active, .btn-facilities.active, .show > .btn-facilities.dropdown-toggle {
+        background-color: $yellow;
+        border-color: $yellow;
     }
 }
 
