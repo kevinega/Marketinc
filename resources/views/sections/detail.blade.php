@@ -96,6 +96,11 @@
 	</div>
 </div>
 <script type="text/javascript">
+	$(document).ready(function() {
+		
+	});
+
+
 	function myFunction() {
 	    document.getElementById("brand-desc").contentEditable = true;
 	    document.getElementById("demo").innerHTML = "The p element above is now editable. Try to change its text.";
