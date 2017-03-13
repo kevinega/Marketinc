@@ -61,7 +61,7 @@ Route::group(['middleware' => 'auth_brand'], function () {
 	*  Upload
 	*/
 	Route::post('brand/upload', 'BrandController@uploadPhoto');
-	Route::post('brand/upload/coverValidator', 'BrandController@validator');
+	Route::post('brand/upload/coverValidator', 'BrandController@validatorCover');
 });
 
 

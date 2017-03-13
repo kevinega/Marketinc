@@ -109,17 +109,16 @@ class BrandController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    function validator(Request $request)
+    function validatorCover(Request $request)
     {
         $validator = Validator::make($request->all(), [
-                    'cover' => 'mimes:jpeg,jpg,png|dimensions:min_width=500,min_height=100|max:2000',
-                    'logo' => 'mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
+                    'cover' => 'required|mimes:jpeg,jpg,png|dimensions:min_width=500,min_height=100|max:2000',
                 ],
                 [  
+                    'cover.required' => "You haven't choose your image yet",
                     'cover.mimes' => "Cover must be an image",
                     'cover.dimensions' => 'Minimum image dimension is 500x100px', 
                     'cover.max' => 'Maximum image size is 2mb',
-                    'logo.dimensions' => 'Minimum image size is 520',
                 ]
                 );
 
