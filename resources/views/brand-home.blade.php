@@ -237,7 +237,9 @@
         }
 
         // changes after new input image
-        $("#uploaded").change(function(){
+        $("#uploaded").change(function() {
+            $(".cover-error").text("");
+            $(".cover-error").removeClass("alert alert-danger");
             readURL(this);
             refreshJcrop();
         });
