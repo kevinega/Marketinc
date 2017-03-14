@@ -34,4 +34,8 @@ class Brand extends Authenticable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    public function facility(){
+        return $this->hasMany('App\Facility');
+    }
 }
