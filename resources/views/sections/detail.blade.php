@@ -20,60 +20,24 @@
 	</div>
 
 	<div class="feature-details-facilities">
-		<div class="facilities-flex">
-			<div class="facility">
-				<img src="{{ asset("img/facilities/breakfast.png") }}"> 
-				<p class="detail-icon">Breakfast</p>
-			</div>
-			<div class="facility">
-				<img src="{{ asset("img/facilities/smoking-area.png") }}"> 
-				<p class="detail-icon">Smoking Area</p>
-			</div>
-			<div class="facility">
-				<img src="{{ asset("img/facilities/reservation.png") }}">
-				<p class="detail-icon">Reservation</p>
-			</div>
-			<div class="facility">
-				<img src="{{ asset("img/facilities/valet.png") }}">
-				<p class="detail-icon">Valet</p>
-			</div>
-		</div>
-		<div class="facilities-flex">
-			<div class="facility">
-				<img src="{{ asset("img/facilities/parking-lot.png") }}"> 
-				<p class="detail-icon">Parking Lot</p>
-			</div>
-			<div class="facility">
-				<img src="{{ asset("img/facilities/ac.png") }}"> 
-				<p class="detail-icon">Air Conditioner</p>
-			</div>
-			<div class="facility">
-				<img src="{{ asset("img/facilities/private-room.png") }}"> 
-				<p class="detail-icon">Private Room</p>
-			</div>
-			<div class="facility">
-				<img src="{{ asset("img/facilities/delivery.png") }}"> 
-				<p class="detail-icon">Delivery</p>
-			</div>
-		</div>
-		<div class="facilities-flex">
-			<div class="facility">
-				<img src="{{ asset("img/facilities/wifi.png") }}"> 
-				<p class="detail-icon">WiFi</p>
-			</div>
-			<div class="facility">
-				<img src="{{ asset("img/facilities/working-space.png") }}"> 
-				<p class="detail-icon">Working Space</p>
-			</div>
-			<div class="facility">
-				<img src="{{ asset("img/facilities/alcohol.png") }}"> 
-				<p class="detail-icon">Alcohol</p>
-			</div>
-			<div class="facility">
-				<img src="{{ asset("img/facilities/changing-room.png") }}"> 
-				<p class="detail-icon">Changing Room</p>
-			</div>
-		</div>
+			@php 
+			$facilities = array("", "Breakfast", "Smoking Area", "Reservation", "Valet", "Parking Lot", "Air Conditioner", "Private Room", "Delivery", "WiFi", "Working Space", "Alcohol", "Changing Room");
+
+			for($x = 1; $x <= 12; $x++) {
+			@endphp
+				@if($x % 4 == 1)
+					<div class="facilities-flex">
+				@endif
+				<div class="facility">
+					<img src="{{ asset("img/facilities/breakfast.png") }}"> 
+					<p class="detail-icon">@php echo $facilities[$x]; @endphp</p>
+				</div>
+				@if($x % 4 == 0)
+					</div>
+				@endif
+			@php
+			}
+			@endphp
 	</div>
 </div>
 
