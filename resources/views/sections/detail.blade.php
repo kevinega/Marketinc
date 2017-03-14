@@ -63,59 +63,71 @@
     {!! Form::label('facilities', 'Facilities:') !!}
     
     <div class="feature-details-facilities">
-		<div class="facilities-flex">
-			<button type="button" class="btn btn-primary btn-facilities" data-toggle="button" aria-pressed="false" autocomplete="off">
+		<div class="facilities-flex" data-toggle="buttons">
+			<label class="btn btn-primary btn-facilities">
+				<input name="breakfast" type="checkbox" aria-pressed="false" autocomplete="off">
 				<img src="{{ asset("img/facilities/breakfast.png") }}"> 
 				<p class="detail-icon">Breakfast</p>
-			</button>
-			<button type="button" class="btn btn-primary btn-facilities" data-toggle="button" aria-pressed="false" autocomplete="off">
+			</label>
+			<label class="btn btn-primary btn-facilities">
+				<input name="smoking_area" type="checkbox" aria-pressed="false" autocomplete="off">
 				<img src="{{ asset("img/facilities/smoking-area.png") }}"> 
 				<p class="detail-icon">Smoking Area</p>
-			</button>
-			<button type="button" class="btn btn-primary btn-facilities" data-toggle="button" aria-pressed="false" autocomplete="off">
+			</label>
+			<label class="btn btn-primary btn-facilities">
+				<input name="reservation" type="checkbox" aria-pressed="false" autocomplete="off">
 				<img src="{{ asset("img/facilities/reservation.png") }}">
 				<p class="detail-icon">Reservation</p>
-			</button>
-			<button type="button" class="btn btn-primary btn-facilities" data-toggle="button" aria-pressed="false" autocomplete="off">
+			</label>
+			<label class="btn btn-primary btn-facilities">
+				<input name="valet" type="checkbox" aria-pressed="false" autocomplete="off">
 				<img src="{{ asset("img/facilities/valet.png") }}">
 				<p class="detail-icon">Valet</p>
-			</button>
+			</label>
 		</div>
-		<div class="facilities-flex">
-			<button type="button" class="btn btn-primary btn-facilities" data-toggle="button" aria-pressed="false" autocomplete="off">
+		<div class="facilities-flex" data-toggle="buttons">
+			<label class="btn btn-primary btn-facilities">
+				<input name="parking_lot" type="checkbox" aria-pressed="false" autocomplete="off">
 				<img src="{{ asset("img/facilities/parking-lot.png") }}"> 
 				<p class="detail-icon">Parking Lot</p>
-			</button>
-			<button type="button" class="btn btn-primary btn-facilities" data-toggle="button" aria-pressed="false" autocomplete="off">
+			</label>
+			<label class="btn btn-primary btn-facilities">
+				<input name="ac" type="checkbox" aria-pressed="false" autocomplete="off">
 				<img src="{{ asset("img/facilities/ac.png") }}"> 
 				<p class="detail-icon">Air Conditioner</p>
-			</button>
-			<button type="button" class="btn btn-primary btn-facilities" data-toggle="button" aria-pressed="false" autocomplete="off">
+			</label>
+			<label class="btn btn-primary btn-facilities">
+				<input name="private_room" type="checkbox" aria-pressed="false" autocomplete="off">
 				<img src="{{ asset("img/facilities/private-room.png") }}"> 
 				<p class="detail-icon">Private Room</p>
-			</button>
-			<button type="button" class="btn btn-primary btn-facilities" data-toggle="button" aria-pressed="false" autocomplete="off">
+			</label>
+			<label class="btn btn-primary btn-facilities">
+				<input name="delivery_services" type="checkbox" aria-pressed="false" autocomplete="off">
 				<img src="{{ asset("img/facilities/delivery.png") }}"> 
 				<p class="detail-icon">Delivery</p>
-			</button>
+			</label>
 		</div>
-		<div class="facilities-flex">
-			<button type="button" class="btn btn-primary btn-facilities" data-toggle="button" aria-pressed="false" autocomplete="off">
+		<div class="facilities-flex" data-toggle="buttons">
+			<label class="btn btn-primary btn-facilities">
+				<input name="wifi" type="checkbox" aria-pressed="false" autocomplete="off">
 				<img src="{{ asset("img/facilities/wifi.png") }}"> 
 				<p class="detail-icon">WiFi</p>
-			</button>
-			<button type="button" class="btn btn-primary btn-facilities" data-toggle="button" aria-pressed="false" autocomplete="off">
+			</label>
+			<label class="btn btn-primary btn-facilities">
+				<input name="working_environment" type="checkbox" aria-pressed="false" autocomplete="off">
 				<img src="{{ asset("img/facilities/working-space.png") }}"> 
 				<p class="detail-icon">Working Space</p>
-			</button>
-			<button type="button" class="btn btn-primary btn-facilities" data-toggle="button" aria-pressed="false" autocomplete="off">
+			</label>
+			<label class="btn btn-primary btn-facilities">
+				<input name="alcohol" type="checkbox" aria-pressed="false" autocomplete="off">
 				<img src="{{ asset("img/facilities/alcohol.png") }}"> 
 				<p class="detail-icon">Alcohol</p>
-			</button>
-			<button type="button" class="btn btn-primary btn-facilities" data-toggle="button" aria-pressed="false" autocomplete="off">
+			</label>
+			<label class="btn btn-primary btn-facilities">
+				<input name="changing_room" type="checkbox" aria-pressed="false" autocomplete="off">
 				<img src="{{ asset("img/facilities/changing-room.png") }}"> 
 				<p class="detail-icon">Changing Room</p>
-			</button>
+			</label>
 		</div>
 	</div>
 	</br>
