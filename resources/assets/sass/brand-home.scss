@@ -9,6 +9,10 @@
 }
 
 // UPLOAD COVER
+.modal-open {
+    padding-right: 0px !important;
+}
+
 .feature-photo {
     .cover {
         width: 100%;
@@ -295,7 +299,6 @@
 }
 #main {
     margin-left: 250px;
-    position: absolute;
 }
 
 @media screen and (max-height: 450px) {
