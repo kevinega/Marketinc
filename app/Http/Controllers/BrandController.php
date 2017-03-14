@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Brand;
+use App\Facility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -43,7 +44,7 @@ class BrandController extends Controller
             // var_dump($brands);
             return view('brand-home', compact('brands'));    
         }
-            return '404';
+        return '404';
     }
     
     /**
@@ -113,25 +114,24 @@ class BrandController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-                'cover' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=530,min_height=530',
-                'logo' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
+            'cover' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=530,min_height=530',
+            'logo' => 'image|mimes:jpeg,jpg,png|dimensions:min_width=520,min_height=520',
             ],
             [  
-                'cover.dimensions' => 'Minimum & Maximum image size is 530', 
-                'logo.dimensions' => 'Minimum & Maximum image size is 520',
+            'cover.dimensions' => 'Minimum & Maximum image size is 530', 
+            'logo.dimensions' => 'Minimum & Maximum image size is 520',
             ]
-        );
+            );
     }
 
     public function updateDetails(Request $request){
         $brand = Brand::where("id", "=", Auth::user()->id)->first();
-
         $validator = Validator::make($request->all(), [
-                'description' => 'required',
-                'address' => 'required',
-                'open_hour' => 'required'
+            'description' => 'required',
+            'address' => 'required',
+            'open_hour' => 'required'
             ]
-        );
+            );
 
         if($validator->fails()){
             return back()->with("message",$validator->messages());
@@ -146,7 +146,65 @@ class BrandController extends Controller
         }
         $brand->open_hour = $request->open_hour;
 
-        if($brand->save()){
+        $facility = Facility::where("brand_id","=", Auth::user()->id)->first();
+        if($facility){}
+        else{
+            $facility = new Facility();
+            $facility->brand_id = Auth::user()->id;
+        }
+
+        if($request->has('breakfast')){
+            $facility->breakfast = 1;
+        }else{
+            $facility->breakfast = 0;
+        }
+        if($request->has('wifi')){
+            $facility->wifi = 1;
+        }else{
+            $facility->wifi = 0;
+        }
+        if($request->has('smoking_area')){
+            $facility->smoking_area = 1;
+        }else{
+            $facility->smoking_area = 0;
+        }
+        if($request->has('ac')){
+            $facility->ac = 1;
+        }else{
+            $facility->ac = 0;
+        }
+        if($request->has('working_environment')){
+            $facility->working_environment = 1;
+        }else{
+            $facility->working_environment = 0;
+        }
+        if($request->has('reservation')){
+            $facility->reservation = 1;
+        }else{
+            $facility->reservation = 0;
+        }
+        if($request->has('private_room')){
+            $facility->private_room = 1;
+        }else{
+            $facility->private_room = 0;
+        }
+        if($request->has('alcohol')){
+            $facility->alcohol = 1;
+        }else{
+            $facility->alcohol = 0;
+        }
+        if($request->has('valet')){
+            $facility->valet = 1;
+        }else{
+            $facility->valet = 0;
+        }
+        if($request->has('delivery_services')){
+            $facility->delivery_services = 1;
+        }else{
+            $facility->delivery_services = 0;
+        }
+
+        if($brand->save() && $facility->save()){
             return back()->with('message','Details are updated successfully');
         }else{
             return back()->with('message','Oops, there is something wrong with the server. Please try again');
