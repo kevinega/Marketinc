@@ -8608,9 +8608,14 @@ button, input, optgroup, select, textarea {
   padding-right: 0px !important;
 }
 
-.feature-photo .cover {
+.feature-photo {
   width: 100%;
   height: 310px;
+}
+
+.feature-photo .cover {
+  width: 100%;
+  height: auto;
 }
 
 .feature-photo .upload-cover {
@@ -8618,9 +8623,8 @@ button, input, optgroup, select, textarea {
 }
 
 .feature-photo .btn-upload-modal {
-  margin-top: -46px;
-  margin-bottom: 0px;
   text-align: right;
+  padding-top: 265px;
 }
 
 .feature-photo #cover {

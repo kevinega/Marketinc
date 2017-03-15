@@ -96,8 +96,8 @@
 <div id="main">
     <div class="container-fluid"> 
         <div class="feature-photo">
-            <!-- display picture -->
-            <img id="cover-uploaded" class="cover">
+            {{-- <!-- display picture -->
+            <img id="cover-uploaded" class="cover"> --}}
 
             <!-- button trigger modal -->
             <div class="btn-upload-modal">
@@ -187,7 +187,8 @@
         var crop;
 
         $(document).ready(function(){
-            $("#cover-uploaded").attr('src', '{{ asset("$pathCover") }}');
+            // $("#cover-uploaded").attr('src', '{{ asset("$pathCover") }}');
+            $(".feature-photo").css('background-image', 'url({{ asset("$pathCover") }})');
             // bismilla validation
             $("#form-cover").submit(function(e) {
                 e.preventDefault();
