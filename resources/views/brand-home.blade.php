@@ -2,74 +2,147 @@
 
 @section('page-style')
 <link href="{{ elixir('css/brand-home.css') }}" rel="stylesheet">
+<link href="{{ asset('css/Jcrop.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('navbar')
-    @include('navbar')
+@include('navbar')
 @endsection
 
 @section('content')
+
 @if (session('message') != '')
 <div class="alert alert-success" role="alert">
   <strong>Well done!</strong> {{ session('message') }}
 </div>
 @endif
-    @php 
-            $path = Auth::guard()->user()->cover;
-        @endphp
-        <img src="{{ asset("storage/$path") }}">
-         @if ($errors->has('cover'))
-            <div class="error-label">
-                <i class="material-icons alert-danger">clear</i>
-                {!! $errors->first('cover', '<span class="alert-danger">:message</span>') !!}
+
+@php 
+    $pathCover = "storage/".Auth::guard()->user()->cover; 
+    if($pathCover == "storage/"){
+        $pathCover = "img/default-cover.png";
+    }
+@endphp
+
+<div class="sidenav">
+    <h6 class="sidenav-header">Welcome, <strong>{{ Auth::guard()->user()->brand_name }}</strong></h6>
+    
+    <div class="sidenav-menu">
+        <a href="#">
+            <div class="sidenav-package">
+                <img src="{{ asset('img/sidebar-brandhome/basic.png') }}" class="sidenav-icon">
+                BASIC
             </div>
-        @endif
+        <a href="#promotions">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/promotion.png') }}" class="sidenav-icon">
+                Promotions
+            </div>
+        </a>
+        <a href="#details">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/details.png') }}" class="sidenav-icon">
+                Details
+            </div>
+        </a>
+        <a href="#pictures">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/picture.png') }}" class="sidenav-icon">
+                Image
+            </div>
+        </a>
+        <a href="#">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/promotion.png') }}" class="sidenav-icon">
+                Video
+            </div>
+        </a>
+        <a href="#">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/menu.png') }}" class="sidenav-icon">
+                Menu
+            </div>
+        </a>
+        <a href="#">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/branches.png') }}" class="sidenav-icon">
+                Branches
+            </div>
+        </a>
+        <a href="#">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/review.png') }}" class="sidenav-icon">
+                Review
+            </div>
+        </a>
+        <a href="#">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/music.png') }}" class="sidenav-icon">
+                Music
+            </div>
+        </a>
+    </div>
 
-        {!! Form::open(['method' => 'post', 'url' => 'brand/upload', 'enctype' => 'multipart/form-data']) !!}
-        {{ csrf_field() }}
+    <div class="sidenav-preview">
+        <a href="#" id="preview">
+            <div class="sidenav-feature">
+                <img src="{{ asset('img/sidebar-brandhome/preview.png') }}" class="sidenav-icon">
+                Preview
+            </div>
+        </a>
+    </div>
+</div>
 
-        {!! Form::file('cover') !!}
-        {!! Form::button('Save Cover', ['type' => 'submit']) !!}
-        {!! Form::close() !!}
-        
-    <div class="feature-photo">
-        <!-- display picture -->
-        <?php $path = Auth::guard()->user()->logo; ?>
-        <img src="{{ asset("storage/$path") }}" class="photo-360">
+<div id="main">
+    <div class="container-fluid"> 
+        <div class="feature-photo">
+            {{-- <!-- display picture -->
+            <img id="cover-uploaded" class="cover"> --}}
 
-        <!-- button trigger modal -->
-        <div class="btn-upload-modal">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-logo-modal">
-                <i class="material-icons">add_a_photo</i>
-            </button>
-        </div>
+            <!-- button trigger modal -->
+            <div class="btn-upload-modal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-cover-modal">
+                    <i class="material-icons">add_a_photo</i>
+                </button>
+            </div>
 
-        <!-- modal -->
-        <div class="modal fade" id="upload-logo-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modal-label">Upload Logo</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        {!! Form::open(['method' => 'post', 'url' => 'brand/upload', 'enctype' => 'multipart/form-data']) !!}
-                        {{ csrf_field() }}
+            <!-- modal -->
+            <div class="modal fade" id="upload-cover-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-label">Upload Cover</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="cover-error" role="alert">
+                                <strong> {!! $errors->first('cover', '<span class="alert-danger cover-error">:message</span>') !!} </strong>
+                            </div>
+                            <img id="cover" class="cover">
 
-                        {!! Form::file('logo', ['class' => 'upload-logo']) !!}
-                        {!! Form::button('Save Logo', ['class' => 'btn btn-primary btn-block', 'type' => 'submit']) !!}
-                        {!! Form::close() !!}
+                            <!-- form cropper -->
+                            {{-- {!! Form::open(['method' => 'post', 'url' => 'brand/upload', 'enctype' => 'multipart/form-data']) !!} --}}
+                            {!! Form::open(['id' => 'form-cover', 'enctype' => 'multipart/form-data']) !!}
+                            {{ csrf_field() }}
+                            {!! Form::file('cover', ['id' => 'uploaded', 'class' => 'upload-cover', 'name' => 'cover']) !!}
+                            {!! Form::hidden('x', '', array('id' => 'x', 'name' => 'x')) !!}
+                            {!! Form::hidden('y', '', array('id' => 'y', 'name' => 'y')) !!}
+                            {!! Form::hidden('w', '', array('id' => 'w', 'name' => 'w')) !!}
+                            {!! Form::hidden('h', '', array('id' => 'h', 'name' => 'h')) !!}
+                            {!! Form::button('Save Cover', ['class' => 'btn btn-primary btn-block', 'id' => 'btn-upload-cover', 'type' => 'submit']) !!}
+                            {!! Form::close() !!}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="feature-followers">
-        <h6>1234 followers</h6>
-        <button type="button" class="btn btn-primary btn-follow">Follow</button>
+        {{-- <div class="feature-followers">
+            <h6>1234 followers</h6>
+            <button type="button" class="btn btn-primary btn-follow">Follow</button>
+        </div> --}}
     </div>
 
     <div class="container">
@@ -105,56 +178,121 @@
             @include('sections.video')
         </div>
     </div>
+</div>
 @endsection
 
 @section('page-script')
-<script>
-$('.multi-item-carousel').carousel({
-  interval: false
-});
+<script src="{{ asset('js/Jcrop.min.js') }}"></script>
+    <script>
+        var crop;
 
-$('.multi-item-carousel .carousel-item').each(function(){
-    var next = $(this).next();
-    if (!next.length) {
-        next = $(this).siblings(':first');
-    }
-    next.children(':first-child').clone().appendTo($(this));
+        $(document).ready(function(){
+            // $("#cover-uploaded").attr('src', '{{ asset("$pathCover") }}');
+            $(".feature-photo").css('background-image', 'url({{ asset("$pathCover") }})');
+            // bismilla validation
+            $("#form-cover").submit(function(e) {
+                e.preventDefault();
+                var formD = new FormData(this);
+                
+                $.ajax({
+                    url: '/brand/upload/coverValidator',
+                    type: 'post',
+                    dataType: 'json',
+                    data: formD,
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function(data) {
+                        if(data.status == "errors") {
+                            $(".cover-error").addClass("alert alert-danger");
+                            $(".cover-error").text(data.message.cover[0]);
+                            crop.destroy();
+                            crop = undefined;
+                            $('#form-cover').trigger('reset');
+                            $("#cover").removeAttr("src");
+                            $("#cover").removeAttr("style");
 
-    // for (var i=0;i<2;i++) {
-    //     next=next.next();
-    //     if (!next.length) {
-    //         next = $(this).siblings(':first');
-    //     }
+                        } else if(data.status == "success") {
+                            location.reload();
+                        }
+                    },
+                    error: function(data) {
+                        $(".cover-error").append("Upload Cover Error");
+                    }
+                });
+            });
+        });
 
-    //     next.children(':first-child').clone().appendTo($(this));
-    // }
-    if (next.next().length>0) {
-    next.next().children(':first-child').clone().appendTo($(this));
-  } else {
-    $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-  }
-});
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
-// // Instantiate the Bootstrap carousel
-// $('.multi-item-carousel').carousel({
-//   interval: false
-// });
+                reader.onload = function (e) {
+                    $('#cover').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                //BIKIN PAGE(?)
+                "Your Browser doesn't support FileReader API"
+            }
+        }
 
-// // for every slide in carousel, copy the next slide's item in the slide.
-// // Do the same for the next, next item.
-// $('.multi-item-carousel .carousel-item').each(function(){
-//   var next = $(this).next();
+        // changes after new input image
+        $("#uploaded").change(function() {
+            $(".cover-error").text("");
+            $(".cover-error").removeClass("alert alert-danger");
+            readURL(this);
+            refreshJcrop();
+        });
 
-//   if (!next.length) {
-//     next = $(this).siblings(':first');
-//   }
-//   next.children(':first-child').clone().appendTo($(this));
-  
-//   if (next.next().length>0) {
-//     next.next().children(':first-child').clone().appendTo($(this));
-//   } else {
-//     $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-//   }
-// });
-</script>
+
+        // initiate cropper
+        function initJcrop(){
+            $('#cover').Jcrop({
+                boxWidth: 700,
+                boxHeight: 700,
+                setSelect: initCoords(),
+                aspectRatio: 5 / 1,
+                onSelect: updateCoords
+            },function () { 
+                crop = this; 
+            });
+        }
+
+        // save coordinate cropper
+        function updateCoords(c) {
+            $('#x').val(c.x);
+            $('#y').val(c.y);
+            $('#w').val(c.w);
+            $('#h').val(c.h);
+        };
+
+        //init coordinates and give initial value to coordinate input
+        function initCoords()
+        {
+            $('#x').val(0);
+            $('#y').val(0);
+            $('#w').val(500);
+            $('#h').val(100);
+
+             return [
+               $('#x').val(),
+               $('#y').val(),
+               $('#w').val(),
+               $('#h').val(),  
+              ];
+        };
+
+        //Restart Jcrop
+        function refreshJcrop() 
+        {
+            $('#cover').one('load', function(){
+                if(crop != undefined){
+                    crop.destroy();
+                }
+                initJcrop();
+            });
+        };
+
+    </script>
 @endsection

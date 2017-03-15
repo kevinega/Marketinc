@@ -50,11 +50,6 @@ Route::group(['middleware' => 'auth_brand'], function () {
 	*/
 	Route::get('/brand/confirmation', 'TransactionController@index');
 	Route::post('/brand/confirmation', 'TransactionController@postConfirmation');
-	/**
-	*  Confirmation Page
-	*/
-	Route::get('/brand/confirmation', 'TransactionController@index');
-	Route::post('/brand/confirmation', 'TransactionController@postConfirmation');
 	
 	/**
 	* Home Access and Logout
@@ -67,6 +62,7 @@ Route::group(['middleware' => 'auth_brand'], function () {
 	*  Upload
 	*/
 	Route::post('brand/upload', 'BrandController@uploadPhoto');
+	Route::post('brand/upload/coverValidator', 'BrandController@validatorCover');
 });
 
 
