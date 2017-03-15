@@ -8611,6 +8611,9 @@ button, input, optgroup, select, textarea {
 .feature-photo {
   width: 100%;
   height: 310px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .feature-photo .cover {
