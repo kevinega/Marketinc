@@ -116,6 +116,20 @@
             $(".btn-edit").hide();
             $(".feature-details").hide();
         });
+
+        function retrieveData(){
+            $.ajax({
+                url: "/brand/details/retrieveData",
+                type: 'get',
+                dataType: 'json',
+                success: function(data){
+                    //pake data nya
+                },
+                error: function(data){
+                }
+            });
+        }
+
     });
 </script>
 @endsection

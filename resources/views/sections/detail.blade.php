@@ -28,6 +28,19 @@
 	        </div>
 	    </div>
 
+	    <div class="about-us" style="border:1px solid grey;">
+            <div class="description">
+                <p> {{ $desc }} </p>
+            </div>
+            <div class="location">
+                <p>
+                    {{ $add }} </br>
+                    {{ $phone1 }} </br>
+                    <strong>Open Hours:</strong> {{ $openh }}
+                </p>
+            </div>
+        </div>
+
 	    <!-- {{ var_dump($brands) }} -->
 	</div>
 

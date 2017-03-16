@@ -214,6 +214,10 @@ class BrandController extends Controller
         }else{
             return back()->with('message','Oops, there is something wrong with the server. Please try again');
         }
-
     }
+
+    public function retrieveDetails(){
+        //TODO buat facilities
+    }
+
 }
