@@ -216,8 +216,19 @@ class BrandController extends Controller
         }
     }
 
+    // Mengembalikan json dari attribut2 dibawah
     public function retrieveDetails(){
-        //TODO buat facilities
+        $facility = Facility::where("brand_id","=", Auth::user()->id)->first();
+        return response()->json([
+                'breakfast' => $facility->breakfast,
+                'wifi' => $facility->wifi,
+                'smoking_area' => $facility->smoking_area,
+                'working_environment' => $facility->working_environment,
+                'reservation' => $facility->reservation,
+                'private_room' => $facility->private_room,
+                'alcohol' => $facility->alcohol,
+                'delivery_services' => $facility->delivery_services
+            ]);
     }
 
 }

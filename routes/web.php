@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth_brand'], function () {
 	*  Update Details
 	*/
 	Route::post('brand/details/update', 'BrandController@updateDetails');
+	Route::get('brand/details/retrieveData', 'BrandController@retrieveDetails');
 });
 
 

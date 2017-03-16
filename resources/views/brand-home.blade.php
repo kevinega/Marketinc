@@ -116,14 +116,19 @@
             $(".btn-edit").hide();
             $(".feature-details").hide();
         });
-
+        // nanti kalo nilainya sesuai harusnya jadi berwarna
+        // TODO : cari cara supaya ngelewatin url-nya
         function retrieveData(){
             $.ajax({
                 url: "/brand/details/retrieveData",
                 type: 'get',
                 dataType: 'json',
                 success: function(data){
-                    //pake data nya
+                    if (data.breakfast == 1) {
+                        $("#breakfast-fac").attr("aria-pressed", "true");
+                    } else {
+                        $("#breakfast-fac").attr("aria-pressed", "false");
+                    }
                 },
                 error: function(data){
                 }
