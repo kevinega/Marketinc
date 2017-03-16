@@ -203,6 +203,11 @@ class BrandController extends Controller
         }else{
             $facility->delivery_services = 0;
         }
+        if($request->has('served_pork')){
+            $facility->served_pork = 1;
+        }else{
+            $facility->served_pork = 0;
+        }
 
         if($brand->save() && $facility->save()){
             return back()->with('message','Details are updated successfully');
