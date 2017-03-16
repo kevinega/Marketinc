@@ -22,6 +22,8 @@
     if($pathCover == "storage/"){
         $pathCover = "img/default-cover.png";
     }
+
+    $pathLogo = "storage/".Auth::guard()->user()->logo; 
 @endphp
 
 <div class="sidenav">
@@ -145,6 +147,25 @@
         </div> --}}
     </div>
 
+    <img id="logo-uploaded" src = {{ asset("$pathLogo") }} class="logo">
+
+    <img id="logo" class="logo">
+
+    <!-- form cropper -->
+    <div class="logo-error" role="alert">
+        <strong> {!! $errors->first('cover', '<span class="alert-danger logo-error">:message</span>') !!} </strong>
+    </div>
+    {!! Form::open(['id' => 'form-logo', 'enctype' => 'multipart/form-data']) !!}
+    {{ csrf_field() }}
+    {!! Form::file('logo', ['id' => 'uploaded-logo']) !!}
+    {!! Form::hidden('x-logo', '', array('id' => 'x-logo')) !!}
+    {!! Form::hidden('y-logo', '', array('id' => 'y-logo')) !!}
+    {!! Form::hidden('w-logo', '', array('id' => 'w-logo')) !!}
+    {!! Form::hidden('h-logo', '', array('id' => 'h-logo')) !!}
+    {!! Form::button('Save logo', ['type' => 'submit']) !!}
+    {!! Form::close() !!}
+
+
     <div class="container">
         <div class="feature">
             <div class="feature-flex-menu">
@@ -184,7 +205,8 @@
 @section('page-script')
 <script src="{{ asset('js/Jcrop.min.js') }}"></script>
     <script>
-        var crop;
+        var cropCover;
+        var cropLogo;
 
         $(document).ready(function(){
             // $("#cover-uploaded").attr('src', '{{ asset("$pathCover") }}');
@@ -193,7 +215,6 @@
             $("#form-cover").submit(function(e) {
                 e.preventDefault();
                 var formD = new FormData(this);
-                
                 $.ajax({
                     url: '/brand/upload/coverValidator',
                     type: 'post',
@@ -206,8 +227,8 @@
                         if(data.status == "errors") {
                             $(".cover-error").addClass("alert alert-danger");
                             $(".cover-error").text(data.message.cover[0]);
-                            crop.destroy();
-                            crop = undefined;
+                            cropCover.destroy();
+                            cropCover = undefined;
                             $('#form-cover').trigger('reset');
                             $("#cover").removeAttr("src");
                             $("#cover").removeAttr("style");
@@ -221,6 +242,39 @@
                     }
                 });
             });
+
+            $("#form-logo").submit(function(e) {
+                e.preventDefault();
+                var formD = new FormData(this);
+
+                $.ajax({
+                    url: '/brand/upload/logoValidator',
+                    type: 'post',
+                    dataType: 'json',
+                    data: formD,
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function(data) {
+                        if(data.status == "errors") {
+                            console.log(data);
+                            // $(".cover-error").addClass("alert alert-danger");
+                            // $(".cover-error").text(data.message.cover[0]);
+                            cropLogo.destroy();
+                            cropLogo = undefined;
+                            $('#form-logo').trigger('reset');
+                            $("#logo").removeAttr("src");
+                            $("#logo").removeAttr("style");
+
+                        } else if(data.status == "success") {
+                            location.reload();
+                        }
+                    },
+                    error: function(data) {
+                        // $(".cover-error").append("Upload Cover Error");
+                    }
+                });
+            });
         });
 
         function readURL(input) {
@@ -228,7 +282,11 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#cover').attr('src', e.target.result);
+                    if(input.name == "cover"){
+                        $('#cover').attr('src', e.target.result);
+                    } else if (input.name == "logo"){
+                        $('#logo').attr('src', e.target.result);
+                    }
                 }
                 reader.readAsDataURL(input.files[0]);
             } else {
@@ -242,21 +300,85 @@
             $(".cover-error").text("");
             $(".cover-error").removeClass("alert alert-danger");
             readURL(this);
-            refreshJcrop();
+            refreshJcrop(this.name);
+        });
+
+        $("#uploaded-logo").change(function() {
+            // $(".cover-error").text("");
+            // $(".cover-error").removeClass("alert alert-danger");
+            readURL(this);
+            refreshJcrop(this.name);
         });
 
 
         // initiate cropper
-        function initJcrop(){
-            $('#cover').Jcrop({
-                boxWidth: 700,
-                boxHeight: 700,
-                setSelect: initCoords(),
-                aspectRatio: 5 / 1,
-                onSelect: updateCoords
-            },function () { 
-                crop = this; 
-            });
+        function initJcrop(input){
+            if(input == "cover"){
+                $('#cover').Jcrop({
+                    applyFilters: [ 'constrain', 'extent', 'backoff', 'ratio', 'round', 'shader' ],
+                    boxWidth: 700,
+                    boxHeight: 700,
+                    setSelect: initCoords(input),
+                    aspectRatio: 5 / 1,
+                    onSelect: updateCoords
+                },function () { 
+                    cropCover = this; 
+                });
+
+            } else if(input == "logo"){
+
+                var CircleSel = function(){};
+
+                // Set the custom selection's prototype
+                CircleSel.prototype = new $.Jcrop.component.Selection();
+                //extending it
+                $.extend(CircleSel.prototype,{
+                    zoomscale: 1,
+                    attach: function(){
+                        this.frame.css({
+                          background: 'url(' + $('#logo')[0].src.replace('750','750') + ')'
+                        });
+                    },
+                    positionBg: function(b){
+                        var midx = ( b.x + b.x2 ) / 2;
+                        var midy = ( b.y + b.y2 ) / 2;
+                        var ox = (-midx*this.zoomscale)+(b.w/2);
+                        var oy = (-midy*this.zoomscale)+(b.h/2);
+                        this.frame.css({ backgroundPosition: ox+'px '+oy+'px' });
+                        // this.frame.css({ backgroundPosition: -(b.x+1)+'px '+(-b.y-1)+'px' });
+                    },
+                    redraw: function(b){
+                        // Call original update() method first, with arguments
+                        $.Jcrop.component.Selection.prototype.redraw.call(this,b);
+
+                        this.positionBg(this.last);
+                        return this;
+                    },
+                    prototype: $.Jcrop.component.Selection.prototype
+                });
+                
+                $('#logo').Jcrop({
+                    // Change default Selection component for new selections
+                    selectionComponent: CircleSel,
+                    applyFilters: [ 'constrain', 'extent', 'backoff', 'ratio', 'round' ],
+                    aspectRatio: 1,
+                    setSelect: initCoords(input),
+                    handles: [ 'n','s','e','w' ],
+                    borders: [ ],
+                    onSelect: updateLogoCoords
+
+                },function(){
+                    this.container.addClass('jcrop-circle-demo');
+                    interface_load(this);
+                    cropLogo = this;
+                });
+            }
+        }
+
+        function interface_load(obj){
+          cb = obj;
+          // Add in a custom shading element...
+          cb.container.prepend($('<div />').addClass('custom-shade'));
         }
 
         // save coordinate cropper
@@ -267,32 +389,91 @@
             $('#h').val(c.h);
         };
 
-        //init coordinates and give initial value to coordinate input
-        function initCoords()
-        {
-            $('#x').val(0);
-            $('#y').val(0);
-            $('#w').val(500);
-            $('#h').val(100);
+        // save coordinate cropper
+        function updateLogoCoords(c) {
+            $('#x-logo').val(c.x);
+            $('#y-logo').val(c.y);
+            $('#w-logo').val(c.w);
+            $('#h-logo').val(c.h);
+        };
 
-             return [
-               $('#x').val(),
-               $('#y').val(),
-               $('#w').val(),
-               $('#h').val(),  
-              ];
+        //init coordinates and give initial value to coordinate input
+        function initCoords(input)
+        {
+            if(input == "cover"){
+                $('#x').val(0);
+                $('#y').val(0);
+                $('#w').val(500);
+                $('#h').val(100);
+
+                return [
+                    $('#x').val(),
+                    $('#y').val(),
+                    $('#w').val(),
+                    $('#h').val(),  
+                ];
+            } else if (input == "logo"){
+                $('#x-logo').val(0);
+                $('#y-logo').val(0);
+                $('#w-logo').val(200);
+                $('#h-logo').val(200);
+                
+                return [
+                    $('#x-logo').val(),
+                    $('#y-logo').val(),
+                    $('#w-logo').val(),
+                    $('#h-logo').val(),  
+                ];
+            }
         };
 
         //Restart Jcrop
-        function refreshJcrop() 
+        function refreshJcrop(input) 
         {
-            $('#cover').one('load', function(){
-                if(crop != undefined){
-                    crop.destroy();
-                }
-                initJcrop();
-            });
+            if(input == "cover"){
+                $('#cover').one('load', function(){
+                    if(cropCover != undefined){
+                        cropCover.destroy();
+                    }
+                    initJcrop(input);
+                });
+            } else if(input == "logo"){
+                $('#logo').one('load', function(){
+                    if(cropLogo != undefined){
+                        cropLogo.destroy();
+                    }
+                    initJcrop(input);
+                });
+            }
+           
         };
 
     </script>
 @endsection
+
+<style type="text/css">.jcrop-circle-demo .jcrop-box {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border: 1px rgba(255, 255, 255) solid;
+  border-radius: 50%;
+  /*-webkit-box-shadow: 1px 1px 26px #000000;
+  -moz-box-shadow: 1px 1px 26px #000000;
+  box-shadow: 1px 1px 26px #000000;*/
+  overflow: hidden;
+}
+.jcrop-circle-demo .jcrop-box:focus {
+  outline: none;
+}
+.custom-shade {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: black;
+  opacity: 0.4;
+  width: 100%;
+  height: 100%;
+}
+</style>
