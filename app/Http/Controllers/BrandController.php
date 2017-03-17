@@ -157,7 +157,7 @@ class BrandController extends Controller
             $facility->breakfast = 1;
         }else{
             if ($facility->breakfast == 1) {
-                $facility->breakfast = $facility->breakfast;
+                $facility->breakfast = $request->breakfast;
             } else {
                 $facility->breakfast = 0;
             }
@@ -167,7 +167,7 @@ class BrandController extends Controller
             $facility->wifi = 1;
         }else{
             if ($facility->wifi == 1) {
-                $facility->wifi = $facility->wifi;
+                $facility->wifi = $request->wifi;
             } else {
                 $facility->wifi = 0;
             }
@@ -177,7 +177,7 @@ class BrandController extends Controller
             $facility->smoking_area = 1;
         }else{
             if ($facility->smoking_area == 1) {
-                $facility->smoking_area = $facility->smoking_area;
+                $facility->smoking_area = $request->smoking_area;
             } else {
                 $facility->smoking_area = 0;
             }
@@ -187,7 +187,7 @@ class BrandController extends Controller
             $facility->ac = 1;
         }else{
             if ($facility->ac == 1) {
-                $facility->ac = $facility->ac;
+                $facility->ac = $request->ac;
             } else {
                 $facility->ac = 0;
             }
@@ -197,7 +197,7 @@ class BrandController extends Controller
             $facility->working_environment = 1;
         }else{
            if ($facility->working_environment == 1) {
-                $facility->working_environment = $facility->working_environment;
+                $facility->working_environment = $request->working_environment;
             } else {
                 $facility->working_environment = 0;
             }
@@ -207,7 +207,7 @@ class BrandController extends Controller
             $facility->reservation = 1;
         }else{
            if ($facility->reservation == 1) {
-                $facility->reservation = $facility->reservation;
+                $facility->reservation = $request->reservation;
             } else {
                 $facility->reservation = 0;
             }
@@ -217,7 +217,7 @@ class BrandController extends Controller
             $facility->private_room = 1;
         }else{
             if ($facility->private_room == 1) {
-                $facility->private_room = $facility->private_room;
+                $facility->private_room = $request->private_room;
             } else {
                 $facility->private_room = 0;
             }
@@ -227,7 +227,7 @@ class BrandController extends Controller
             $facility->alcohol = 1;
         }else{
             if ($facility->alcohol == 1) {
-                $facility->alcohol = $facility->alcohol;
+                $facility->alcohol = $request->alcohol;
             } else {
                 $facility->alcohol = 0;
             }
@@ -237,7 +237,7 @@ class BrandController extends Controller
             $facility->valet = 1;
         }else{
             if ($facility->valet == 1) {
-                $facility->valet = $facility->valet;
+                $facility->valet = $request->valet;
             } else {
                 $facility->valet = 0;
             }
@@ -247,7 +247,7 @@ class BrandController extends Controller
             $facility->delivery_services = 1;
         }else{
             if ($facility->delivery_services == 1) {
-                $facility->delivery_services = $facility->delivery_services;
+                $facility->delivery_services = $request->delivery_services;
             } else {
                 $facility->delivery_services = 0;
             }
@@ -257,7 +257,7 @@ class BrandController extends Controller
             $facility->served_pork = 1;
         }else{
             if ($facility->served_pork == 1) {
-                $facility->served_pork = $facility->served_pork;
+                $facility->served_pork = $request->served_pork;
             } else {
                 $facility->served_pork = 0;
             }
