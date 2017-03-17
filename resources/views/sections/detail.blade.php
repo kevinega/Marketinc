@@ -95,7 +95,7 @@
 			<label class="btn btn-primary btn-facilities" id="parking-fac">
 				<input name="parking_lot" type="checkbox" autocomplete="off">
 				<img src="{{ asset("img/facilities/parking-lot.png") }}"> 
-				<p class="detail-icon">Live Music</p>
+				<p class="detail-icon">Live Entertainment</p>
 			</label>
 			<label class="btn btn-primary btn-facilities" id="ac-fac">
 				<input name="ac" type="checkbox" autocomplete="off">
