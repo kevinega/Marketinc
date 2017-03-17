@@ -156,57 +156,111 @@ class BrandController extends Controller
         if($request->has('breakfast')){
             $facility->breakfast = 1;
         }else{
-            $facility->breakfast = 0;
+            if ($facility->breakfast == 1) {
+                $facility->breakfast = $facility->breakfast;
+            } else {
+                $facility->breakfast = 0;
+            }
         }
+
         if($request->has('wifi')){
             $facility->wifi = 1;
         }else{
-            $facility->wifi = 0;
+            if ($facility->wifi == 1) {
+                $facility->wifi = $facility->wifi;
+            } else {
+                $facility->wifi = 0;
+            }
         }
+
         if($request->has('smoking_area')){
             $facility->smoking_area = 1;
         }else{
-            $facility->smoking_area = 0;
+            if ($facility->smoking_area == 1) {
+                $facility->smoking_area = $facility->smoking_area;
+            } else {
+                $facility->smoking_area = 0;
+            }
         }
+
         if($request->has('ac')){
             $facility->ac = 1;
         }else{
-            $facility->ac = 0;
+            if ($facility->ac == 1) {
+                $facility->ac = $facility->ac;
+            } else {
+                $facility->ac = 0;
+            }
         }
+
         if($request->has('working_environment')){
             $facility->working_environment = 1;
         }else{
-            $facility->working_environment = 0;
+           if ($facility->working_environment == 1) {
+                $facility->working_environment = $facility->working_environment;
+            } else {
+                $facility->working_environment = 0;
+            }
         }
+
         if($request->has('reservation')){
             $facility->reservation = 1;
         }else{
-            $facility->reservation = 0;
+           if ($facility->reservation == 1) {
+                $facility->reservation = $facility->reservation;
+            } else {
+                $facility->reservation = 0;
+            }
         }
+
         if($request->has('private_room')){
             $facility->private_room = 1;
         }else{
-            $facility->private_room = 0;
+            if ($facility->private_room == 1) {
+                $facility->private_room = $facility->private_room;
+            } else {
+                $facility->private_room = 0;
+            }
         }
+
         if($request->has('alcohol')){
             $facility->alcohol = 1;
         }else{
-            $facility->alcohol = 0;
+            if ($facility->alcohol == 1) {
+                $facility->alcohol = $facility->alcohol;
+            } else {
+                $facility->alcohol = 0;
+            }
         }
+
         if($request->has('valet')){
             $facility->valet = 1;
         }else{
-            $facility->valet = 0;
+            if ($facility->valet == 1) {
+                $facility->valet = $facility->valet;
+            } else {
+                $facility->valet = 0;
+            }
         }
+
         if($request->has('delivery_services')){
             $facility->delivery_services = 1;
         }else{
-            $facility->delivery_services = 0;
+            if ($facility->delivery_services == 1) {
+                $facility->delivery_services = $facility->delivery_services;
+            } else {
+                $facility->delivery_services = 0;
+            }
         }
+
         if($request->has('served_pork')){
             $facility->served_pork = 1;
         }else{
-            $facility->served_pork = 0;
+            if ($facility->served_pork == 1) {
+                $facility->served_pork = $facility->served_pork;
+            } else {
+                $facility->served_pork = 0;
+            }
         }
 
         if($brand->save() && $facility->save()){
@@ -229,7 +283,8 @@ class BrandController extends Controller
                 'alcohol' => $facility->alcohol,
                 'delivery_services' => $facility->delivery_services,
                 'served_pork' => $facility->served_pork,
-                'ac' => $facility->ac
+                'ac' => $facility->ac,
+                'valet' => $facility->valet
             ]);
     }
 

@@ -143,7 +143,7 @@
                     } else {
                         $("#smoking-fac").attr("aria-pressed", "false");
                     }
-                    if (data.working_environtment == 1) {
+                    if (data.working_environment == 1) {
                         $("#working-fac").addClass("btn btn-primary btn-facilities active");
                     } else {
                         $("#working-fac").attr("aria-pressed", "false");
@@ -169,14 +169,19 @@
                         $("#delivery-fac").attr("aria-pressed", "false");
                     }
                     if (data.served_pork == 1) {
-                        $("#served_pork").addClass("btn btn-primary btn-facilities active");
+                        $("#pork-fac").addClass("btn btn-primary btn-facilities active");
                     } else {
-                        $("#served_pork").attr("aria-pressed", "false");
+                        $("#pork-fac").attr("aria-pressed", "false");
                     }
                     if (data.ac == 1) {
                         $("#ac-fac").addClass("btn btn-primary btn-facilities active");
                     } else {
                         $("#ac-fac").attr("aria-pressed", "false");
+                    }
+                    if (data.valet == 1) {
+                        $("#valet-fac").addClass("btn btn-primary btn-facilities active");
+                    } else {
+                        $("#valet-fac").attr("aria-pressed", "false");
                     }
                 },
                 error: function(data){

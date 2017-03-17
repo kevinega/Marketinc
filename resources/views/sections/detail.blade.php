@@ -1,3 +1,4 @@
+
 <div class="feature-header">
 	<h4>DETAILS</h4>
 	<button><i class="material-icons btn-edit">mode_edit</i></button>
@@ -99,7 +100,7 @@
 			<label class="btn btn-primary btn-facilities" id="parking-fac">
 				<input name="parking_lot" type="checkbox" autocomplete="off">
 				<img src="{{ asset("img/facilities/parking-lot.png") }}"> 
-				<p class="detail-icon">Parking Lot</p>
+				<p class="detail-icon">Gak ada di DB</p>
 			</label>
 			<label class="btn btn-primary btn-facilities" id="ac-fac">
 				<input name="ac" type="checkbox" autocomplete="off">
@@ -126,17 +127,17 @@
 			<label class="btn btn-primary btn-facilities" id="working-fac">
 				<input name="working_environment" type="checkbox" autocomplete="off">
 				<img src="{{ asset("img/facilities/working-space.png") }}"> 
-				<p class="detail-icon">Working Space</p>
+				<p class="detail-icon">Working Environment</p>
 			</label>
 			<label class="btn btn-primary btn-facilities" id="alcohol-fac">
 				<input name="alcohol" type="checkbox" autocomplete="off">
 				<img src="{{ asset("img/facilities/alcohol.png") }}"> 
 				<p class="detail-icon">Alcohol</p>
 			</label>
-			<label class="btn btn-primary btn-facilities">
-				<input name="changing_room" type="checkbox" autocomplete="off">
+			<label class="btn btn-primary btn-facilities" id="pork-fac">
+				<input name="served_pork" type="checkbox" autocomplete="off">
 				<img src="{{ asset("img/facilities/changing-room.png") }}"> 
-				<p class="detail-icon">Changing Room</p>
+				<p class="detail-icon">Served Pork</p>
 			</label>
 		</div>
 	</div>
