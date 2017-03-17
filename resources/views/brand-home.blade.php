@@ -121,6 +121,7 @@
         // nanti kalo nilainya sesuai harusnya jadi berwarna
         // TODO : cari cara supaya ngelewatin url-nya
 
+
         function retrieveData(){
             $.ajax({
                 url: "/brand/details/retrieveData",
@@ -130,58 +131,104 @@
                     if (data.breakfast == 1) {
                         console.log("masuk");
                         $("#breakfast-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#breakfast").removeClass("unavailable");
+                        $("#breakfast").addClass("available");
                     } else {
+                        console.log("unavailable");
                         $("#breakfast-fac").attr("aria-pressed", "false");
+                        $("#breakfast").addClass("unavailable");
+                        $("#breakfast").removeClass("available");
                     }
                     if (data.wifi == 1) {
                         $("#wifi-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#wifi").removeClass("unavailable");
+                        $("#wifi").addClass("available");
                     } else {
                         $("#wifi-fac").attr("aria-pressed", "false");
+                        $("#wifi").addClass("unavailable");
+                        $("#wifi").removeClass("available");
                     }
                     if (data.smoking_area == 1) {
                         $("#smoking-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#smoking-area").removeClass("unavailable");
+                        $("#smoking-area").addClass("available");
                     } else {
                         $("#smoking-fac").attr("aria-pressed", "false");
+                        $("#smoking-area").addClass("unavailable");
+                        $("#smoking-area").removeClass("available");
                     }
                     if (data.working_environment == 1) {
                         $("#working-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#working-env").removeClass("unavailable");
+                        $("#working-env").addClass("available");
                     } else {
                         $("#working-fac").attr("aria-pressed", "false");
+                        $("#working-env").addClass("unavailable");
+                        $("#working-env").removeClass("available");
                     }
                     if (data.reservation == 1) {
                         $("#reservation-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#reservation").removeClass("unavailable");
+                        $("#reservation").addClass("available");
                     } else {
                         $("#reservation-fac").attr("aria-pressed", "false");
+                        $("#reservation").addClass("unavailable");
+                        $("#reservation").removeClass("available");
                     }
                     if (data.private_room == 1) {
                         $("#private-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#private-room").removeClass("unavailable");
+                        $("#private-room").addClass("available");
                     } else {
                         $("#private-fac").attr("aria-pressed", "false");
+                        $("#private-room").addClass("unavailable");
+                        $("#private-room").removeClass("available");
                     }
                     if (data.alcohol == 1) {
                         $("#alcohol-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#alcohol").removeClass("unavailable");
+                        $("#alcohol").addClass("available");
                     } else {
                         $("#alcohol-fac").attr("aria-pressed", "false");
+                        $("#alcohol").addClass("unavailable");
+                        $("#alcohol").removeClass("available");
                     }
                     if (data.delivery_services == 1) {
                         $("#delivery-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#delivery").removeClass("unavailable");
+                        $("#delivery").addClass("available");
                     } else {
                         $("#delivery-fac").attr("aria-pressed", "false");
+                        $("#delivery").addClass("unavailable");
+                        $("#delivery").removeClass("available");
+
                     }
                     if (data.served_pork == 1) {
                         $("#pork-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#served-pork").removeClass("unavailable");
+                        $("#served-pork").addClass("available");
                     } else {
                         $("#pork-fac").attr("aria-pressed", "false");
+                        $("#served-pork").addClass("unavailable");
+                        $("#served-pork").removeClass("available");
                     }
                     if (data.ac == 1) {
                         $("#ac-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#ac").removeClass("unavailable");
+                        $("#ac").addClass("available");
                     } else {
                         $("#ac-fac").attr("aria-pressed", "false");
+                        $("#ac").addClass("unavailable");
+                        $("#ac").removeClass("available");
                     }
                     if (data.valet == 1) {
                         $("#valet-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#valet").removeClass("unavailable");
+                        $("#valet").addClass("available");
                     } else {
                         $("#valet-fac").attr("aria-pressed", "false");
+                        $("#valet").addClass("unavailable");
+                        $("#valet").removeClass("available");
                     }
                 },
                 error: function(data){

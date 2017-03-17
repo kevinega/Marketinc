@@ -31,24 +31,21 @@
 	</div>
 
 	<div class="feature-details-facilities">
+		<div class="facilities-flex">
 			@php 
-			$facilities = array("", "Breakfast", "Smoking Area", "Reservation", "Valet", "Parking Lot", "Air Conditioner", "Private Room", "Delivery", "WiFi", "Working Space", "Alcohol", "Changing Room");
+			$labels = array("Breakfast", "Smoking Area", "Reservation", "Valet", "Live Entertainment", "Air Conditioner", "Private Room", "Delivery", "WiFi", "Working Environment", "Alcohol", "Served Pork");
+			$images = array("breakfast", "smoking-area", "reservation", "valet", "live-entertainment", "ac", "private-room", "delivery", "wifi", "working-env", "alcohol", "served-pork");
 
-			for($x = 1; $x <= 12; $x++) {
+			for($x = 0; $x < 12; $x++) {
 			@endphp
-				@if($x % 4 == 1)
-					<div class="facilities-flex">
-				@endif
 				<div class="facility">
-					<img src="{{ asset("img/facilities/breakfast.png") }}"> 
-					<p class="detail-icon">@php echo $facilities[$x]; @endphp</p>
+					<img src="{{ asset("img/facilities/$images[$x].png") }}"> 
+					<p class="detail-icon" id="{{ $images[$x] }}">{{ $labels[$x] }}</p>
 				</div>
-				@if($x % 4 == 0)
-					</div>
-				@endif
 			@php
 			}
 			@endphp
+		</div>
 	</div>
 </div>
 
@@ -95,12 +92,10 @@
 				<img src="{{ asset("img/facilities/valet.png") }}">
 				<p class="detail-icon">Valet</p>
 			</label>
-		</div>
-		<div class="facilities-flex" data-toggle="buttons">
 			<label class="btn btn-primary btn-facilities" id="parking-fac">
 				<input name="parking_lot" type="checkbox" autocomplete="off">
 				<img src="{{ asset("img/facilities/parking-lot.png") }}"> 
-				<p class="detail-icon">Gak ada di DB</p>
+				<p class="detail-icon">Live Music</p>
 			</label>
 			<label class="btn btn-primary btn-facilities" id="ac-fac">
 				<input name="ac" type="checkbox" autocomplete="off">
@@ -117,8 +112,6 @@
 				<img src="{{ asset("img/facilities/delivery.png") }}"> 
 				<p class="detail-icon">Delivery</p>
 			</label>
-		</div>
-		<div class="facilities-flex" data-toggle="buttons">
 			<label class="btn btn-primary btn-facilities" id="wifi-fac">
 				<input name="wifi" type="checkbox" autocomplete="off">
 				<img src="{{ asset("img/facilities/wifi.png") }}"> 
