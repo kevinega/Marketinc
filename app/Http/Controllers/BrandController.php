@@ -227,7 +227,9 @@ class BrandController extends Controller
                 'reservation' => $facility->reservation,
                 'private_room' => $facility->private_room,
                 'alcohol' => $facility->alcohol,
-                'delivery_services' => $facility->delivery_services
+                'delivery_services' => $facility->delivery_services,
+                'served_pork' => $facility->served_pork,
+                'ac' => $facility->ac
             ]);
     }
 

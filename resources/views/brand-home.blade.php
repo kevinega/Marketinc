@@ -116,8 +116,11 @@
             $(".btn-edit").hide();
             $(".feature-details").hide();
         });
+        retrieveData();
+
         // nanti kalo nilainya sesuai harusnya jadi berwarna
         // TODO : cari cara supaya ngelewatin url-nya
+
         function retrieveData(){
             $.ajax({
                 url: "/brand/details/retrieveData",
@@ -125,16 +128,65 @@
                 dataType: 'json',
                 success: function(data){
                     if (data.breakfast == 1) {
-                        $("#breakfast-fac").attr("aria-pressed", "true");
+                        console.log("masuk");
+                        $("#breakfast-fac").addClass("btn btn-primary btn-facilities active");
                     } else {
                         $("#breakfast-fac").attr("aria-pressed", "false");
+                    }
+                    if (data.wifi == 1) {
+                        $("#wifi-fac").addClass("btn btn-primary btn-facilities active");
+                    } else {
+                        $("#wifi-fac").attr("aria-pressed", "false");
+                    }
+                    if (data.smoking_area == 1) {
+                        $("#smoking-fac").addClass("btn btn-primary btn-facilities active");
+                    } else {
+                        $("#smoking-fac").attr("aria-pressed", "false");
+                    }
+                    if (data.working_environtment == 1) {
+                        $("#working-fac").addClass("btn btn-primary btn-facilities active");
+                    } else {
+                        $("#working-fac").attr("aria-pressed", "false");
+                    }
+                    if (data.reservation == 1) {
+                        $("#reservation-fac").addClass("btn btn-primary btn-facilities active");
+                    } else {
+                        $("#reservation-fac").attr("aria-pressed", "false");
+                    }
+                    if (data.private_room == 1) {
+                        $("#private-fac").addClass("btn btn-primary btn-facilities active");
+                    } else {
+                        $("#private-fac").attr("aria-pressed", "false");
+                    }
+                    if (data.alcohol == 1) {
+                        $("#alcohol-fac").addClass("btn btn-primary btn-facilities active");
+                    } else {
+                        $("#alcohol-fac").attr("aria-pressed", "false");
+                    }
+                    if (data.delivery_services == 1) {
+                        $("#delivery-fac").addClass("btn btn-primary btn-facilities active");
+                    } else {
+                        $("#delivery-fac").attr("aria-pressed", "false");
+                    }
+                    if (data.served_pork == 1) {
+                        $("#served_pork").addClass("btn btn-primary btn-facilities active");
+                    } else {
+                        $("#served_pork").attr("aria-pressed", "false");
+                    }
+                    if (data.ac == 1) {
+                        $("#ac-fac").addClass("btn btn-primary btn-facilities active");
+                    } else {
+                        $("#ac-fac").attr("aria-pressed", "false");
                     }
                 },
                 error: function(data){
                 }
             });
-        }
+            
 
+        }
     });
+
+    
 </script>
 @endsection
