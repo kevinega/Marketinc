@@ -1,3 +1,6 @@
+/*
+  ARTICLE SCRIPT
+*/
 $(document).ready(function() {
   // AJAX function to change the form by user input
   $('#urlKu').change(function() {
@@ -40,11 +43,12 @@ $(document).ready(function() {
           providerName = data.message[key].provider_name;
           providerUrl = data.message[key].provider_url;
 
+          // create a new article card on the front-end
           htmlText += '<div class="card" style="width: 20rem;">';
           htmlText += '<img class="card-img-top" src=' + image + ' alt="Card image cap"></img>';
           htmlText += '<div class="card-block">';
-          htmlText += '<h4 class="card-title">' + title + '</h4>';
-          htmlText += '<p class="card-text">' + description + '</p>';
+          htmlText += '<h4 class="card-title"><strong>' + title + '</strong></h4>';
+          htmlText += '<p class="card-text">' + description + '...</p>';
           htmlText += '</div>';
           htmlText += '</div>';
         }
@@ -58,5 +62,10 @@ $(document).ready(function() {
     error: function(e) { 
       console.log('Get data from database failed.'); 
     } 
-  }); 
+  });
+
+  $('.add-article').click(function(){
+    // alert('Button clicked.');
+    $('.form').slideToggle();
+  });
 });

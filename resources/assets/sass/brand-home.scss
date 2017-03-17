@@ -73,7 +73,7 @@
     } 
 }
 
-// PROMOTIONS  STYLE
+// PROMOTIONS STYLE
 .feature-promotions {
     text-align: center;
 }
@@ -158,4 +158,45 @@
     .detail-icon {
         display: none;
     }
+}
+
+// ARTICLES STYLE
+.feature-head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h2 {
+        margin-bottom: 0 !important;
+        flex-grow: 1;
+    }
+
+    + .form {
+        display: none;
+        padding: 0.8rem;
+        background-color: $grey-light;
+        margin-bottom: 20px;
+    }
+}
+
+.card {
+    width: 15rem !important;
+}
+
+.card-img-top {
+    max-height: 8rem;
+}
+
+.card-block {
+    padding: 0.8rem;
+}
+
+.card-title {
+    font-size: 1rem !important;
+}
+
+.card-text {
+    font-size: 0.8rem;
+    line-height: 1.15;
+    color: $grey;
 }
