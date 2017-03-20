@@ -68,72 +68,152 @@
 	{!! Form::label('open_hour', 'Open Hour:') !!}
     {!! Form::text('open_hour', null, ['id' => 'open_hour', 'class' => 'form-control', 'placeholder' => 'Ex: 09:00AM - 22:00PM']) !!}</br>
 
-    {!! Form::label('facilities', 'Facilities:') !!}
-    
-    <div class="feature-details-facilities">
-		<div class="facilities-flex" data-toggle="buttons">
-			<label class="btn btn-primary btn-facilities" id="breakfast-fac" aria-pressed="false">
-				<input name="breakfast" type="checkbox" autocomplete="off">
-				<img src="{{ asset("img/facilities/breakfast.png") }}"> 
-				<p class="detail-icon">Breakfast</p>
+
+    {{-- selanjutnya bikin sendiri ya guys luv --}}
+    <div class="open-hour">
+	    <label>
+	    	<input type="checkbox" class="form-check-input">
+	    	Monday
+		</label>
+		<div class="time">
+			from:
+			<label>
+				<input class="form-control" type="time" value="10:00:00">
 			</label>
-			<label class="btn btn-primary btn-facilities" id="smoking-fac">
-				<input name="smoking_area" type="checkbox" autocomplete="off">
-				<img src="{{ asset("img/facilities/smoking-area.png") }}"> 
-				<p class="detail-icon">Smoking Area</p>
-			</label>
-			<label class="btn btn-primary btn-facilities" id="reservation-fac">
-				<input  name="reservation" type="checkbox" autocomplete="off">
-				<img src="{{ asset("img/facilities/reservation.png") }}">
-				<p class="detail-icon">Reservation</p>
-			</label>
-			<label class="btn btn-primary btn-facilities" id="valet-fac">
-				<input name="valet" type="checkbox" autocomplete="off">
-				<img src="{{ asset("img/facilities/valet.png") }}">
-				<p class="detail-icon">Valet</p>
-			</label>
-			<label class="btn btn-primary btn-facilities" id="parking-fac">
-				<input name="parking_lot" type="checkbox" autocomplete="off">
-				<img src="{{ asset("img/facilities/parking-lot.png") }}"> 
-				<p class="detail-icon">Live Entertainment</p>
-			</label>
-			<label class="btn btn-primary btn-facilities" id="ac-fac">
-				<input name="ac" type="checkbox" autocomplete="off">
-				<img src="{{ asset("img/facilities/ac.png") }}"> 
-				<p class="detail-icon">Air Conditioner</p>
-			</label>
-			<label class="btn btn-primary btn-facilities" id="private-fac">
-				<input name="private_room" type="checkbox" autocomplete="off">
-				<img src="{{ asset("img/facilities/private-room.png") }}"> 
-				<p class="detail-icon">Private Room</p>
-			</label>
-			<label class="btn btn-primary btn-facilities" id="delivery-fac">
-				<input name="delivery_services" type="checkbox" autocomplete="off">
-				<img src="{{ asset("img/facilities/delivery.png") }}"> 
-				<p class="detail-icon">Delivery</p>
-			</label>
-			<label class="btn btn-primary btn-facilities" id="wifi-fac">
-				<input name="wifi" type="checkbox" autocomplete="off">
-				<img src="{{ asset("img/facilities/wifi.png") }}"> 
-				<p class="detail-icon">WiFi</p>
-			</label>
-			<label class="btn btn-primary btn-facilities" id="working-fac">
-				<input name="working_environment" type="checkbox" autocomplete="off">
-				<img src="{{ asset("img/facilities/working-space.png") }}"> 
-				<p class="detail-icon">Working Environment</p>
-			</label>
-			<label class="btn btn-primary btn-facilities" id="alcohol-fac">
-				<input name="alcohol" type="checkbox" autocomplete="off">
-				<img src="{{ asset("img/facilities/alcohol.png") }}"> 
-				<p class="detail-icon">Alcohol</p>
-			</label>
-			<label class="btn btn-primary btn-facilities" id="pork-fac">
-				<input name="served_pork" type="checkbox" autocomplete="off">
-				<img src="{{ asset("img/facilities/changing-room.png") }}"> 
-				<p class="detail-icon">Served Pork</p>
+			to: 
+			<label>
+				<input class="form-control" type="time" value="20:00:00">
 			</label>
 		</div>
 	</div>
+
+    {!! Form::label('facilities', 'Facilities:') !!}
+    
+    <div class="feature-details-facilities">
+	    <div class="facilities-flex">
+		    <div class="facility-edit">
+		    	<div class="facility">
+					<img src="{{ asset("img/facilities/breakfast.png") }}"> 
+					<p class="detail-icon">Breakfast</p>
+				</div>
+				<label class="switch" aria-pressed="false">
+					<input name="breakfast" id="breakfast-fac" type="checkbox" autocomplete="off">
+					<div class="slider round"></div>
+				</label>
+			</div>
+			<div class="facility-edit">
+				<div class="facility">
+					<img src="{{ asset("img/facilities/smoking-area.png") }}"> 
+					<p class="detail-icon">Smoking Area</p>
+				</div>
+				<label class="switch" aria-pressed="false">
+					<input name="smoking_area" id="smoking-fac" type="checkbox" autocomplete="off">
+					<div class="slider round"></div>
+				</label>
+			</div>
+			<div class="facility-edit">
+				<div class="facility">	
+					<img src="{{ asset("img/facilities/reservation.png") }}">
+					<p class="detail-icon">Reservation</p>
+				</div>
+				<label class="switch" aria-pressed="false">
+					<input name="reservation" id="reservation-fac" type="checkbox" autocomplete="off">
+					<div class="slider round"></div>
+				</label>
+			</div>
+			<div class="facility-edit">
+				<div class="facility">
+					<img src="{{ asset("img/facilities/valet.png") }}">
+					<p class="detail-icon">Valet</p>
+				</div>
+				<label class="switch" aria-pressed="false">
+					<input name="valet" id="valet-fac" type="checkbox" autocomplete="off">
+					<div class="slider round"></div>
+				</label>
+			</div>
+			<div class="facility-edit">
+				<div class="facility">
+					<img src="{{ asset("img/facilities/parking-lot.png") }}"> 
+					<p class="detail-icon">Live Entertainment</p>
+				</div>
+				<label class="switch" aria-pressed="false">
+					<input name="live" id="live-fac" type="checkbox" autocomplete="off">
+					<div class="slider round"></div>
+				</label>
+			</div>
+			<div class="facility-edit">
+				<div class="facility">
+					<img src="{{ asset("img/facilities/ac.png") }}"> 
+					<p class="detail-icon">Air Conditioner</p>
+				</div>
+				<label class="switch" aria-pressed="false">
+					<input name="ac" id="ac-fac" type="checkbox" autocomplete="off">
+					<div class="slider round"></div>
+				</label>
+			</div>
+			<div class="facility-edit">	
+				<div class="facility">
+					<img src="{{ asset("img/facilities/private-room.png") }}"> 
+					<p class="detail-icon">Private Room</p>
+				</div>
+				<label class="switch" aria-pressed="false">
+					<input name="private_room" id="private-fac" type="checkbox" autocomplete="off">
+					<div class="slider round"></div>
+				</label>
+			</div>
+			<div class="facility-edit">
+				<div class="facility">
+					<img src="{{ asset("img/facilities/delivery.png") }}"> 
+					<p class="detail-icon">Delivery</p>
+				</div>
+				<label class="switch" aria-pressed="false">
+					<input name="delivery_services" id="delivery-fac" type="checkbox" autocomplete="off">
+					<div class="slider round"></div>
+				</label>
+			</div>
+			<div class="facility-edit">
+				<div class="facility">
+					<img src="{{ asset("img/facilities/wifi.png") }}"> 
+					<p class="detail-icon">WiFi</p>
+				</div>
+				<label class="switch" aria-pressed="false">
+					<input name="wifi" id="wifi-fac" type="checkbox" autocomplete="off">
+					<div class="slider round"></div>
+				</label>
+			</div>
+			<div class="facility-edit">
+				<div class="facility">
+					<img src="{{ asset("img/facilities/working-space.png") }}"> 
+					<p class="detail-icon">Working Environment</p>
+				</div>
+				<label class="switch" aria-pressed="false">
+					<input name="working_environment" id="working-fac" type="checkbox" autocomplete="off">
+					<div class="slider round"></div>
+				</label>
+			</div>
+			<div class="facility-edit">
+				<div class="facility">
+					<img src="{{ asset("img/facilities/alcohol.png") }}"> 
+					<p class="detail-icon">Alcohol</p>
+				</div>
+				<label class="switch" aria-pressed="false">
+					<input name="alcohol" id="alcohol-fac"  type="checkbox" autocomplete="off">
+					<div class="slider round"></div>
+				</label>
+			</div>
+			<div class="facility-edit">
+				<div class="facility">
+					<img src="{{ asset("img/facilities/changing-room.png") }}"> 
+					<p class="detail-icon">Served Pork</p>
+				</div>
+				<label class="switch" aria-pressed="false">
+					<input name="served_pork" id="pork-fac" type="checkbox" autocomplete="off">
+					<div class="slider round"></div>
+				</label>
+			</div>
+		</div>
+	</div>
+			
 	</br>
     {!! Form::button('Update Details', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
     {{ Form::close() }}

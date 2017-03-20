@@ -130,7 +130,7 @@
                 success: function(data){
                     if (data.breakfast == 1) {
                         console.log("masuk");
-                        $("#breakfast-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#breakfast-fac").attr("checked", "checked");
                         $("#breakfast").removeClass("unavailable");
                         $("#breakfast").addClass("available");
                     } else {
@@ -140,7 +140,7 @@
                         $("#breakfast").removeClass("available");
                     }
                     if (data.wifi == 1) {
-                        $("#wifi-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#wifi-fac").attr("checked", "checked");
                         $("#wifi").removeClass("unavailable");
                         $("#wifi").addClass("available");
                     } else {
@@ -149,7 +149,7 @@
                         $("#wifi").removeClass("available");
                     }
                     if (data.smoking_area == 1) {
-                        $("#smoking-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#smoking-fac").attr("checked", "checked");
                         $("#smoking-area").removeClass("unavailable");
                         $("#smoking-area").addClass("available");
                     } else {
@@ -158,7 +158,7 @@
                         $("#smoking-area").removeClass("available");
                     }
                     if (data.working_environment == 1) {
-                        $("#working-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#working-fac").attr("checked", "checked");
                         $("#working-env").removeClass("unavailable");
                         $("#working-env").addClass("available");
                     } else {
@@ -167,7 +167,8 @@
                         $("#working-env").removeClass("available");
                     }
                     if (data.reservation == 1) {
-                        $("#reservation-fac").addClass("btn btn-primary btn-facilities active");
+                        console.log("reservation");
+                        $("#reservation-fac").attr("checked", "checked");
                         $("#reservation").removeClass("unavailable");
                         $("#reservation").addClass("available");
                     } else {
@@ -176,7 +177,7 @@
                         $("#reservation").removeClass("available");
                     }
                     if (data.private_room == 1) {
-                        $("#private-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#private-fac").attr("checked", "checked");
                         $("#private-room").removeClass("unavailable");
                         $("#private-room").addClass("available");
                     } else {
@@ -185,7 +186,7 @@
                         $("#private-room").removeClass("available");
                     }
                     if (data.alcohol == 1) {
-                        $("#alcohol-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#alcohol-fac").attr("checked", "checked");
                         $("#alcohol").removeClass("unavailable");
                         $("#alcohol").addClass("available");
                     } else {
@@ -194,7 +195,7 @@
                         $("#alcohol").removeClass("available");
                     }
                     if (data.delivery_services == 1) {
-                        $("#delivery-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#delivery-fac").attr("checked", "checked");
                         $("#delivery").removeClass("unavailable");
                         $("#delivery").addClass("available");
                     } else {
@@ -204,7 +205,7 @@
 
                     }
                     if (data.served_pork == 1) {
-                        $("#pork-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#pork-fac").attr("checked", "checked");
                         $("#served-pork").removeClass("unavailable");
                         $("#served-pork").addClass("available");
                     } else {
@@ -213,7 +214,7 @@
                         $("#served-pork").removeClass("available");
                     }
                     if (data.ac == 1) {
-                        $("#ac-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#ac-fac").attr("checked", "checked");
                         $("#ac").removeClass("unavailable");
                         $("#ac").addClass("available");
                     } else {
@@ -222,7 +223,7 @@
                         $("#ac").removeClass("available");
                     }
                     if (data.valet == 1) {
-                        $("#valet-fac").addClass("btn btn-primary btn-facilities active");
+                        $("#valet-fac").attr("checked", "checked");
                         $("#valet").removeClass("unavailable");
                         $("#valet").addClass("available");
                     } else {
