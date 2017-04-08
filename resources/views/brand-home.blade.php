@@ -147,31 +147,48 @@
         </div> --}}
     </div>
 
-    <img id="logo-uploaded" src = {{ asset("$pathLogo") }} class="logo">
-
-    <img id="logo" class="logo">
-
-    <!-- form cropper -->
-    <div class="logo-error" role="alert">
-        <strong> {!! $errors->first('cover', '<span class="alert-danger logo-error">:message</span>') !!} </strong>
-    </div>
-    {!! Form::open(['id' => 'form-logo', 'enctype' => 'multipart/form-data']) !!}
-    {{ csrf_field() }}
-    {!! Form::file('logo', ['id' => 'uploaded-logo']) !!}
-    {!! Form::hidden('x-logo', '', array('id' => 'x-logo')) !!}
-    {!! Form::hidden('y-logo', '', array('id' => 'y-logo')) !!}
-    {!! Form::hidden('w-logo', '', array('id' => 'w-logo')) !!}
-    {!! Form::hidden('h-logo', '', array('id' => 'h-logo')) !!}
-    {!! Form::button('Save logo', ['type' => 'submit']) !!}
-    {!! Form::close() !!}
-
-
     <div class="container">
-        <div class="feature">
+        <div class="menu">
             <div class="feature-flex-menu">
                 <a href="#promotions"><h5>PROMOTIONS</h5></a>
                 <a href="#details"><h5>DETAILS</h5></a>
                 <a href="#menu"><h5>MENU</h5></a>
+                <div class="logo-brand">
+                    <img id="logo-uploaded" src = {{ asset("$pathLogo") }} class="logo">
+
+                    <img src = {{ asset('img/add-logo.png') }} id="overlay" data-toggle="modal" data-target="#upload-logo-modal">
+
+                    <div class="modal fade" id="upload-logo-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-label">Upload logo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img id="logo" class="logo">
+                                    
+                                    <!-- form cropper -->
+                                    <div class="logo-error" role="alert">
+                                        <strong> {!! $errors->first('cover', '<span class="alert-danger logo-error">:message</span>') !!} </strong>
+                                    </div>
+                                    {!! Form::open(['id' => 'form-logo', 'enctype' => 'multipart/form-data']) !!}
+                                    {{ csrf_field() }}
+                                    {!! Form::file('logo', ['id' => 'uploaded-logo']) !!}
+                                    {!! Form::hidden('x-logo', '', array('id' => 'x-logo')) !!}
+                                    {!! Form::hidden('y-logo', '', array('id' => 'y-logo')) !!}
+                                    {!! Form::hidden('w-logo', '', array('id' => 'w-logo')) !!}
+                                    {!! Form::hidden('h-logo', '', array('id' => 'h-logo')) !!}
+                                    {!! Form::button('Save logo', ['type' => 'submit']) !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                 <a href="#pictures"><h5>PICTURES</h5></a>
                 <a href="#review"><h5>REVIEW</h5></a>
                 <a href="#branches"><h5>BRANCHES</h5></a>
@@ -361,6 +378,8 @@
                     // Change default Selection component for new selections
                     selectionComponent: CircleSel,
                     applyFilters: [ 'constrain', 'extent', 'backoff', 'ratio', 'round' ],
+                    // boxWidth: 700,
+                    // boxHeight: 700,
                     aspectRatio: 1,
                     setSelect: initCoords(input),
                     handles: [ 'n','s','e','w' ],
@@ -450,30 +469,3 @@
 
     </script>
 @endsection
-
-<style type="text/css">.jcrop-circle-demo .jcrop-box {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  border: 1px rgba(255, 255, 255) solid;
-  border-radius: 50%;
-  /*-webkit-box-shadow: 1px 1px 26px #000000;
-  -moz-box-shadow: 1px 1px 26px #000000;
-  box-shadow: 1px 1px 26px #000000;*/
-  overflow: hidden;
-}
-.jcrop-circle-demo .jcrop-box:focus {
-  outline: none;
-}
-.custom-shade {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background-color: black;
-  opacity: 0.4;
-  width: 100%;
-  height: 100%;
-}
-</style>
