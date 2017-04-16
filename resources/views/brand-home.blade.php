@@ -364,7 +364,7 @@
                         // this.frame.css({ backgroundPosition: ox+'px '+oy+'px',
                         //     backgroundSize: $('#logo').width() + 'px ' + $('#logo').height() + 'px' });
                         this.frame.css({ backgroundPosition: -(b.x+1)+'px '+(-b.y-1)+'px',
-                    backgroundSize: $('#logo').width() + 'px ' + $('#logo').height() + 'px'});
+                        backgroundSize: $('#logo').width() + 'px ' + $('#logo').height() + 'px'});
                     },
                     redraw: function(b){
                         // Call original update() method first, with arguments
