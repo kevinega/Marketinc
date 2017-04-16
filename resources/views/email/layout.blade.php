@@ -54,7 +54,9 @@
                             <table width="70" align="center" border="0" cellpadding="0" cellspacing="0">  
                                 <tr>
                                     <td height="35" style="padding: 0 0 20px 0;">
-                                        <img class="fix" src="https://preview.ibb.co/dedSqk/logo_full.png" width="250" height="70" border="0" alt="" />
+                                        <a href="{{ url('/') }}">
+                                            <img class="fix" src="https://preview.ibb.co/dedSqk/logo_full.png" width="250" height="70" border="0" alt="" />    
+                                        </a>
                                     </td>
                                 </tr>
                             </table>
@@ -77,7 +79,9 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center" class="footercopy">
-                                        <img src="https://image.ibb.co/dXttVk/logo_m.png" height="30" width="30"/>
+                                        <a href="{{ url('/') }}">
+                                            <img src="https://image.ibb.co/dXttVk/logo_m.png" height="30" width="30"/>    
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
