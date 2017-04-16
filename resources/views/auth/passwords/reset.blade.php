@@ -20,8 +20,10 @@
     <p class="lead">
         @if ($errors->has('email'))
         The email entered did not found in our records.
-        @elseif ($errors->has('password') || $errors->has('password_confirmation'))
-        The password entered did not match.
+        @elseif ($errors->has('password'))
+        {{ $errors->first('password') }}
+        @elseif ($errors->has('password_confirmation'))
+        {{ $errors->first('password_confirmation') }}
         @else
         Please enter the email corresponding with your account and new password.
         @endif
@@ -53,10 +55,4 @@
         </div>
     </form>
 </div>
-@endsection
-
-@section('footer')
-<footer class="footer">
-    <div class="container"><span class="text-muted">© 2017 Marketinc</span></div>
-</footer>
 @endsection
