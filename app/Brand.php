@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticable;
-use App\Notifications\MyOwnResetPassword as ResetPasswordNotification;
+use App\Notifications\MarketincResetPassword as ResetPasswordNotification;
 
 class Brand extends Authenticable
 {
@@ -34,4 +34,5 @@ class Brand extends Authenticable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
 }
