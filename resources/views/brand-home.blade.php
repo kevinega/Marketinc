@@ -353,7 +353,7 @@
                     zoomscale: 1,
                     attach: function(){
                         this.frame.css({
-                          background: 'url(' + $('#logo')[0].src.replace('750','750') + ')'
+                          background: 'url(' + $('#logo')[0].src + ')'
                         });
                     },
                     positionBg: function(b){
@@ -361,8 +361,10 @@
                         var midy = ( b.y + b.y2 ) / 2;
                         var ox = (-midx*this.zoomscale)+(b.w/2);
                         var oy = (-midy*this.zoomscale)+(b.h/2);
-                        this.frame.css({ backgroundPosition: ox+'px '+oy+'px' });
-                        // this.frame.css({ backgroundPosition: -(b.x+1)+'px '+(-b.y-1)+'px' });
+                        // this.frame.css({ backgroundPosition: ox+'px '+oy+'px',
+                        //     backgroundSize: $('#logo').width() + 'px ' + $('#logo').height() + 'px' });
+                        this.frame.css({ backgroundPosition: -(b.x+1)+'px '+(-b.y-1)+'px',
+                    backgroundSize: $('#logo').width() + 'px ' + $('#logo').height() + 'px'});
                     },
                     redraw: function(b){
                         // Call original update() method first, with arguments
@@ -378,8 +380,8 @@
                     // Change default Selection component for new selections
                     selectionComponent: CircleSel,
                     applyFilters: [ 'constrain', 'extent', 'backoff', 'ratio', 'round' ],
-                    // boxWidth: 700,
-                    // boxHeight: 700,
+                    boxWidth: 700,
+                    boxHeight: 700,
                     aspectRatio: 1,
                     setSelect: initCoords(input),
                     handles: [ 'n','s','e','w' ],
