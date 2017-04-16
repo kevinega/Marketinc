@@ -59,7 +59,7 @@ class RegisterController extends Controller
             'address' => 'required',
             'phone_one' => 'required|regex:/^[+]{0,1}[0-9]{5,15}/',
             'phone_two' => 'regex:/^[+]{0,1}[0-9]{5,15}/',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:brands',
             'password' => 'required|min:6|max:25|confirmed',
             'membership' => 'required',
         ],
@@ -85,6 +85,7 @@ class RegisterController extends Controller
             
             'email.required' => 'Email is required',
             'email.email' => 'Email is invalid',
+            'email.unique' => 'This email is already registered',
             
             'password.required' => 'Password is required',
             'password.min' => 'Password is too short, min 6 digits',
