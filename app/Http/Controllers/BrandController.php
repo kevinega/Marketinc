@@ -129,4 +129,35 @@ class BrandController extends Controller
             return \Response::json(array('status' => 'success'));
         }
     }
+
+     /**
+     * Get a validator for an incoming promotion list.
+     * 
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    function validatorPromo(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+                    'promo' => 'required|mimes:jpeg,jpg,png|dimensions:min_width=300,min_height=300,ratio=1/1|max:2000',
+                    'title' => 'required',
+                    'desc' => 'requiered',
+                    'promo-type' => 'required',
+                    'disc_value' => 'required',
+                    'start_date' => 'required',
+                    'end_date' => 'required', 
+                ],
+                [  
+                    
+                ]
+                );
+
+        if($validator->fails()) {
+            return \Response::json(array('status' => 'errors', 'message' => $validator->messages()));
+        } else {
+            $this->uploadPromo($request);
+            return \Response::json(array('status' => 'success'));
+        }
+    }
 }
