@@ -332,8 +332,8 @@
             if(input == "cover"){
                 $('#cover').Jcrop({
                     applyFilters: [ 'constrain', 'extent', 'backoff', 'ratio', 'round', 'shader' ],
-                    boxWidth: 750,
-                    boxHeight: 750,
+                    boxWidth: 765,
+                    boxHeight: 500,
                     setSelect: initCoords(input),
                     aspectRatio: 5 / 1,
                     onSelect: updateCoords
@@ -379,8 +379,8 @@
                     // Change default Selection component for new selections
                     selectionComponent: CircleSel,
                     applyFilters: [ 'constrain', 'extent', 'backoff', 'ratio', 'round' ],
-                    boxWidth: 700,
-                    boxHeight: 700,
+                    boxWidth: 765,
+                    boxHeight: 500,
                     aspectRatio: 1,
                     setSelect: initCoords(input),
                     handles: [ 'n','s','e','w' ],
