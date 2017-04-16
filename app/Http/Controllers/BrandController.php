@@ -127,10 +127,10 @@ class BrandController extends Controller
                     'cover' => 'required|image|dimensions:min_width=500,min_height=100|max:2000',
                 ],
                 [  
-                    'cover.required' => "You haven't choose your image yet",
-                    'cover.image' => "Cover must be an image",
-                    'cover.dimensions' => 'Minimum image dimension is 500x100px', 
-                    'cover.max' => 'Maximum image size is 2mb',
+                    'cover.required' => "You haven't choose your image yet.",
+                    'cover.image' => "Cover must be an image.",
+                    'cover.dimensions' => 'Minimum image dimension is 500x100px.', 
+                    'cover.max' => 'Maximum image size is 2MB.',
                 ]
                 );
 
@@ -155,10 +155,10 @@ class BrandController extends Controller
                     'logo' => 'required|image|dimensions:min_width=200,min_height=200|max:2000',
                 ],
                 [  
-                    'logo.required' => "You haven't choose your image yet",
-                    'logo.image' => "Logo must be an image",
-                    'logo.dimensions' => 'Minimum image dimension is 200x200px', 
-                    'logo.max' => 'Maximum image size is 2mb',
+                    'logo.required' => "You haven't choose your image yet.",
+                    'logo.image' => "Logo must be an image.",
+                    'logo.dimensions' => 'Minimum image dimension is 200x200px.', 
+                    'logo.max' => 'Maximum image size is 2MB.',
                 ]
                 );
 

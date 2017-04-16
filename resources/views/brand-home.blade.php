@@ -168,12 +168,12 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <img id="logo" class="logo">
-                                    
-                                    <!-- form cropper -->
                                     <div class="logo-error" role="alert">
-                                        <strong> {!! $errors->first('cover', '<span class="alert-danger logo-error">:message</span>') !!} </strong>
+                                        <strong> {!! $errors->first('logo', '<span class="alert-danger logo-error">:message</span>') !!} </strong>
                                     </div>
+                                    <img id="logo" class="logo">
+
+                                    <!-- form cropper -->
                                     {!! Form::open(['id' => 'form-logo', 'enctype' => 'multipart/form-data']) !!}
                                     {{ csrf_field() }}
                                     {!! Form::file('logo', ['id' => 'uploaded-logo']) !!}
@@ -274,9 +274,8 @@
                     cache: false,
                     success: function(data) {
                         if(data.status == "errors") {
-                            console.log(data);
-                            // $(".cover-error").addClass("alert alert-danger");
-                            // $(".cover-error").text(data.message.cover[0]);
+                            $(".logo-error").addClass("alert alert-danger");
+                            $(".logo-error").text(data.message.logo[0]);
                             cropLogo.destroy();
                             cropLogo = undefined;
                             $('#form-logo').trigger('reset');
@@ -288,7 +287,7 @@
                         }
                     },
                     error: function(data) {
-                        // $(".cover-error").append("Upload Cover Error");
+                        $(".logo-error").append("Upload Logo Error");
                     }
                 });
             });
@@ -333,8 +332,8 @@
             if(input == "cover"){
                 $('#cover').Jcrop({
                     applyFilters: [ 'constrain', 'extent', 'backoff', 'ratio', 'round', 'shader' ],
-                    boxWidth: 700,
-                    boxHeight: 700,
+                    boxWidth: 750,
+                    boxHeight: 750,
                     setSelect: initCoords(input),
                     aspectRatio: 5 / 1,
                     onSelect: updateCoords
