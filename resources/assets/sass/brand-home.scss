@@ -43,52 +43,6 @@
     .alert-danger {
         margin-bottom: 8px;
     }
-
-    .jcrop-touch .jcrop-handle {
-        width: 15px;
-        height: 15px;
-        border-radius: 25px;
-    }
-
-    .jcrop-touch .jcrop-handle.ord-se {
-        margin-bottom: -8px;
-        margin-right: -8px;
-    }
-
-    .jcrop-touch .jcrop-handle.ord-sw {
-        margin-bottom: -8px;
-        margin-left: -8px;
-    }
-
-    .jcrop-touch .jcrop-handle.ord-s {
-        margin-bottom: -8px;
-        margin-left: -8px;
-    }
-
-    .jcrop-touch .jcrop-handle.ord-n {
-        margin-top: -8px;
-        margin-left: -8px;   
-    }
-
-    .jcrop-touch .jcrop-handle.ord-ne {
-        margin-top: -8px;
-        margin-right: -8px;
-    }
-
-    .jcrop-touch .jcrop-handle.ord-nw {
-        margin-top: -8px;
-        margin-left: -8px;
-    }
-
-    .jcrop-touch .jcrop-handle.ord-e {
-        margin-top: -8px;
-        margin-right: -8px;
-    }
-
-    .jcrop-touch .jcrop-handle.ord-w {
-        margin-top: -8px;
-        margin-left: -8px;
-    }
 }
 
 // .feature-followers {
@@ -188,7 +142,7 @@
     left: 0px;
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(255, 255, 255, 1);
+    border: 1px solid gray;
     border-radius: 50%;
     overflow: hidden;
 }
