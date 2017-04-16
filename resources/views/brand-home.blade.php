@@ -14,8 +14,8 @@
   <strong>Well done!</strong> {{ session('message') }}
 </div>
 @endif
-    @php 
-            $path = Auth::guard()->user()->cover;
+    @php
+        $path = Auth::guard()->user()->cover;
         @endphp
         <img src="{{ asset("storage/$path") }}">
          @if ($errors->has('cover'))
@@ -31,7 +31,7 @@
         {!! Form::file('cover') !!}
         {!! Form::button('Save Cover', ['type' => 'submit']) !!}
         {!! Form::close() !!}
-        
+
     <div class="feature-photo">
         <!-- display picture -->
         <?php $path = Auth::guard()->user()->logo; ?>
@@ -149,7 +149,7 @@ $('.multi-item-carousel .carousel-item').each(function(){
 //     next = $(this).siblings(':first');
 //   }
 //   next.children(':first-child').clone().appendTo($(this));
-  
+
 //   if (next.next().length>0) {
 //     next.next().children(':first-child').clone().appendTo($(this));
 //   } else {

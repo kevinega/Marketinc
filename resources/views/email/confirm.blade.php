@@ -1,21 +1,21 @@
-<!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <h2>Thank You for Confirming Your Payment</h2>
+@extends('email.layout')
 
-        <div>
-            Hi {{ $name }},
-            </br>
-            <p>We have received your payment confirmation,</p>
-            <p>Our admin will soon send you an email to finally activate your account.</p>
-            <p>Please kindly wait 2x24 Hours. Thank you for being patient</p>
-            <br/>
-            <p>Regards,</p>
-            <p>Marketinc Admin</p>
-        </div>
-
-    </body>
-</html>
+@section('email-content')
+<tr>
+    <td class="h2">
+        Thank You for Confirming Your Payment
+    </td>
+</tr>
+<tr>
+    <td class="bodycopy">
+        <p>Hi, {{ $username }}!</p>
+        <p>
+            We have received your payment confirmation. We will soon send an email for you to activate your account. Please kindly wait at least 2 x 24 working hours. Thank you for your patience.    
+        </p>
+        <p>
+            Best regards,
+            <br> Marketinc Team    
+        </p>
+    </td>
+</tr>
+@endsection
