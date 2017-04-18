@@ -12,10 +12,10 @@
 	{!! Form::text('title', null, ['id' => 'title']) !!}
 	</br>
 	{!! Form::label('desc', 'Description', ['class' => 'label']) !!}
-	{!! Form::text('desc', null, ['id' => 'desc']) !!}
+	{!! Form::text('description', null, ['id' => 'description']) !!}
 	</br>
-	{!! Form::label('promo-type', 'Promotion type', ['class' => 'label']) !!}
-	{!! Form::select('promo-type', ['special' => 'Special', 'happy-hour'=> 'Happy hour', 'event' => 'Event', 'free' => 'Free', 'discount' => 'Discount', 'new' => 'New'], null, ['placeholder' => 'Select promo type']) !!}
+	{!! Form::label('promotionType', 'Promotion type', ['class' => 'label']) !!}
+	{!! Form::select('promotionType', ['special' => 'Special', 'happy-hour'=> 'Happy hour', 'event' => 'Event', 'free' => 'Free', 'discount' => 'Discount', 'new' => 'New'], null, ['id'=> 'promotionType','placeholder' => 'Select promo type']) !!}
 	</br>
 	{!! Form::label('disc_value', 'Discount value', ['id' => 'disc_value']) !!}
 	{!! Form::text('disc_value', null, ['id' => 'disc-value']) !!}
