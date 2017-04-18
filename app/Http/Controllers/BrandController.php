@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Image;
 use App\Brand;
+use App\Promotion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -156,8 +157,47 @@ class BrandController extends Controller
         if($validator->fails()) {
             return \Response::json(array('status' => 'errors', 'message' => $validator->messages()));
         } else {
-            $this->uploadPromo($request);
+            $this->addPromo($request);
             return \Response::json(array('status' => 'success'));
         }
     }
+
+    function addPromo(Request $request,$image)
+    {   
+        //To Do bikin upload foto ngembaliin string 
+        $promo = new Promotion();
+        $promo->brand_id = Auth::user()->id();
+        $promo->title = $request->title;
+        $promo->image = "image"; //nanti data hasil proses
+        $promo->description = $request->description;
+        $promo->promotion_type = $request->promotionType;
+        $promo->start_date = $request->start_date;
+        $promo->end_date = $request->end_date;
+        if($request->has('sun')){
+            $promo->valid_sun = $request->sun;
+        }
+        if($request->has('mon')){
+            $promo->valid_mon = $request->mon;
+        }
+        if($request->has('tue')){
+            $promo->valid_tue = $request->tue;
+        }
+        if($request->has('wed')){
+            $promo->valid_wed = $request->wed;
+        }
+        if($request->has('thu')){
+            $promo->valid_thu = $request->thu;
+        }
+        if($request->has('thu')){
+            $promo->valid_thu = $request->thu;
+        }
+        if($request->has('fri')){
+            $promo->valid_fri = $request->fri;
+        }
+        return $promo->save();
+
+
+    }
+
+
 }
